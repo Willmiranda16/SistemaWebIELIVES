@@ -82,6 +82,7 @@ var _user = document.head.querySelector('meta[name="user"]');
         distrito: "0",
         direccion: ""
       },
+      isDisabledManual: false,
       loading: false,
       loadingDni: false,
       buscando: false
@@ -869,7 +870,52 @@ var render = function render() {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
+  }, [_c("div", {
+    staticClass: "d-flex justify-content-between"
   }, [_vm._m(3), _vm._v(" "), _c("div", {
+    staticClass: "form-check"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.isDisabledManual,
+      expression: "isDisabledManual"
+    }],
+    staticClass: "form-check-input",
+    attrs: {
+      type: "checkbox",
+      value: "",
+      id: "flexCheckDefault"
+    },
+    domProps: {
+      checked: Array.isArray(_vm.isDisabledManual) ? _vm._i(_vm.isDisabledManual, "") > -1 : _vm.isDisabledManual
+    },
+    on: {
+      change: function change($event) {
+        var $$a = _vm.isDisabledManual,
+            $$el = $event.target,
+            $$c = $$el.checked ? true : false;
+
+        if (Array.isArray($$a)) {
+          var $$v = "",
+              $$i = _vm._i($$a, $$v);
+
+          if ($$el.checked) {
+            $$i < 0 && (_vm.isDisabledManual = $$a.concat([$$v]));
+          } else {
+            $$i > -1 && (_vm.isDisabledManual = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.isDisabledManual = $$c;
+        }
+      }
+    }
+  }), _vm._v(" "), _c("label", {
+    staticClass: "form-check-label",
+    attrs: {
+      "for": "flexCheckDefault"
+    }
+  }, [_vm._v("\n                                                                Ingreso manual?\n                                                            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "input-group mb-3"
   }, [_c("input", {
     directives: [{
@@ -932,7 +978,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.isDisabledManual
     },
     domProps: {
       value: _vm.persona.nombres
@@ -959,7 +1005,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.isDisabledManual
     },
     domProps: {
       value: _vm.persona.apellidos
@@ -1092,7 +1138,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.isDisabledManual
     },
     domProps: {
       value: _vm.persona.pais

@@ -77,7 +77,8 @@ class RolController extends Controller
     public function show(Request $request)
     {
         /* $roles = Rol::where('id_rol','!=', 1)->where('estado', 1)->get(); */
-        $roles = Rol::where('rol_id','!=', 1)->where('rol_estado', 1)->where('is_deleted','!=',1)->get();
+        $roles = Rol::where('rol_estado', 1)->where('is_deleted','!=',1)->get();
+        // $roles = Rol::where('rol_id','!=', 1)->where('rol_estado', 1)->where('is_deleted','!=',1)->get();
         return response()->json($roles);
         /*  if ($request->ajax()) {
             return response()->json($roles);

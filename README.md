@@ -14,7 +14,7 @@ Sistema Academico
 1. Clona este repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/WaynerEP/sistemaAcademico.git
+   git clone https://github.com/Willmiranda16/SistemaWebIELIVES.git
 
 2. Navega al directorio del proyecto:
 

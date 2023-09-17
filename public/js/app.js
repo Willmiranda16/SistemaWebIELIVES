@@ -5270,7 +5270,9 @@ var _user = document.head.querySelector('meta[name="user"]');
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      currentYear: new Date().getFullYear()
+    };
   },
   computed: {
     user: function user() {
@@ -5668,9 +5670,25 @@ var render = function render() {
     attrs: {
       role: "tabpanel"
     }
-  }, [_c("router-view")], 1)]), _vm._v(" "), _vm._m(14)])]) : _c("main", [_c("div", {
+  }, [_c("router-view")], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "section-body mt-auto"
+  }, [_c("footer", {
+    staticClass: "footer"
+  }, [_c("div", {
+    staticClass: "container-fluid"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6 col-sm-12"
+  }, [_vm._v("\n                            Copyright © " + _vm._s(_vm.currentYear) + " "), _c("a", {
+    attrs: {
+      href: "#"
+    }
+  }), _vm._v(".\n                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6 col-sm-12 text-md-right"
+  }, [_vm._v("\n                            Todos los derechos reservados.\n                        ")])])])])])])]) : _c("main", [_c("div", {
     staticClass: "card-body text-center"
-  }, [_vm._m(15), _vm._v(" "), _c("h1", {
+  }, [_vm._m(14), _vm._v(" "), _c("h1", {
     staticClass: "h3 mb-4"
   }, [_vm._v("Ups... Usuario Deshabilitado ...")]), _vm._v(" "), _c("p", {
     staticClass: "h6 text-muted font-weight-normal mb-3"
@@ -7254,27 +7272,6 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "dropdown-icon fe fe-help-circle"
   }), _vm._v(" Ayuda en Línea")]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "section-body mt-auto"
-  }, [_c("footer", {
-    staticClass: "footer"
-  }, [_c("div", {
-    staticClass: "container-fluid"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-6 col-sm-12"
-  }, [_vm._v("\n                            Copyright © 2022 "), _c("a", {
-    attrs: {
-      href: "#"
-    }
-  }), _vm._v(".\n                        ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6 col-sm-12 text-md-right"
-  }, [_vm._v("\n                            Todos los derechos reservados.\n                        ")])])])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;

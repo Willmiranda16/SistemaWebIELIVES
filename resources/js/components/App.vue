@@ -944,7 +944,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
-                                Copyright © 2022 <a href="#"></a>.
+                                Copyright © {{ currentYear }} <a href="#"></a>.
                             </div>
                             <div class="col-md-6 col-sm-12 text-md-right">
                                 Todos los derechos reservados.
@@ -972,6 +972,7 @@ let user = document.head.querySelector('meta[name="user"]');
 export default {
     data() {
         return {
+            currentYear: new Date().getFullYear()
         }
     },
     computed: {

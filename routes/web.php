@@ -8,6 +8,8 @@ use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,12 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('auth.login');
+});
+
+
+Route::get('/hash/{password}', function ($password) {
+    $hashedPassword = Hash::make($password);
+    return $hashedPassword;
 });
 
 Auth::routes();
@@ -52,3 +60,4 @@ Route::get('/clear', function() {
     Artisan::call('route:clear');
     return "Cleared!";
 });
+

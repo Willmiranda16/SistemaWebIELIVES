@@ -106,7 +106,7 @@ class UsuarioController extends Controller
      */
     public function show(Request $request)
     {
-        $usuarios = User::where('is_deleted','!=',1)->where('id','!=',1)->get();
+        $usuarios = User::where('is_deleted','!=',1)->get();
         /* $usuarios = User::where('is_deleted','!=',1)->get(); */
         foreach ($usuarios as $u) {
             $persona = Persona::where('per_id',$u->per_id)->first();

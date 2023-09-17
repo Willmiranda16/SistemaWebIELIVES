@@ -134,11 +134,16 @@ class AulaController extends Controller
     {
         $datos = $request['params']['aula'];
         $aula = Aula::find($datos['id']);
-        $aula->ala_abreviatura = $datos['abreviatura'];
-        $aula->ala_aforo = $datos['capacidad'];
-        $aula->ala_ubicacion = $datos['ubicacion'];
-        $aula->ala_estado = $datos['estado'];
-        $aula->save();
+        
+        $actualizacion = [
+            'ala_tipo' => $datos['tipo'],
+            'ala_descripcion' => $datos['descripcion'],
+            'ala_aforo' => $datos['capacidad'],
+            'ala_ubicacion' => $datos['ubicacion'],
+            'ala_estado' => $datos['estado'],
+        ];
+        
+        $aula->update($actualizacion);
     }
 
     /**

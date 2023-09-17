@@ -108,6 +108,8 @@ var _user = document.head.querySelector('meta[name="user"]');
         distrito: "0",
         direccion: ""
       },
+      enableStudentField: false,
+      enableGuardianField: false,
       loading: false,
       loadingDni: false,
       loadingDni2: false,
@@ -218,7 +220,7 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.loading = true;
+                // this.loading = true;
                 axios.post("/api/actualizar-alumno", {
                   params: {
                     data: _this3.update_data
@@ -241,7 +243,7 @@ var _user = document.head.querySelector('meta[name="user"]');
                   console.log(error);
                 });
 
-              case 2:
+              case 1:
               case "end":
                 return _context3.stop();
             }
@@ -756,6 +758,7 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context20.prev = _context20.next) {
               case 0:
+                console.log(item);
                 div = document.getElementById("alumno-all").classList;
                 link = document.getElementById("link-all-alumno").classList;
 
@@ -782,7 +785,7 @@ var _user = document.head.querySelector('meta[name="user"]');
 
                 _this19.update_data.alu_estado = item.alu_estado, _this19.update_data.alu_id = item.alu_id, _this19.update_data.apo_id = item.apo_id, _this19.update_data.apo_parentesco = item.apo_parentesco, _this19.update_data.apo_vive_con_estudiante = item.apo_vive_con_estudiante, _this19.update_data.apo_per_id = item.apo_per_id, _this19.update_data.apo_nombres = item.apo_nombres, _this19.update_data.apo_apellidos = item.apo_apellidos, _this19.update_data.apo_dni = item.apo_dni, _this19.update_data.apo_sexo = item.apo_sexo, _this19.update_data.apo_fecha_nacimiento = item.apo_fecha_nacimiento, _this19.update_data.apo_estado_civil = item.apo_estado_civil, _this19.update_data.apo_celular = item.apo_celular, _this19.update_data.apo_email = item.apo_email, _this19.update_data.apo_pais = item.apo_pais, _this19.update_data.apo_departamento = item.apo_departamento, _this19.update_data.apo_provincia = item.apo_provincia, _this19.update_data.apo_distrito = item.apo_distrito, _this19.update_data.apo_direccion = item.apo_direccion, _this19.update_data.per_id = item.per_id, _this19.update_data.nombres = item.nombres, _this19.update_data.apellidos = item.apellidos, _this19.update_data.dni = item.dni, _this19.update_data.sexo = item.sexo, _this19.update_data.fecha_nacimiento = item.fecha_nacimiento, _this19.update_data.estado_civil = item.estado_civil, _this19.update_data.celular = item.celular, _this19.update_data.email = item.email, _this19.update_data.pais = item.pais, _this19.update_data.departamento = item.departamento, _this19.update_data.provincia = item.provincia, _this19.update_data.distrito = item.distrito, _this19.update_data.direccion = item.direccion;
 
-              case 12:
+              case 13:
               case "end":
                 return _context20.stop();
             }
@@ -1115,7 +1118,52 @@ var render = function render() {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
+  }, [_c("div", {
+    staticClass: "d-flex justify-content-between"
   }, [_vm._m(6), _vm._v(" "), _c("div", {
+    staticClass: "form-check"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.enableStudentField,
+      expression: "enableStudentField"
+    }],
+    staticClass: "form-check-input",
+    attrs: {
+      type: "checkbox",
+      value: "",
+      id: "flexCheckDefault"
+    },
+    domProps: {
+      checked: Array.isArray(_vm.enableStudentField) ? _vm._i(_vm.enableStudentField, "") > -1 : _vm.enableStudentField
+    },
+    on: {
+      change: function change($event) {
+        var $$a = _vm.enableStudentField,
+            $$el = $event.target,
+            $$c = $$el.checked ? true : false;
+
+        if (Array.isArray($$a)) {
+          var $$v = "",
+              $$i = _vm._i($$a, $$v);
+
+          if ($$el.checked) {
+            $$i < 0 && (_vm.enableStudentField = $$a.concat([$$v]));
+          } else {
+            $$i > -1 && (_vm.enableStudentField = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.enableStudentField = $$c;
+        }
+      }
+    }
+  }), _vm._v(" "), _c("label", {
+    staticClass: "form-check-label text-info",
+    attrs: {
+      "for": "flexCheckDefault"
+    }
+  }, [_vm._v("\n                                                                Ingreso manual?\n                                                            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "input-group mb-3"
   }, [_c("input", {
     directives: [{
@@ -1155,7 +1203,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-magnifying-glass"
-  }), _vm._v("\n                                                                    Buscar\n                                                                ")]) : _c("button", {
+  }), _vm._v("\n                                                                Buscar\n                                                            ")]) : _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       id: "btnfollow_recargar",
@@ -1163,7 +1211,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-spinner base"
-  }), _vm._v("\n                                                                    Procesando...\n                                                                ")])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v("\n                                                                Procesando...\n                                                            ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -1178,7 +1226,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.enableStudentField
     },
     domProps: {
       value: _vm.persona.nombres
@@ -1205,7 +1253,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.enableStudentField
     },
     domProps: {
       value: _vm.persona.apellidos
@@ -1338,7 +1386,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.enableStudentField
     },
     domProps: {
       value: _vm.persona.pais
@@ -1386,7 +1434,7 @@ var render = function render() {
       domProps: {
         value: d.idDepa
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.departamento) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.departamento) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Provincia ")]), _vm._v(" "), _c("select", {
@@ -1423,7 +1471,7 @@ var render = function render() {
       domProps: {
         value: p.idProv
       }
-    }, [_vm._v("\n                                                            " + _vm._s(p.provincia) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(p.provincia) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Distrito ")]), _vm._v(" "), _c("select", {
@@ -1458,7 +1506,7 @@ var render = function render() {
       domProps: {
         value: d.idDist
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.distrito) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.distrito) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
@@ -1548,7 +1596,52 @@ var render = function render() {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
+  }, [_c("div", {
+    staticClass: "d-flex justify-content-between"
   }, [_vm._m(12), _vm._v(" "), _c("div", {
+    staticClass: "form-check"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.enableGuardianField,
+      expression: "enableGuardianField"
+    }],
+    staticClass: "form-check-input",
+    attrs: {
+      type: "checkbox",
+      value: "",
+      id: "flexCheckGuardian"
+    },
+    domProps: {
+      checked: Array.isArray(_vm.enableGuardianField) ? _vm._i(_vm.enableGuardianField, "") > -1 : _vm.enableGuardianField
+    },
+    on: {
+      change: function change($event) {
+        var $$a = _vm.enableGuardianField,
+            $$el = $event.target,
+            $$c = $$el.checked ? true : false;
+
+        if (Array.isArray($$a)) {
+          var $$v = "",
+              $$i = _vm._i($$a, $$v);
+
+          if ($$el.checked) {
+            $$i < 0 && (_vm.enableGuardianField = $$a.concat([$$v]));
+          } else {
+            $$i > -1 && (_vm.enableGuardianField = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.enableGuardianField = $$c;
+        }
+      }
+    }
+  }), _vm._v(" "), _c("label", {
+    staticClass: "form-check-label text-info",
+    attrs: {
+      "for": "flexCheckGuardian"
+    }
+  }, [_vm._v("\n                                                                Ingreso manual?\n                                                            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "input-group mb-3"
   }, [_c("input", {
     directives: [{
@@ -1561,8 +1654,7 @@ var render = function render() {
     attrs: {
       type: "number",
       minlength: "8",
-      maxlength: "8",
-      required: ""
+      maxlength: "8"
     },
     domProps: {
       value: _vm.apoderado.dni
@@ -1588,7 +1680,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-magnifying-glass"
-  }), _vm._v("\n                                                                    Buscar\n                                                                ")]) : _c("button", {
+  }), _vm._v("\n                                                                Buscar\n                                                            ")]) : _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       id: "btnfollow_recargar",
@@ -1596,7 +1688,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-spinner base"
-  }), _vm._v("\n                                                                    Procesando...\n                                                                ")])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v("\n                                                                Procesando...\n                                                            ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -1610,8 +1702,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      required: "",
-      disabled: ""
+      disabled: !_vm.enableGuardianField
     },
     domProps: {
       value: _vm.apoderado.nombres
@@ -1637,8 +1728,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      required: "",
-      disabled: ""
+      disabled: !_vm.enableGuardianField
     },
     domProps: {
       value: _vm.apoderado.apellidos
@@ -1660,9 +1750,6 @@ var render = function render() {
       expression: "apoderado.sexo"
     }],
     staticClass: "form-control show-tick",
-    attrs: {
-      required: ""
-    },
     on: {
       change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
@@ -1771,7 +1858,7 @@ var render = function render() {
     attrs: {
       type: "text",
       required: "",
-      disabled: ""
+      disabled: !_vm.enableGuardianField
     },
     domProps: {
       value: _vm.apoderado.pais
@@ -1819,7 +1906,7 @@ var render = function render() {
       domProps: {
         value: d.idDepa
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.departamento) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.departamento) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Provincia ")]), _vm._v(" "), _c("select", {
@@ -1856,7 +1943,7 @@ var render = function render() {
       domProps: {
         value: p.idProv
       }
-    }, [_vm._v("\n                                                            " + _vm._s(p.provincia) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(p.provincia) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Distrito ")]), _vm._v(" "), _c("select", {
@@ -1891,7 +1978,7 @@ var render = function render() {
       domProps: {
         value: d.idDist
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.distrito) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.distrito) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
@@ -1979,9 +2066,6 @@ var render = function render() {
       expression: "apoderado.parentesco"
     }],
     staticClass: "form-control show-tick",
-    attrs: {
-      required: ""
-    },
     on: {
       change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
@@ -2139,7 +2223,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-magnifying-glass"
-  }), _vm._v("\n                                                                    Buscar\n                                                                ")]) : _c("button", {
+  }), _vm._v("\n                                                                Buscar\n                                                            ")]) : _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       id: "btnfollow_recargar",
@@ -2147,7 +2231,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-spinner base"
-  }), _vm._v("\n                                                                    Procesando...\n                                                                ")])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v("\n                                                                Procesando...\n                                                            ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -2370,7 +2454,7 @@ var render = function render() {
       domProps: {
         value: d.idDepa
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.departamento) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.departamento) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Provincia ")]), _vm._v(" "), _c("select", {
@@ -2407,7 +2491,7 @@ var render = function render() {
       domProps: {
         value: p.idProv
       }
-    }, [_vm._v("\n                                                            " + _vm._s(p.provincia) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(p.provincia) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Distrito ")]), _vm._v(" "), _c("select", {
@@ -2442,7 +2526,7 @@ var render = function render() {
       domProps: {
         value: d.idDist
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.distrito) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.distrito) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
@@ -2586,9 +2670,7 @@ var render = function render() {
     attrs: {
       type: "number",
       minlength: "8",
-      maxlength: "8",
-      required: "",
-      disabled: ""
+      maxlength: "8"
     },
     domProps: {
       value: _vm.update_data.apo_dni
@@ -2614,7 +2696,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-magnifying-glass"
-  }), _vm._v("\n                                                                    Buscar\n                                                                ")]) : _c("button", {
+  }), _vm._v("\n                                                                Buscar\n                                                            ")]) : _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       id: "btnfollow_recargar",
@@ -2622,7 +2704,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-spinner base"
-  }), _vm._v("\n                                                                    Procesando...\n                                                                ")])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v("\n                                                                Procesando...\n                                                            ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -2635,9 +2717,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
-      required: "",
-      disabled: ""
+      type: "text"
     },
     domProps: {
       value: _vm.update_data.apo_nombres
@@ -2662,9 +2742,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
-      required: "",
-      disabled: ""
+      type: "text"
     },
     domProps: {
       value: _vm.update_data.apo_apellidos
@@ -2795,9 +2873,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
-      required: "",
-      disabled: ""
+      type: "text"
     },
     domProps: {
       value: _vm.update_data.apo_pais
@@ -2845,7 +2921,7 @@ var render = function render() {
       domProps: {
         value: d.idDepa
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.departamento) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.departamento) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Provincia ")]), _vm._v(" "), _c("select", {
@@ -2882,7 +2958,7 @@ var render = function render() {
       domProps: {
         value: p.idProv
       }
-    }, [_vm._v("\n                                                            " + _vm._s(p.provincia) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(p.provincia) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-3 col-md-6 col-sm-12"
   }, [_c("label", [_vm._v("Distrito ")]), _vm._v(" "), _c("select", {
@@ -2917,7 +2993,7 @@ var render = function render() {
       domProps: {
         value: d.idDist
       }
-    }, [_vm._v("\n                                                            " + _vm._s(d.distrito) + "\n                                                        ")]);
+    }, [_vm._v("\n                                                        " + _vm._s(d.distrito) + "\n                                                    ")]);
   })], 2)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-6 col-sm-12"
   }, [_c("div", {
@@ -3005,9 +3081,6 @@ var render = function render() {
       expression: "update_data.apo_parentesco"
     }],
     staticClass: "form-control show-tick",
-    attrs: {
-      required: ""
-    },
     on: {
       change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
@@ -3333,7 +3406,7 @@ var staticRenderFns = [function () {
     staticClass: "fe fe-x"
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_c("p", [_vm._v("Hello I am Celena Anderson a Clerk in Xyz College USA. I love to work with all my college staff and seniour professors.")]), _vm._v(" "), _c("ul", {
+  }, [_c("p", [_vm._v("Hello I am Celena Anderson a Clerk in Xyz College USA. I love to work with all my\n                                        college staff and seniour professors.")]), _vm._v(" "), _c("ul", {
     staticClass: "list-group"
   }, [_c("li", {
     staticClass: "list-group-item"
@@ -3536,7 +3609,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body"
   }, [_c("div", {
     staticClass: "summernote"
-  }, [_vm._v("\n                                            Hello there,\n                                            "), _c("br"), _vm._v(" "), _c("p", [_vm._v("The toolbar can be customized and it also supports various callbacks such as "), _c("code", [_vm._v("oninit")]), _vm._v(", "), _c("code", [_vm._v("onfocus")]), _vm._v(", "), _c("code", [_vm._v("onpaste")]), _vm._v(" and many more.")]), _vm._v(" "), _c("p", [_vm._v("Please try "), _c("b", [_vm._v("paste some texts")]), _vm._v(" here")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Hello there,\n                                        "), _c("br"), _vm._v(" "), _c("p", [_vm._v("The toolbar can be customized and it also supports various callbacks such as\n                                            "), _c("code", [_vm._v("oninit")]), _vm._v(", "), _c("code", [_vm._v("onfocus")]), _vm._v(", "), _c("code", [_vm._v("onpaste")]), _vm._v(" and many\n                                            more.\n                                        ")]), _vm._v(" "), _c("p", [_vm._v("Please try "), _c("b", [_vm._v("paste some texts")]), _vm._v(" here")])]), _vm._v(" "), _c("div", {
     staticClass: "timeline_item"
   }, [_c("img", {
     staticClass: "tl_avatar",
@@ -3552,9 +3625,9 @@ var staticRenderFns = [function () {
     staticClass: "float-right text-right"
   }, [_vm._v("20-April-2019 - Today")])]), _vm._v(" "), _c("h6", {
     staticClass: "font600"
-  }, [_vm._v("Hello, 'Im a single div responsive timeline without media Queries!")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Hello, 'Im a single div responsive timeline without media\n                                            Queries!")]), _vm._v(" "), _c("div", {
     staticClass: "msg"
-  }, [_c("p", [_vm._v("I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things. I write the best placeholder text, and I'm the biggest developer on the web card she has is the Lorem card.")]), _vm._v(" "), _c("a", {
+  }, [_c("p", [_vm._v("I'm speaking with myself, number one, because I have a very good brain\n                                                and I've said a lot of things. I write the best placeholder text, and\n                                                I'm the biggest developer on the web card she has is the Lorem card.")]), _vm._v(" "), _c("a", {
     staticClass: "mr-20 text-muted",
     attrs: {
       href: "javascript:void(0);"
@@ -3572,7 +3645,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa fa-comments"
-  }), _vm._v(" 1 Comment")]), _vm._v(" "), _c("div", {
+  }), _vm._v(" 1\n                                                Comment")]), _vm._v(" "), _c("div", {
     staticClass: "collapse p-4 section-gray mt-2",
     attrs: {
       id: "collapseExample"
@@ -3603,7 +3676,7 @@ var staticRenderFns = [function () {
     staticClass: "comment_body"
   }, [_c("h6", [_vm._v("Donald Gardner "), _c("small", {
     staticClass: "float-right font-14"
-  }, [_vm._v("Just now")])]), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum Veniam aliquip culpa laboris minim tempor")])])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Just\n                                                                    now")])]), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum Veniam aliquip culpa laboris minim tempor")])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "timeline_item"
   }, [_c("img", {
     staticClass: "tl_avatar",
@@ -3622,7 +3695,7 @@ var staticRenderFns = [function () {
     staticClass: "font600"
   }, [_vm._v("Oeehhh, that's awesome.. Me too!")]), _vm._v(" "), _c("div", {
     staticClass: "msg"
-  }, [_c("p", [_vm._v("I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things. on the web by far... While that's mock-ups and this is politics, are they really so different? I think the only card she has is the Lorem card.")]), _vm._v(" "), _c("div", {
+  }, [_c("p", [_vm._v("I'm speaking with myself, number one, because I have a very good brain\n                                                and I've said a lot of things. on the web by far... While that's\n                                                mock-ups and this is politics, are they really so different? I think the\n                                                only card she has is the Lorem card.")]), _vm._v(" "), _c("div", {
     staticClass: "timeline_img mb-20"
   }, [_c("img", {
     staticClass: "width100",
@@ -3654,7 +3727,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa fa-comments"
-  }), _vm._v(" 2 Comment")]), _vm._v(" "), _c("div", {
+  }), _vm._v(" 2\n                                                Comment")]), _vm._v(" "), _c("div", {
     staticClass: "collapse p-4 section-gray mt-2",
     attrs: {
       id: "collapseExample1"
@@ -3685,7 +3758,7 @@ var staticRenderFns = [function () {
     staticClass: "comment_body"
   }, [_c("h6", [_vm._v("Donald Gardner "), _c("small", {
     staticClass: "float-right font-14"
-  }, [_vm._v("Just now")])]), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum Veniam aliquip culpa laboris minim tempor")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Just\n                                                                    now")])]), _vm._v(" "), _c("p", [_vm._v("Lorem ipsum Veniam aliquip culpa laboris minim tempor")]), _vm._v(" "), _c("div", {
     staticClass: "timeline_img mb-20"
   }, [_c("img", {
     staticClass: "width150",
@@ -3711,7 +3784,7 @@ var staticRenderFns = [function () {
     staticClass: "comment_body"
   }, [_c("h6", [_vm._v("Dessie Parks "), _c("small", {
     staticClass: "float-right font-14"
-  }, [_vm._v("1min ago")])]), _vm._v(" "), _c("p", [_vm._v("It is a long established fact that a reader will be distracted by the readable content of a page when looking")])])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("1min\n                                                                    ago")])]), _vm._v(" "), _c("p", [_vm._v("It is a long established fact that a reader will be\n                                                                distracted by the readable content of a page when\n                                                                looking")])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "timeline_item"
   }, [_c("img", {
     staticClass: "tl_avatar",
@@ -3724,13 +3797,13 @@ var staticRenderFns = [function () {
       href: "javascript:void(0);",
       title: ""
     }
-  }, [_vm._v("Rochelle Barton")]), _vm._v(" San Francisco, CA "), _c("small", {
+  }, [_vm._v("Rochelle Barton")]), _vm._v(" San Francisco,\n                                            CA "), _c("small", {
     staticClass: "float-right text-right"
   }, [_vm._v("12-April-2019")])]), _vm._v(" "), _c("h6", {
     staticClass: "font600"
-  }, [_vm._v("An Engineer Explains Why You Should Always Order the Larger Pizza")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("An Engineer Explains Why You Should Always Order the Larger\n                                            Pizza")]), _vm._v(" "), _c("div", {
     staticClass: "msg"
-  }, [_c("p", [_vm._v("I'm speaking with myself, number one, because I have a very good brain and I've said a lot of things. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, is the Lorem card.")]), _vm._v(" "), _c("a", {
+  }, [_c("p", [_vm._v("I'm speaking with myself, number one, because I have a very good brain\n                                                and I've said a lot of things. I write the best placeholder text, and\n                                                I'm the biggest developer on the web by far... While that's mock-ups and\n                                                this is politics, is the Lorem card.")]), _vm._v(" "), _c("a", {
     staticClass: "mr-20 text-muted",
     attrs: {
       href: "javascript:void(0);"
@@ -3748,7 +3821,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa fa-comments"
-  }), _vm._v(" 1 Comment")]), _vm._v(" "), _c("div", {
+  }), _vm._v(" 1\n                                                Comment")]), _vm._v(" "), _c("div", {
     staticClass: "collapse p-4 section-gray mt-2",
     attrs: {
       id: "collapseExample2"
