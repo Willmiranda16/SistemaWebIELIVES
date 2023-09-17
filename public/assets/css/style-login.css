@@ -1,0 +1,82 @@
+html, body{
+    height:100vh;
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, rgba(235,240,239,1) 0%, rgba(239,239,237,1) 100%);
+}
+.fondo{
+    width: 100%;
+    height: 100vh;
+}
+.logo {
+    background: rgb(133,188,254);
+    background: linear-gradient(180deg, rgb(223 53 53) 0%, rgb(255 174 174) 100%);
+    /* background: linear-gradient(180deg, rgba(0,94,184,1) 0%, rgba(24,130,218,1) 100%); */
+    text-align: center;
+    width: 50%;
+}
+.logo img {
+    width: 17%;
+    margin: 5% 5% 15% 5%;
+}
+.form {
+    background: linear-gradient(180deg, rgba(235,240,239,1) 0%, rgba(239,239,237,1) 100%);
+    text-align: center;
+    border-radius: 15em/3em;
+    height: 100%;
+    border: 0;
+}
+.login {
+    text-align: center;
+}
+.login h2{
+    color: #0093DD;
+    margin: 5% 5% 10% 5%;
+}
+.datos {
+    text-align: center;
+}
+.datos label {
+    font-size: 16px;
+}
+.datos input{
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    background-color: #DFE0E3;
+    color: black;
+    border: 0;
+    border-color: #DFE0E3;
+    border-radius: 10px;
+    outline: none;
+}
+.input {
+    margin-bottom: 5%;
+}
+.texto a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.texto h6{
+    color: black;
+    margin: 10% 5% 5% 5%;
+}
+.logear button{
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    /* background: linear-gradient(145deg, #00b5ad, #17a2b8); */
+    background-color: #0093DD;
+    border: 0;
+    border-color: #DFE0E3;
+    border-radius: 10px;
+    outline: none;
+    margin: 10% 10% 15% 10%;
+}
+.logear button:hover{
+    color: #fff;
+    background:linear-gradient(180deg, #0093dd, #73a2eb);
+    /* background: linear-gradient(180deg, rgba(133,188,254,1) 0%, rgba(174,206,255,1) 100%); */
+}
