@@ -63,31 +63,29 @@ class AlumnoController extends Controller
                 ]);
                 $datos_persona['per_id'] = $Persona->per_id;
             }
-            if (!$datos_apoderado['per_id']) {
-                if ($datos_apoderado['dni']) {
-                    $Apo = Persona::create([
-                        'per_dni' => $datos_apoderado['dni'],
-                        'per_nombres' => $datos_apoderado['nombres'],
-                        'per_apellidos' => $datos_apoderado['apellidos'],
-                        'per_email' => $datos_apoderado['email'],
-                        'per_sexo' => $datos_apoderado['sexo'],
-                        'per_fecha_nacimiento' => $datos_apoderado['fecha_nacimiento'],
-                        'per_estado_civil' => $datos_apoderado['estado_civil'],
-                        'per_celular' => $datos_apoderado['celular'],
-                        'per_pais' => $datos_apoderado['pais'],
-                        'per_departamento' => $datos_apoderado['departamento'],
-                        'per_provincia' => $datos_apoderado['provincia'],
-                        'per_distrito' => $datos_apoderado['distrito'],
-                        'per_direccion' => $datos_apoderado['direccion']
-                    ]);
-                    $datos_apoderado['per_id'] = $Apo->per_id;
+            if ($datos_apoderado['dni']) {
+                $Apo = Persona::create([
+                    'per_dni' => $datos_apoderado['dni'],
+                    'per_nombres' => $datos_apoderado['nombres'],
+                    'per_apellidos' => $datos_apoderado['apellidos'],
+                    'per_email' => $datos_apoderado['email'],
+                    'per_sexo' => $datos_apoderado['sexo'],
+                    'per_fecha_nacimiento' => $datos_apoderado['fecha_nacimiento'],
+                    'per_estado_civil' => $datos_apoderado['estado_civil'],
+                    'per_celular' => $datos_apoderado['celular'],
+                    'per_pais' => $datos_apoderado['pais'],
+                    'per_departamento' => $datos_apoderado['departamento'],
+                    'per_provincia' => $datos_apoderado['provincia'],
+                    'per_distrito' => $datos_apoderado['distrito'],
+                    'per_direccion' => $datos_apoderado['direccion']
+                ]);
+                $datos_apoderado['per_id'] = $Apo->per_id;
 
-                    $Apoderado = Apoderado::create([
-                        'per_id' => $datos_apoderado['per_id'],
-                        'apo_parentesco' => $datos_apoderado['parentesco'],
-                        'apo_vive_con_estudiante' => $datos_apoderado['vive_con_estudiante']
-                    ]);
-                }
+                $Apoderado = Apoderado::create([
+                    'per_id' => $datos_apoderado['per_id'],
+                    'apo_parentesco' => $datos_apoderado['parentesco'],
+                    'apo_vive_con_estudiante' => $datos_apoderado['vive_con_estudiante']
+                ]);
             }
 
             Alumno::create([
@@ -141,7 +139,7 @@ class AlumnoController extends Controller
             $alumno->provincia = $estudiante->per_provincia;
             $alumno->distrito = $estudiante->per_distrito;
             $alumno->direccion = $estudiante->per_direccion;
-            
+
             if ($apoderado_persona) {
                 $alumno->apo_parentesco = $apoderado->apo_parentesco;
                 $alumno->apo_vive_con_estudiante = $apoderado->apo_vive_con_estudiante;
