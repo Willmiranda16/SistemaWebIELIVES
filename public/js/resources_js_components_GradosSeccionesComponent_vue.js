@@ -572,30 +572,34 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context16.prev = _context16.next) {
               case 0:
-                _this16.loading = true;
-                axios.post("/api/agregar-secciones", {
-                  params: {
-                    seccion: _this16.seccion
-                  }
-                }).then(function (response) {
-                  setTimeout(function () {
-                    _this16.loading = false;
-                    sweetalert__WEBPACK_IMPORTED_MODULE_0___default()({
-                      title: "Sección Registrada !!",
-                      icon: "success"
-                    }).then(function (willConfirm) {
-                      _this16.limpiar_campos_seccion();
+                if (_this16.seccion.descripcion === '' || _this16.seccion.tutor === '0' || _this16.seccion.aula === '0' || _this16.seccion.gra_id === '0' || _this16.seccion.periodo === '0' || _this16.seccion.vacantes === '') {
+                  alert('Por favor, complete todos los campos obligatorios.');
+                } else {
+                  _this16.loading = true;
+                  axios.post("/api/agregar-secciones", {
+                    params: {
+                      seccion: _this16.seccion
+                    }
+                  }).then(function (response) {
+                    setTimeout(function () {
+                      _this16.loading = false;
+                      sweetalert__WEBPACK_IMPORTED_MODULE_0___default()({
+                        title: "Sección Registrada !!",
+                        icon: "success"
+                      }).then(function (willConfirm) {
+                        _this16.limpiar_campos_seccion();
 
-                      _this16.listar_grados();
+                        _this16.listar_grados();
 
-                      _this16.cancelar_seccion();
-                    });
-                  }, 1000);
-                })["catch"](function (error) {
-                  console.log(error);
-                });
+                        _this16.cancelar_seccion();
+                      });
+                    }, 1000);
+                  })["catch"](function (error) {
+                    console.log(error);
+                  });
+                }
 
-              case 2:
+              case 1:
               case "end":
                 return _context16.stop();
             }
@@ -1223,7 +1227,7 @@ var render = function render() {
       domProps: {
         value: n.niv_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(n.niv_descripcion) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(n.niv_descripcion) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
@@ -1332,7 +1336,7 @@ var render = function render() {
       domProps: {
         value: n.niv_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(n.niv_descripcion) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(n.niv_descripcion) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
@@ -1414,7 +1418,7 @@ var render = function render() {
       domProps: {
         value: p.per_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(p.periodo) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(p.periodo) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_vm._m(7), _vm._v(" "), _c("div", {
@@ -1483,7 +1487,7 @@ var render = function render() {
       domProps: {
         value: g.gra_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.nivel) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.nivel) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
@@ -1520,9 +1524,9 @@ var render = function render() {
     return _c("option", {
       key: t.id,
       domProps: {
-        value: t.gra_id
+        value: t.pa_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(t.nombres) + " " + _vm._s(t.apellidos) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(t.nombres) + " " + _vm._s(t.apellidos) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_vm._m(9), _vm._v(" "), _c("div", {
@@ -1562,7 +1566,7 @@ var render = function render() {
       domProps: {
         value: a.ala_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(a.ala_descripcion) + " - " + _vm._s(a.ala_ubicacion) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(a.ala_descripcion) + " - " + _vm._s(a.ala_ubicacion) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_vm._m(10), _vm._v(" "), _c("div", {
@@ -1728,7 +1732,7 @@ var render = function render() {
       domProps: {
         value: g.gra_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
