@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-09-2023 a las 04:35:48
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 23-09-2023 a las 02:08:17
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,9 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_academico`
 --
-CREATE DATABASE IF NOT EXISTS `db_academico` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `db_academico`;
-
+create database db_academico;
+use db_academico;
 -- --------------------------------------------------------
 
 --
@@ -61,6 +60,50 @@ CREATE TABLE `alumno` (
   `is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`alu_id`, `per_id`, `apo_id`, `name_libreta_notas`, `name_ficha_matricula`, `alu_estado`, `is_deleted`) VALUES
+(1, 2, 1, NULL, NULL, '1', '0'),
+(2, 4, 2, NULL, NULL, '1', '1'),
+(3, 16, 3, NULL, NULL, '1', '0'),
+(4, 18, 4, NULL, NULL, '1', '0'),
+(5, 20, 5, NULL, NULL, '1', '0'),
+(6, 23, 6, NULL, NULL, '1', '0'),
+(7, 25, 7, NULL, NULL, '1', '0'),
+(8, 27, 8, NULL, NULL, '1', '0'),
+(9, 29, 9, NULL, NULL, '1', '0'),
+(10, 31, 10, NULL, NULL, '1', '0'),
+(11, 33, 11, NULL, NULL, '1', '0'),
+(12, 38, NULL, NULL, NULL, '1', '1'),
+(13, 41, 12, NULL, NULL, '1', '0'),
+(14, 43, 13, NULL, NULL, '1', '0'),
+(15, 45, 14, NULL, NULL, '1', '0'),
+(16, 47, 15, NULL, NULL, '1', '0'),
+(17, 49, 16, NULL, NULL, '1', '0'),
+(18, 51, 17, NULL, NULL, '1', '0'),
+(19, 53, 18, NULL, NULL, '1', '0'),
+(20, 55, 19, NULL, NULL, '1', '0'),
+(21, 57, 20, NULL, NULL, '1', '0'),
+(22, 59, 21, NULL, NULL, '1', '0'),
+(23, 61, 22, NULL, NULL, '1', '0'),
+(24, 63, 23, NULL, NULL, '1', '0'),
+(25, 65, 25, NULL, NULL, '1', '0'),
+(26, 66, 24, NULL, NULL, '1', '0'),
+(27, 69, 26, NULL, NULL, '1', '0'),
+(28, 71, 27, NULL, NULL, '1', '0'),
+(29, 73, 28, NULL, NULL, '1', '0'),
+(30, 75, 29, NULL, NULL, '1', '0'),
+(31, 77, 30, NULL, NULL, '1', '0'),
+(32, 79, 31, NULL, NULL, '1', '0'),
+(33, 81, 32, NULL, NULL, '1', '0'),
+(34, 83, 33, NULL, NULL, '1', '0'),
+(35, 85, 34, NULL, NULL, '1', '0'),
+(36, 87, 35, NULL, NULL, '1', '0'),
+(37, 89, 36, NULL, NULL, '1', '0'),
+(38, 91, 37, NULL, NULL, '1', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +118,49 @@ CREATE TABLE `apoderado` (
   `is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Volcado de datos para la tabla `apoderado`
+--
+
+INSERT INTO `apoderado` (`apo_id`, `per_id`, `apo_parentesco`, `apo_vive_con_estudiante`, `is_deleted`) VALUES
+(1, 3, 'Tutor', '2', '0'),
+(2, 5, 'TUTOR', '2', '0'),
+(3, 17, 'MADRE', '1', '0'),
+(4, 19, 'PADRE', '1', '0'),
+(5, 21, 'MADRE', '1', '0'),
+(6, 24, 'MADRE', '2', '0'),
+(7, 26, 'PADRE', '2', '0'),
+(8, 28, 'MADRE', '1', '0'),
+(9, 30, 'MADRE', '1', '0'),
+(10, 32, 'PADRE', '1', '0'),
+(11, 34, 'MADRE', '1', '0'),
+(12, 42, 'MADRE', '1', '0'),
+(13, 44, 'PADRE', '1', '0'),
+(14, 46, 'PADRE', '1', '0'),
+(15, 48, 'PADRE', '1', '0'),
+(16, 50, 'PADRE', '1', '0'),
+(17, 52, 'MADRE', '1', '0'),
+(18, 54, 'MADRE', '1', '0'),
+(19, 56, 'Padre', '2', '0'),
+(20, 58, 'MADRE', '1', '0'),
+(21, 60, 'MADRE', '1', '0'),
+(22, 62, 'MADRE', '1', '0'),
+(23, 64, 'MADRE', '1', '0'),
+(24, 67, 'MADRE', '1', '0'),
+(25, 68, 'Madre', '1', '0'),
+(26, 70, 'PADRE', '1', '0'),
+(27, 72, 'PADRE', '1', '0'),
+(28, 74, 'MADRE', '1', '0'),
+(29, 76, 'PADRE', '1', '0'),
+(30, 78, 'MADRE', '1', '0'),
+(31, 80, 'MADRE', '1', '0'),
+(32, 82, 'PADRE', '1', '0'),
+(33, 84, 'PADRE', '1', '0'),
+(34, 86, 'MADRE', '1', '0'),
+(35, 88, 'PADRE', '1', '0'),
+(36, 90, 'PADRE', '1', '0'),
+(37, 92, 'MADRE', '1', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +174,19 @@ CREATE TABLE `asignacion_curso` (
   `curso` varchar(255) DEFAULT NULL,
   `asig_is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `asignacion_curso`
+--
+
+INSERT INTO `asignacion_curso` (`asig_id`, `pa_id`, `niv_id`, `curso`, `asig_is_deleted`) VALUES
+(1, 58, 1, 'Arte y Cultura', '0'),
+(2, 58, 1, 'Ciencias y Tecnología', '0'),
+(3, 58, 1, 'Comunicación', '0'),
+(4, 58, 1, 'Educación Física', '0'),
+(5, 58, 1, 'Formación Religiosa', '0'),
+(6, 58, 1, 'Matemáticas', '0'),
+(7, 58, 1, 'Personal Ambiente', '0');
 
 -- --------------------------------------------------------
 
@@ -156,38 +255,50 @@ CREATE TABLE `aula` (
 --
 
 INSERT INTO `aula` (`ala_id`, `ala_descripcion`, `ala_tipo`, `ala_aforo`, `ala_ubicacion`, `ala_estado`, `ala_is_delete`, `ala_en_uso`) VALUES
-(3, 'Oficinas Adminitrativas', 'Oficina', 10, 'Pabellon 1 - Primer Piso', '1', '0', '2'),
-(4, 'A-01', 'Aula de Clases', 40, 'Pabellon 1 - Primer Piso', '1', '0', '1'),
-(5, 'A-02', 'Aula de Clases', 40, 'Pabellon 1 - Primer Piso', '1', '0', '1'),
-(6, 'A-03', 'Aula de Clases', 40, 'Pabellon 1 - Primer Piso', '1', '0', '1'),
-(7, 'A-04', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '0', '1'),
-(8, 'A-05', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '0', '1'),
-(9, 'A-06', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '0', '1'),
-(10, 'A-07', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '0', '1'),
-(11, 'A-08', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '0', '1'),
-(12, 'A-09', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '0', '1'),
-(13, 'A-10', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '0', '1'),
-(14, 'A-11', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '0', '1'),
-(15, 'A-12', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '0', '1'),
-(16, 'A-13', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '0', '1'),
-(17, 'Cocina', 'Extra', 5, 'Pabellon 2 - Primer Piso', '1', '0', '2'),
-(18, 'Salon Multi Usos', 'Extra', 15, 'Pabellon 2 - Primer Piso', '1', '0', '2'),
-(19, 'A-14', 'Aula de Clases', 40, 'Pabellon 2 - Primer Piso', '1', '0', '1'),
-(20, 'Deposito', 'Extra', 10, 'Pabellon 2 - Segundo Piso', '1', '0', '2'),
-(21, 'Laboratorio', 'Aula de Clases', 40, 'Pabellon 2 - Segundo Piso', '1', '0', '1'),
-(22, 'A-15', 'Aula de Clases', 40, 'Pabellon 2 - Segundo Piso', '1', '0', '1'),
-(23, 'AIP - PRIMARIA', 'Aula de Clases', 40, 'Pabellon 2 - Tercer Piso', '1', '0', '2'),
-(24, ' AIP - SECUNDARIA', 'Aula de Clases', 40, 'Pabellon 2 - Tercer Piso', '1', '0', '2'),
-(25, 'Deposito', 'Extra', 10, 'Pabellon 2 - Tercer Piso', '1', '0', '2'),
-(26, 'A-16', 'Aula de Clases', 40, 'Pabellon 3 - Primer Piso', '1', '0', '1'),
-(27, 'A-17', 'Aula de Clases', 40, 'Pabellon 3 - Primer Piso', '1', '0', '1'),
-(28, 'A-18', 'Aula de Clases', 40, 'Pabellon 3 - Primer Piso', '1', '0', '1'),
-(29, 'A-19', 'Aula de Clases', 40, 'Pabellon 3 - Segundo Piso', '1', '0', '1'),
-(30, 'A-20', 'Aula de Clases', 40, 'Pabellon 3 - Segundo Piso', '1', '0', '1'),
-(31, 'A-21', 'Aula de Clases', 40, 'Pabellon 3 - Segundo Piso', '1', '0', '1'),
-(32, 'A-22', 'Aula de Clases', 40, 'Pabellon 3 - Tercer Piso', '1', '0', '1'),
-(33, 'A-23', 'Aula de Clases', 40, 'Pabellon 3 - Tercer Piso', '1', '0', '1'),
-(34, 'A-24', 'Aula de Clases', 40, 'Pabellon 3 - Tercer Piso', '1', '0', '1');
+(3, 'Oficinas Adminitrativas', 'Oficina', 10, 'Pabellon 1 - Primer Piso', '1', '1', '2'),
+(4, 'A-012222', 'Aula de Clases', 40, 'Pabellon 1 - Primer Piso', '1', '1', '1'),
+(5, 'A-02', 'Aula de Clases', 40, 'Pabellon 1 - Primer Piso', '1', '1', '1'),
+(6, 'A-03', 'Aula de Clases', 40, 'Pabellon 1 - Primer Piso', '1', '1', '1'),
+(7, 'A-04', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '1', '1'),
+(8, 'A-05', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '1', '1'),
+(9, 'A-06', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '1', '1'),
+(10, 'A-07', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '1', '1'),
+(11, 'A-08', 'Aula de Clases', 40, 'Pabellon 1 - Segundo Piso', '1', '1', '1'),
+(12, 'A-09', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '1', '1'),
+(13, 'A-10', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '1', '1'),
+(14, 'A-11', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '1', '1'),
+(15, 'A-12', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '1', '1'),
+(16, 'A-13', 'Aula de Clases', 40, 'Pabellon 1 - Tercer Piso', '1', '1', '1'),
+(17, 'Cocina', 'Extra', 5, 'Pabellon 2 - Primer Piso', '1', '1', '2'),
+(18, 'Salon Multi Usos', 'Extra', 15, 'Pabellon 2 - Primer Piso', '1', '1', '2'),
+(19, 'A-14', 'Aula de Clases', 40, 'Pabellon 2 - Primer Piso', '1', '1', '1'),
+(20, 'Deposito', 'Extra', 10, 'Pabellon 2 - Segundo Piso', '1', '1', '2'),
+(21, 'Laboratorio', 'Aula de Clases', 40, 'Pabellon 2 - Segundo Piso', '1', '1', '1'),
+(22, 'A-15', 'Aula de Clases', 40, 'Pabellon 2 - Segundo Piso', '1', '1', '1'),
+(23, 'AIP - PRIMARIA', 'Aula de Clases', 40, 'Pabellon 2 - Tercer Piso', '1', '1', '2'),
+(24, ' AIP - SECUNDARIA', 'Aula de Clases', 40, 'Pabellon 2 - Tercer Piso', '1', '1', '2'),
+(25, 'Deposito', 'Extra', 10, 'Pabellon 2 - Tercer Piso', '1', '1', '2'),
+(26, 'A-16', 'Aula de Clases', 40, 'Pabellon 3 - Primer Piso', '1', '1', '1'),
+(27, 'A-17', 'Aula de Clases', 40, 'Pabellon 3 - Primer Piso', '1', '1', '1'),
+(28, 'A-18', 'Aula de Clases', 40, 'Pabellon 3 - Primer Piso', '1', '1', '1'),
+(29, 'A-19', 'Aula de Clases', 40, 'Pabellon 3 - Segundo Piso', '1', '1', '1'),
+(30, 'A-20', 'Aula de Clases', 40, 'Pabellon 3 - Segundo Piso', '1', '1', '1'),
+(31, 'A-21', 'Aula de Clases', 40, 'Pabellon 3 - Segundo Piso', '1', '1', '1'),
+(32, 'A-22', 'Aula de Clases', 40, 'Pabellon 3 - Tercer Piso', '1', '1', '1'),
+(33, 'A-23', 'Aula de Clases', 40, 'Pabellon 3 - Tercer Piso', '1', '1', '1'),
+(34, 'A-24', 'Aula de Clases', 40, 'Pabellon 3 - Tercer Piso', '1', '1', '1'),
+(35, 'Aula 1° Grado', 'Aula de Clases', 20, 'Pabellon 1', '1', '0', '1'),
+(36, 'Aula 2° Grado', 'Aula de Clases', 20, 'Pabellon 1', '1', '0', '1'),
+(37, 'Aula 3° Grado', 'Aula de Clases', 20, 'Pabellon 2', '1', '0', '1'),
+(38, 'Aula 4° Grado', 'Aula de Clases', 20, 'Pabellon 2', '1', '0', '1'),
+(39, 'Aula 5° Grado A', 'Aula de Clases', 20, 'Pabellon 2', '1', '0', '1'),
+(40, 'Aula 5° Grado B', 'Aula de Clases', 20, 'Pabellon 2', '1', '0', '1'),
+(41, 'Aula 6° Grado', 'Aula de Clases', 20, 'Pabellon 2', '1', '0', '1'),
+(42, 'Deposito', 'Extra', 10, 'Pabellon 1', '1', '0', '2'),
+(43, 'Cocina', 'Extra', 10, 'Pabellon 1', '1', '0', '2'),
+(44, 'Salon Multi Usos', 'Extra', 100, 'Pabellon 2', '1', '0', '2'),
+(45, 'Oficinas Administrativas', 'Oficina', 5, 'Pabellon 2', '1', '0', '2'),
+(46, 'Centro de Computo', 'Aula de Clases', 20, 'Pabellon 2', '1', '0', '2');
 
 -- --------------------------------------------------------
 
@@ -436,7 +547,7 @@ CREATE TABLE `institucion_educativa` (
 --
 
 INSERT INTO `institucion_educativa` (`ie_id`, `ie_codigo_modular`, `ie_anexo`, `ie_nivel`, `ie_nombre`, `ie_gestion`, `ie_departamento`, `ie_provincia`, `ie_distrito`, `ie_direccion`, `ie_dre`, `ie_ugel`, `ie_genero`, `ie_turno`, `ie_dias_laborales`, `ie_director`, `ie_telefono`, `ie_email`, `ie_web`) VALUES
-(1, '0444240-0', '0', 'PRIMARIA', '82857 Lives', 'PÚBLICA', '6', '64', '663', 'AV. SAN MIGUEL S/N', 'DRE SAN MIGUEL', 'UGEL SAN MIGUEL', 'MIXTO', 'MAÑANA - TARDE', 'LUNES - VIERNES', 'PAUCAR IGNACIO, YMELDA AFRODICIA', '456789', NULL, NULL);
+(1, '0444240-0', '0', 'PRIMARIA', '82857 Lives', 'PÚBLICA', '6', '194', '1844', 'AV. SAN MIGUEL S/N', 'DRE SAN MIGUEL', 'UGEL SAN MIGUEL', 'MIXTO', 'MAÑANA - TARDE', 'LUNES - VIERNES', 'PAUCAR IGNACIO, YMELDA AFRODICIA', '456789', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -596,7 +707,92 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`per_id`, `per_dni`, `per_nombres`, `per_apellidos`, `per_nombre_completo`, `per_email`, `per_sexo`, `per_fecha_nacimiento`, `per_estado_civil`, `per_celular`, `per_pais`, `per_departamento`, `per_provincia`, `per_distrito`, `per_direccion`, `is_deleted`) VALUES
-(1, '76341435', 'WILLIAM SAMUEL', 'MIRANDA HUAMAN', NULL, 'willmirandahuaman20@gmail.com', 'M', '2000-08-31', 'S', '987456123', 'PERÚ', 13, 115, 1154, 'Mi casita', '0');
+(1, '76341435', 'WILLIAM SAMUEL', 'MIRANDA HUAMAN', NULL, 'willmirandahuaman20@gmail.com', 'M', '2000-08-31', 'S', '981422271', 'PERÚ', 13, 115, 1154, 'Urb. La ALameda lt 26', '0'),
+(2, '81753752', 'YEYLY MILAGROS', 'DE LA CRUZ ZELADA', NULL, NULL, 'F', '2016-10-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(3, '00192021', 'STHEPHANIE', 'CABRERA LOZANO', NULL, 'sthephani@tugatita.com', 'F', '1995-03-22', 'S', '-', 'PERU', 13, 115, 1154, '-', '0'),
+(4, '80790250', 'KESLIN MELANIA', 'ZELADA LOZANO', NULL, NULL, 'F', '2016-10-03', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(5, '76341436', 'MAICOL ANTONY', 'HERNANDEZ HUAMAN', NULL, 'MAYCOL@GMAIL.COM', 'M', '2000-02-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(6, '43276824', 'LUIS ENRIQUE', 'NAMOC CHAVEZ', NULL, NULL, 'M', '1980-10-10', 'C', NULL, 'PERÚ', 13, 112, 1129, NULL, '0'),
+(7, '44874568', 'TATIANA ROSALYN', 'DÍAZ CRUZ', NULL, NULL, 'F', '1985-12-10', 'C', NULL, 'PERÚ', 13, 112, 1132, NULL, '0'),
+(8, '27169762', 'ROSA ELVIRA', 'JARA VENTURA', NULL, NULL, 'F', '1990-01-15', 'S', NULL, 'PERÚ', 6, 54, 550, NULL, '0'),
+(9, '19258170', 'AMARO NOE', 'ROMERO LOZANO', NULL, NULL, 'M', '1975-10-10', 'S', NULL, 'PERÚ', 13, 112, 1129, NULL, '0'),
+(10, '27980510', 'GLADIS OLINDA', 'CASTRO QUISPE', NULL, NULL, 'F', '1982-10-05', 'C', NULL, 'PERÚ', 7, 66, 672, NULL, '0'),
+(11, '27983060', 'DAISIE MAGALY', 'LOZANO MENDOZA', NULL, NULL, 'F', '1986-02-20', 'S', NULL, 'PERÚ', 13, 112, 1130, NULL, '0'),
+(12, '27809002', 'MARIA SOLEDAD', 'DAVALOS BURGOS', NULL, NULL, 'F', '1980-12-10', 'C', NULL, 'PERÚ', 6, 55, 563, NULL, '0'),
+(13, '70859060', 'YMELDA AFRODICIA', 'PAUCAR IGNACIO', NULL, NULL, 'F', '1975-10-10', 'C', NULL, 'PERÚ', 6, 54, 550, NULL, '0'),
+(14, '27985068', 'LUZ DEL CARMEN', 'SERRANO RODAS DE ESPINOZA', NULL, NULL, 'F', '1990-02-10', 'C', NULL, 'PERÚ', 6, 194, 1832, NULL, '0'),
+(15, '27985040', 'EDELMITA', 'VASQUEZ VASQUEZ DE SERRANO', NULL, NULL, 'F', '1988-10-01', 'C', NULL, 'PERÚ', 6, 194, 1838, NULL, '0'),
+(16, '81753753', 'YARIXA MAHELY', 'ESPINOZA QUIROZ', NULL, NULL, 'F', '2017-03-30', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(17, '27012030', 'ESTEFANIA', 'QUIROZ PASADAS', NULL, NULL, 'F', '1964-03-20', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(18, '79702909', 'DIEGO YANPIER', 'MENDOZA HERNANDEZ', NULL, NULL, 'M', '2016-06-06', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(19, '24875263', 'CARLOS ELIAS', 'MENDOZA COTRINA', NULL, NULL, 'F', '1970-01-01', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(20, '79733369', 'EMIR ALEXANDER', 'MENDOZA SARABIA', NULL, NULL, 'M', '2016-06-25', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(21, '22478512', 'MARIANA', 'SARABIA JIMENEZ', NULL, NULL, 'F', '1980-05-13', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(23, '79782335', 'Ida Rosalia', 'RODAS CUBAS', NULL, NULL, 'F', '2016-07-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(24, '24513585', 'MARIANA', 'CUBAS CHAFLOQUE', NULL, NULL, 'F', '1998-02-14', 'S', NULL, 'PERÚ', 6, 55, 563, NULL, '0'),
+(25, '79872117', 'Ivanna Alexandra', 'SOLANO QUIROZ', NULL, NULL, 'F', '2016-09-23', 'S', NULL, 'PERÚ', 6, 194, 1843, NULL, '0'),
+(26, '25479163', 'ALEXANDER', 'SOLANO LOZANO', NULL, NULL, 'M', '1999-02-01', 'S', NULL, 'PERÚ', 6, 54, 560, NULL, '0'),
+(27, '79740504', 'JASIEL DAVID', 'SOLIS BAZAN', NULL, NULL, 'M', '2016-06-25', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(28, '34521424', 'KIARA', 'BAZAN CORTEZ', NULL, NULL, 'F', '1990-04-22', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(29, '79600859', 'KEILA', 'TUCTO CORREA', NULL, NULL, 'F', '2016-04-03', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(30, '28965413', 'SOFIA', 'CORREA CORREA', NULL, NULL, 'F', '1994-02-02', 'C', NULL, 'PERÚ', 6, 54, 550, NULL, '0'),
+(31, '79924972', 'ALEXANDER JAIR', 'VASQUEZ SANCHEZ', NULL, NULL, 'M', '2016-10-28', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(32, '32154263', 'MARTIN', 'VASQUEZ VERA', NULL, NULL, 'M', '1995-09-11', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(33, '79845748', 'DIEGO YAEL SAID', 'VERA DAVALOS', NULL, NULL, 'M', '2016-08-11', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(34, '29857462', 'ERIKA', 'DAVALOS MERINO', NULL, NULL, 'F', '1998-04-02', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(38, '70425014', 'KEILA', 'MARTOS', NULL, NULL, '0', NULL, '0', NULL, 'PERÚ', 0, 0, 0, NULL, '0'),
+(41, '80790240', 'GRISELY VICTORIA', 'ALCANTARA ESPINOZA', NULL, NULL, 'F', '2016-06-16', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(42, '45123670', 'VICTORIA', 'ESPINOZA VALE', NULL, NULL, 'F', '1978-05-04', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(43, '79527013', 'THIAGO DOMINICIANO', 'ALCANTARA MALCA', NULL, NULL, 'M', '2016-01-30', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(44, '52142365', 'JAVIER', 'ALCANTARA VERA', NULL, NULL, 'M', '1998-06-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(45, '80790239', 'LIA CAROLINA', 'BAZAN ESPINOZA', NULL, NULL, 'F', '2018-05-29', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(46, '36584127', 'ELMER', 'BAZAN PAREDES', NULL, NULL, 'M', '1987-02-13', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(47, '79179340', 'GIA AISHA', 'BERMEJO CAYETANO', NULL, NULL, 'F', '2015-06-24', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(48, '54123687', 'CARLOS', 'BERMEJO FLORENTINO', NULL, NULL, 'M', '1994-07-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(49, '79134417', 'DHARWIN ISAAC', 'CARLOS BAZAN', NULL, NULL, 'M', '2015-05-29', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(50, '45712589', 'SAMUEL', 'CARLOS', NULL, NULL, 'F', '1988-10-10', 'S', NULL, 'PERÚ', 6, 64, 663, NULL, '0'),
+(51, '80790242', 'BRIANA OLGUITA', 'DIAZ BAZAN', NULL, NULL, 'F', '2015-08-23', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(52, '32145687', 'CLARA', 'BAZAN VELA', NULL, NULL, 'F', '1984-07-22', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(53, '80790247', 'SIOMARA MARITHZA', 'HERNANDEZ CHUQUIJAJAS', NULL, NULL, 'F', '2016-02-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(54, '35879641', 'MARIA', 'CHUQUIJAJAS MONTE', NULL, NULL, 'F', '1993-02-01', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(55, '81700018', 'DARWIN KEVIN', 'HUANGAL HUAMAN', NULL, NULL, 'M', '2015-08-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(56, '14257896', 'LEANDRO', 'HUANGAL PEREZ', NULL, NULL, 'M', '1990-02-02', 'C', NULL, 'PERÚ', 19, 149, 1503, NULL, '0'),
+(57, '81516082', 'JOSE GADIEL', 'HUANGAL INUMA', NULL, NULL, 'M', '0015-11-21', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(58, '35216498', 'MARTINA', 'INUMA CHAVEZ', NULL, NULL, 'F', '1995-05-05', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(59, '80790238', 'LUANA ELIZABETH', 'LOZANO MENDOZA', NULL, NULL, 'F', '2015-04-21', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(60, '25143620', 'MANUEL', 'LOZANO MERINO', NULL, NULL, 'M', '1996-02-20', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(61, '81357255', 'NANCY FIORELA', 'MENDOZA SOLIS', NULL, NULL, 'F', '2015-11-02', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(62, '25631087', 'FLOR', 'MENDOZA DIAZ', NULL, NULL, 'F', '1970-08-04', 'D', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(63, '79438662', 'DEYSI JACKELINE', 'MOLINA ALVA', NULL, NULL, 'F', '2015-12-16', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(64, '56123402', 'KEYCO', 'MOLINA MORALES', NULL, NULL, 'F', '1996-12-20', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(65, '80790243', 'GREYS YHAJAIRA', 'MONDRAGON MENDOZA', NULL, NULL, 'F', '2015-12-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(66, '80790248', 'KHALEEXI CRISTEL', 'SALAZAR LOZANO', NULL, NULL, 'F', '2016-02-21', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(67, '41875290', 'ESTEFANI', 'LOZANO ALBARRAN', NULL, NULL, 'F', '1996-04-22', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(68, '41276580', 'MANUEL', 'MONDRAGON PEREZ', NULL, NULL, 'M', '1990-01-01', 'S', '-', 'PERU', 6, 194, 1844, '-', '0'),
+(69, '81263673', 'CARMEN ROSA', 'AGIP CHUQUICAJAS', NULL, NULL, 'F', '2014-06-01', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(70, '28549102', 'LUIS', 'AGIP MENDO', NULL, NULL, 'M', '1970-03-13', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(71, '80790241', 'JHAN MESSY', 'CUBAS CHUQUILIN', NULL, NULL, 'M', '2015-02-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(72, '21498201', 'JUNIOR', 'CUBAS ALVA', NULL, NULL, 'M', '1996-05-14', 'S', NULL, 'PERÚ', 0, 0, 0, NULL, '0'),
+(73, '78810707', 'SUGEILY YULISSA', 'GOMEZ ALCANTARA', NULL, NULL, 'F', '2014-01-10', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(74, '14253325', 'MIRIAM', 'ALCANTARA TAUCETT', NULL, NULL, 'F', '1977-02-11', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(75, '80790227', 'EDUAR OTONIEL', 'HERNANDEZ CHUQUIJAJAS,', NULL, NULL, 'M', '2014-06-30', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(76, '25468744', 'FERNANDO', 'HERNANDEZ PAREDES', NULL, NULL, 'M', '1982-04-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(77, '80790234', 'NICOLE VALENTINA', 'HUANGAL PAUCAR,', NULL, NULL, 'F', '2015-02-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(78, '35102460', 'DINA', 'PAUCAR PAUCAR', NULL, NULL, 'F', '1975-11-11', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(79, '80790229', 'LIAN JOSUE', 'LOZANO MIRANDA', NULL, NULL, 'M', '2014-10-31', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(80, '26541301', 'MIRIAM', 'MIRANDA CHAVEZ', NULL, NULL, 'F', '1996-02-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(81, '80790230', 'MELISA LIZETH', 'MESTANZA ALCANTARA', NULL, NULL, 'F', '2014-12-05', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(82, '30145266', 'SAUL', 'MESTANZA QUIROZ', NULL, NULL, 'M', '1990-10-10', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(83, '80790232', 'HAROLD FABIAN', 'SARABIA PEREZ', NULL, NULL, 'M', '1994-09-09', 'S', NULL, 'PERÚ', 0, 0, 0, NULL, '0'),
+(84, '36221455', 'FRANCHESKO', 'SARABIA VIN', NULL, NULL, 'M', '1994-06-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(85, '80790231', 'ELDER AVIEL', 'VENTURA RAMIREZ', NULL, NULL, 'M', '2015-01-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(86, '32541065', 'JUANA', 'RAMIREZ ZENIZ', NULL, NULL, 'F', '1996-05-14', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(87, '81263653', 'DAMARIS GABRIELA', 'BARDALES CUBAS', NULL, NULL, 'F', '2013-12-31', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(88, '21342256', 'DAVID', 'BARDALES CUEVA', NULL, NULL, 'M', '1990-12-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(89, '80790220', 'ESTEBAN ORLANDO', 'CHUQUIMANGO LOZANO', NULL, NULL, 'M', '2014-01-19', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(90, '12554463', 'JAVIER', 'CHUQUIMANGO SOLIER', NULL, NULL, 'M', '1990-12-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(91, '80790218', 'MILEYDI', 'ESPINOZA ROJAS', NULL, NULL, 'F', '2013-11-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(92, '22154360', 'KAHTY', 'ESPINOZA MENDEZ', NULL, NULL, 'F', '1996-03-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0');
 
 -- --------------------------------------------------------
 
@@ -615,6 +811,23 @@ CREATE TABLE `personal_academico` (
   `pa_is_tutor` char(1) DEFAULT '0' COMMENT '1: Si es tutor; 2: No es tutor',
   `is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `personal_academico`
+--
+
+INSERT INTO `personal_academico` (`pa_id`, `per_id`, `pa_turno`, `pa_condicion_laboral`, `niv_id`, `pa_especialidad`, `rol_id`, `pa_is_tutor`, `is_deleted`) VALUES
+(49, 6, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'EDUCACION FISICA', 4, '1', '0'),
+(50, 7, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'COMUNICACIÓN', 4, '1', '0'),
+(51, 8, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'CIENCIAS Y TECNOLOGIA', 4, '1', '0'),
+(52, 9, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'PERSONAL AMBIENTE', 4, '1', '0'),
+(53, 10, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'ARTE Y CULTURA', 4, '1', '0'),
+(54, 11, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'FORMACION RELIGIOSA', 4, '1', '0'),
+(55, 12, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'MATEMATICA', 4, '1', '0'),
+(56, 13, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'MATEMATICA', 2, '1', '0'),
+(57, 14, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'CONTABILIDAD', 6, '2', '0'),
+(58, 15, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'AUXILIAR', 5, '2', '0'),
+(59, 1, 'MAÑANA-TARDE', 'CONTRATADO', 1, 'Programacion', 5, '2', '0');
 
 -- --------------------------------------------------------
 
@@ -657,6 +870,19 @@ CREATE TABLE `seccion` (
   `sec_vacantes` int(11) DEFAULT NULL,
   `sec_is_delete` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `seccion`
+--
+
+INSERT INTO `seccion` (`sec_id`, `sec_descripcion`, `sec_tutor`, `sec_aula`, `gra_id`, `sec_periodo`, `sec_vacantes`, `sec_is_delete`) VALUES
+(50, 'A', 51, 35, 13, 1, 20, '0'),
+(51, 'A', 49, 36, 14, 1, 20, '0'),
+(52, 'A', 53, 37, 15, 1, 20, '0'),
+(53, 'A', 50, 38, 16, 1, 20, '0'),
+(54, 'A', 54, 39, 17, 1, 20, '0'),
+(55, 'B', 55, 40, 17, 1, 20, '0'),
+(56, 'A', 52, 41, 18, 1, 20, '0');
 
 -- --------------------------------------------------------
 
@@ -3081,19 +3307,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `alu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `alu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `apoderado`
 --
 ALTER TABLE `apoderado`
-  MODIFY `apo_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `apo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_curso`
 --
 ALTER TABLE `asignacion_curso`
-  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_grado`
@@ -3105,7 +3331,7 @@ ALTER TABLE `asignacion_grado`
 -- AUTO_INCREMENT de la tabla `aula`
 --
 ALTER TABLE `aula`
-  MODIFY `ala_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ala_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `año`
@@ -3177,13 +3403,13 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_academico`
 --
 ALTER TABLE `personal_academico`
-  MODIFY `pa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `pa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -3195,7 +3421,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  MODIFY `sec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `sec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_periodo`
@@ -3208,138 +3434,6 @@ ALTER TABLE `tipo_periodo`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `aa_operacion`
---
-ALTER TABLE `aa_operacion`
-  ADD CONSTRAINT `FK_aa_operacion_usuarios` FOREIGN KEY (`us_id`) REFERENCES `usuarios` (`us_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `aa_operacion_ibfk_2` FOREIGN KEY (`asis_id`) REFERENCES `asistencia_alumno` (`asis_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `ad_operacion`
---
-ALTER TABLE `ad_operacion`
-  ADD CONSTRAINT `FK_ad_operacion_usuarios` FOREIGN KEY (`us_id`) REFERENCES `usuarios` (`us_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ad_operacion_ibfk_2` FOREIGN KEY (`asis_id`) REFERENCES `asistencia_personal_academico` (`asis_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `alumno`
---
-ALTER TABLE `alumno`
-  ADD CONSTRAINT `FK_alumno_persona` FOREIGN KEY (`per_id`) REFERENCES `persona` (`per_id`);
-
---
--- Filtros para la tabla `asignacion_curso`
---
-ALTER TABLE `asignacion_curso`
-  ADD CONSTRAINT `FK_asignacion_curso_nivel` FOREIGN KEY (`niv_id`) REFERENCES `nivel` (`niv_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_asignacion_curso_personal_academico` FOREIGN KEY (`pa_id`) REFERENCES `personal_academico` (`pa_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `asignacion_grado`
---
-ALTER TABLE `asignacion_grado`
-  ADD CONSTRAINT `FK_asignacion_grado_grado` FOREIGN KEY (`gra_id`) REFERENCES `grado` (`gra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `asignacion_grado_ibfk_1` FOREIGN KEY (`niv_id`) REFERENCES `nivel` (`niv_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `asignacion_grado_ibfk_2` FOREIGN KEY (`pa_id`) REFERENCES `personal_academico` (`pa_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `asistencia_alumno`
---
-ALTER TABLE `asistencia_alumno`
-  ADD CONSTRAINT `asistencia_alumno_ibfk_2` FOREIGN KEY (`jus_id`) REFERENCES `justificacion` (`jus_id`);
-
---
--- Filtros para la tabla `asistencia_personal_academico`
---
-ALTER TABLE `asistencia_personal_academico`
-  ADD CONSTRAINT `asistencia_personal_academico_ibfk_2` FOREIGN KEY (`jus_id`) REFERENCES `justificacion` (`jus_id`);
-
---
--- Filtros para la tabla `curso`
---
-ALTER TABLE `curso`
-  ADD CONSTRAINT `FK_curso_grado` FOREIGN KEY (`gra_id`) REFERENCES `grado` (`gra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_curso_nivel` FOREIGN KEY (`niv_id`) REFERENCES `nivel` (`niv_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_curso_periodo` FOREIGN KEY (`per_id`) REFERENCES `periodo` (`per_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `grado`
---
-ALTER TABLE `grado`
-  ADD CONSTRAINT `FK_grado_nivel` FOREIGN KEY (`niv_id`) REFERENCES `nivel` (`niv_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `gsa`
---
-ALTER TABLE `gsa`
-  ADD CONSTRAINT `FK_gsa_aula` FOREIGN KEY (`ala_id`) REFERENCES `aula` (`ala_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_gsa_grado` FOREIGN KEY (`gra_id`) REFERENCES `grado` (`gra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_gsa_nivel` FOREIGN KEY (`niv_id`) REFERENCES `nivel` (`niv_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_gsa_seccion` FOREIGN KEY (`sec_id`) REFERENCES `seccion` (`sec_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `horario`
---
-ALTER TABLE `horario`
-  ADD CONSTRAINT `FK_horario_periodo` FOREIGN KEY (`per_id`) REFERENCES `periodo` (`per_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `matricula`
---
-ALTER TABLE `matricula`
-  ADD CONSTRAINT `FK_matricula_alumno` FOREIGN KEY (`alu_id`) REFERENCES `alumno` (`alu_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_matricula_gsa` FOREIGN KEY (`ags_id`) REFERENCES `gsa` (`ags_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_matricula_periodo` FOREIGN KEY (`per_id`) REFERENCES `periodo` (`per_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `nota`
---
-ALTER TABLE `nota`
-  ADD CONSTRAINT `FK_nota_alumno` FOREIGN KEY (`alu_id`) REFERENCES `alumno` (`alu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_nota_gsa` FOREIGN KEY (`ags_id`) REFERENCES `gsa` (`ags_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_nota_periodo` FOREIGN KEY (`per_id`) REFERENCES `periodo` (`per_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_nota_personal_academico` FOREIGN KEY (`pa_id`) REFERENCES `personal_academico` (`pa_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `nota_capacidad`
---
-ALTER TABLE `nota_capacidad`
-  ADD CONSTRAINT `FK_nota_capacidad_nota` FOREIGN KEY (`nt_id`) REFERENCES `nota` (`nt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `periodo`
---
-ALTER TABLE `periodo`
-  ADD CONSTRAINT `FK_periodo_año` FOREIGN KEY (`año_id`) REFERENCES `año` (`año_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `personal_academico`
---
-ALTER TABLE `personal_academico`
-  ADD CONSTRAINT `FK_personal_academico_nivel` FOREIGN KEY (`niv_id`) REFERENCES `nivel` (`niv_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_personal_academico_persona` FOREIGN KEY (`per_id`) REFERENCES `persona` (`per_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_personal_academico_roles` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`rol_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `seccion`
---
-ALTER TABLE `seccion`
-  ADD CONSTRAINT `FK_seccion_aula` FOREIGN KEY (`sec_aula`) REFERENCES `aula` (`ala_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_seccion_grado` FOREIGN KEY (`gra_id`) REFERENCES `grado` (`gra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_seccion_periodo` FOREIGN KEY (`sec_periodo`) REFERENCES `periodo` (`per_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `FK_users_persona` FOREIGN KEY (`per_id`) REFERENCES `persona` (`per_id`),
-  ADD CONSTRAINT `FK_usuarios_roles` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`rol_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
