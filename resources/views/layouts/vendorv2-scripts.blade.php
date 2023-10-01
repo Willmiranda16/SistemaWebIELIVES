@@ -28,7 +28,7 @@
             let opciones_tab2 = document.getElementsByClassName('opcion_tab2');
             for (let i = 0; i < opciones_tab.length; i++) {
                 let opcion = opciones_tab[i].classList;
-                let opcion2 = opciones_tab2[i].classList;
+                let opcion2 = opciones_tab2[i+1].classList;
                 /* setTimeout(() => { */
                     for (let i = 0; i < opcion.length; i++) {
                         if (opcion[i] == 'active') {

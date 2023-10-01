@@ -141,7 +141,7 @@ class AsignarCursoController extends Controller
         /* $rol = $request['params']['rol'];
         $cargo = Rol::where('rol_descripcion',$rol)->first(); */
 
-        $docentes = PersonalAcademico::whereIn('rol_id',[5,7])->where('niv_id',$nivel)->where('is_deleted','!=',1)->get();
+        $docentes = PersonalAcademico::whereIn('rol_id',[4])->where('niv_id',$nivel)->where('is_deleted','!=',1)->get();
         foreach ($docentes as $d) {
             $persona = Persona::where('per_id',$d->per_id)->first();
             $asignaciones = AsignarCurso::where('pa_id',$d->pa_id)->where('asig_is_deleted','!=',1)->first();

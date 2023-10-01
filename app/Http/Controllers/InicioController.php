@@ -19,34 +19,22 @@ class InicioController extends Controller
      */
     public function index(Request $request)
     {
-        $periodo = Periodo::where('is_deleted','!=', 1)->count();
-        $usuarios = User::where('is_deleted','!=', 1)->where('id','!=', 1)->count();
-        $aulas = Aula::where('ala_is_delete','!=', 1)->count();
-        $docentes = PersonalAcademico::whereIn('rol_id',[5,7])->where('is_deleted','!=',1)->count();
-        $alumnos = Alumno::where('is_deleted','!=', 1)->count();
-        $matriculas = Matricula::where('is_deleted','!=', 1)->count();
+        $periodo = Periodo::where('is_deleted', '!=', 1)->count();
+        $usuarios = User::where('is_deleted', '!=', 1)->count();
+        $aulas = Aula::where('ala_is_delete', '!=', 1)->count();
+        $docentes = PersonalAcademico::where('is_deleted', '!=', 1)->count();
+        $alumnos = Alumno::where('is_deleted', '!=', 1)->count();
+        $matriculas = Matricula::where('is_deleted', '!=', 1)->count();
         return response()->json(
             [
-                'periodo'=>$periodo,
-                'usuarios'=>$usuarios,
-                'aulas'=>$aulas,
-                'docentes'=>$docentes,
-                'alumnos'=>$alumnos,
-                'matriculas'=>$matriculas
-            ]);
-
-        /* if ($request->ajax()) {
-            return response()->json(
-                [
-                    'periodo'=>$periodo,
-                    'usuarios'=>$usuarios,
-                    'aulas'=>$aulas,
-                    'docentes'=>$docentes,
-                    'alumnos'=>$alumnos,
-                    'matriculas'=>$matriculas
-                ]);
-        }
-        return view('Error404'); */
+                'periodo' => $periodo,
+                'usuarios' => $usuarios,
+                'aulas' => $aulas,
+                'docentes' => $docentes,
+                'alumnos' => $alumnos,
+                'matriculas' => $matriculas
+            ]
+        );
     }
 
     /**

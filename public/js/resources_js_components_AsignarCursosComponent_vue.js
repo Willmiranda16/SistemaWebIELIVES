@@ -623,7 +623,7 @@ var _user = document.head.querySelector('meta[name="user"]');
           }],
           "stripeClasses": [],
           "lengthMenu": [5, 10, 20, 30, 50],
-          "pageLength": 5,
+          "pageLength": 10,
           exportOptions: {
             format: {
               body: function body(data, row, column) {

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2023 a las 02:08:17
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 01-10-2023 a las 03:37:57
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,10 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_academico`
+-- Base de datos: `sistema_academico_db`
 --
-create database db_academico;
-use db_academico;
+CREATE DATABASE IF NOT EXISTS `sistema_academico_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `sistema_academico_db`;
+
 -- --------------------------------------------------------
 
 --
@@ -186,7 +187,8 @@ INSERT INTO `asignacion_curso` (`asig_id`, `pa_id`, `niv_id`, `curso`, `asig_is_
 (4, 58, 1, 'Educación Física', '0'),
 (5, 58, 1, 'Formación Religiosa', '0'),
 (6, 58, 1, 'Matemáticas', '0'),
-(7, 58, 1, 'Personal Ambiente', '0');
+(7, 58, 1, 'Personal Ambiente', '0'),
+(8, 52, 1, 'Arte y Cultura', '0');
 
 -- --------------------------------------------------------
 
@@ -202,6 +204,13 @@ CREATE TABLE `asignacion_grado` (
   `seccion` varchar(255) DEFAULT NULL,
   `asig_is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `asignacion_grado`
+--
+
+INSERT INTO `asignacion_grado` (`asig_id`, `pa_id`, `niv_id`, `gra_id`, `seccion`, `asig_is_deleted`) VALUES
+(295, 52, 1, 13, 'A', '0');
 
 -- --------------------------------------------------------
 
@@ -3319,13 +3328,13 @@ ALTER TABLE `apoderado`
 -- AUTO_INCREMENT de la tabla `asignacion_curso`
 --
 ALTER TABLE `asignacion_curso`
-  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_grado`
 --
 ALTER TABLE `asignacion_grado`
-  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
+  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- AUTO_INCREMENT de la tabla `aula`
