@@ -47,16 +47,16 @@ class AsignarCursoController extends Controller
         DB::beginTransaction();
         try {
             foreach ($datos_asignar['grado'] as $value) {
-                $array = explode(">",$value);
+                $array = explode(">", $value);
                 /* dd($array[0]); */
-                $data = AsignarGrado::where('pa_id',$datos_asignar['persona_id'])
-                    ->where('niv_id',$datos_asignar['nivel'])
-                    ->where('gra_id',$array[0])
-                    ->where('seccion',$array[1])
-                    ->where('asig_is_deleted','!=',1)
+                $data = AsignarGrado::where('pa_id', $datos_asignar['persona_id'])
+                    ->where('niv_id', $datos_asignar['nivel'])
+                    ->where('gra_id', $array[0])
+                    ->where('seccion', $array[1])
+                    ->where('asig_is_deleted', '!=', 1)
                     ->get();
 
-                if(count($data) == 0){
+                if (count($data) == 0) {
                     AsignarGrado::create([
                         'pa_id' => $datos_asignar['persona_id'],
                         'niv_id' => $datos_asignar['nivel'],
@@ -78,7 +78,6 @@ class AsignarCursoController extends Controller
                 ]);
             }
             return view('Error404'); */
-
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e);
@@ -95,9 +94,9 @@ class AsignarCursoController extends Controller
         DB::beginTransaction();
         try {
             foreach ($datos_asignar['curso'] as $value) {
-                $data = AsignarCurso::where('curso',$value)->where('pa_id',$datos_asignar['persona_id'])->where('asig_is_deleted','!=',1)->get();
+                $data = AsignarCurso::where('curso', $value)->where('pa_id', $datos_asignar['persona_id'])->where('asig_is_deleted', '!=', 1)->get();
 
-                if(count($data) == 0){
+                if (count($data) == 0) {
                     AsignarCurso::create([
                         'pa_id' => $datos_asignar['persona_id'],
                         'niv_id' => $datos_asignar['nivel'],
@@ -118,7 +117,6 @@ class AsignarCursoController extends Controller
                 ]);
             }
             return view('Error404'); */
-
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e);
@@ -141,18 +139,22 @@ class AsignarCursoController extends Controller
         /* $rol = $request['params']['rol'];
         $cargo = Rol::where('rol_descripcion',$rol)->first(); */
 
-        $docentes = PersonalAcademico::whereIn('rol_id',[4])->where('niv_id',$nivel)->where('is_deleted','!=',1)->get();
+        $docentes = PersonalAcademico::whereIn('rol_id', [4])->where('niv_id', $nivel)->where('is_deleted', '!=', 1)->get();
         foreach ($docentes as $d) {
-            $persona = Persona::where('per_id',$d->per_id)->first();
-            $asignaciones = AsignarCurso::where('pa_id',$d->pa_id)->where('asig_is_deleted','!=',1)->first();
+            $persona = Persona::where('per_id', $d->per_id)->first();
+            $asignaciones = AsignarCurso::where('pa_id', $d->pa_id)
+                ->where('asig_is_deleted', '!=', 1)
+                ->pluck('curso')
+                ->toArray();
             /* $array = [];
             foreach ($asignaciones as $value) {
                 array_push($array,$value->curso);
             } */
-            if($asignaciones){
-                $d->checked = $asignaciones->curso;
-            }else{
-                $d->checked = '';
+
+            if ($asignaciones) {
+                $d->checked = $asignaciones;
+            } else {
+                $d->checked = [];
             }
 
             $d->dni = $persona->per_dni;
@@ -160,7 +162,7 @@ class AsignarCursoController extends Controller
             $d->apellidos = $persona->per_apellidos;
         }
 
-        $cursos = Curso::selectRaw('cur_nombre, cur_abreviatura')->where('cur_horas','>',0)->where('niv_id',$nivel)->where('is_deleted','!=',1)->groupBy('cur_nombre','cur_abreviatura')->get();
+        $cursos = Curso::selectRaw('cur_nombre, cur_abreviatura')->where('cur_horas', '>', 0)->where('niv_id', $nivel)->where('is_deleted', '!=', 1)->groupBy('cur_nombre', 'cur_abreviatura')->get();
 
         return response()->json([
             'docente' => $docentes,
@@ -181,18 +183,18 @@ class AsignarCursoController extends Controller
         $nivel = $request['params']['nivel'];
         $curso = $request['params']['curso'];
 
-        if($curso == "-1"){
-            $asignacion_curso = AsignarCurso::where('niv_id',$nivel)->where('asig_is_deleted','!=',1)->get();
-        }else{
-            $asignacion_curso = AsignarCurso::where('curso',$curso)->where('niv_id',$nivel)->where('asig_is_deleted','!=',1)->get();
+        if ($curso == "-1") {
+            $asignacion_curso = AsignarCurso::where('niv_id', $nivel)->where('asig_is_deleted', '!=', 1)->get();
+        } else {
+            $asignacion_curso = AsignarCurso::where('curso', $curso)->where('niv_id', $nivel)->where('asig_is_deleted', '!=', 1)->get();
         }
         foreach ($asignacion_curso as $d) {
-            $docentes = PersonalAcademico::where('pa_id',$d->pa_id)->where('is_deleted','!=',1)->first();
-            $persona = Persona::where('per_id',$docentes->per_id)->first();
-            $asignaciones = AsignarGrado::where('pa_id',$d->pa_id)->where('asig_is_deleted','!=',1)->get();
+            $docentes = PersonalAcademico::where('pa_id', $d->pa_id)->where('is_deleted', '!=', 1)->first();
+            $persona = Persona::where('per_id', $docentes->per_id)->first();
+            $asignaciones = AsignarGrado::where('pa_id', $d->pa_id)->where('asig_is_deleted', '!=', 1)->get();
             $array2 = [];
             foreach ($asignaciones as $value) {
-                array_push($array2,$value->gra_id.'>'.$value->seccion);
+                array_push($array2, $value->gra_id . '>' . $value->seccion);
             }
             $d->totalAsignaciones = count($array2);
             $d->asignaciones = $array2;
@@ -204,18 +206,18 @@ class AsignarCursoController extends Controller
         $new_grados = [];
         $new_secciones = [];
 
-        $data_grados = Grado::where('niv_id',$nivel)->where('gra_is_delete','!=',1)->get();
+        $data_grados = Grado::where('niv_id', $nivel)->where('gra_is_delete', '!=', 1)->get();
         foreach ($data_grados as $g) {
-            $secciones = Seccion::where('gra_id',$g->gra_id)->where('sec_is_delete','!=',1)->get();
+            $secciones = Seccion::where('gra_id', $g->gra_id)->where('sec_is_delete', '!=', 1)->get();
             $seccion = [];
             $grado = [];
             foreach ($secciones as $s) {
-                $value = $g->gra_id.'>'.$s->sec_descripcion;
-                array_push($grado,$value);
-                array_push($seccion,$s->sec_descripcion);
+                $value = $g->gra_id . '>' . $s->sec_descripcion;
+                array_push($grado, $value);
+                array_push($seccion, $s->sec_descripcion);
             }
-            array_push($new_grados,$grado);
-            array_push($new_secciones,$seccion);
+            array_push($new_grados, $grado);
+            array_push($new_secciones, $seccion);
         }
         foreach ($asignacion_curso as $d) {
             $resultado = [];
@@ -227,13 +229,13 @@ class AsignarCursoController extends Controller
                     foreach ($grados as $ke => $va) {
                         foreach ($va as $k => $v) {
                             if ($v == $value) {
-                                $valor = $ke.'-'.$k;
-                                array_push($resultado,$valor);
+                                $valor = $ke . '-' . $k;
+                                array_push($resultado, $valor);
                             }
                         }
                     }
                     foreach ($resultado as $re) {
-                        $valor = explode("-",$re);
+                        $valor = explode("-", $re);
                         $i1 = $valor[0];
                         $i2 = $valor[1];
                         $grados[$i1][$i2] = 1;
@@ -260,7 +262,7 @@ class AsignarCursoController extends Controller
     {
         $nivel = $request['params']['nivel'];
 
-        $cursos = Curso::selectRaw('cur_nombre, cur_abreviatura')->where('cur_horas','>',0)->where('niv_id',$nivel)->where('is_deleted','!=',1)->groupBy('cur_nombre','cur_abreviatura')->get();
+        $cursos = Curso::selectRaw('cur_nombre, cur_abreviatura')->where('cur_horas', '>', 0)->where('niv_id', $nivel)->where('is_deleted', '!=', 1)->groupBy('cur_nombre', 'cur_abreviatura')->get();
 
         return response()->json([
             'cursos' => $cursos,
@@ -328,7 +330,7 @@ class AsignarCursoController extends Controller
     {
         $docente = $request['params']['asignar'];
 
-        $data = AsignarCurso::where('pa_id',$docente)->get();
+        $data = AsignarCurso::where('pa_id', $docente)->get();
         foreach ($data as $a) {
             $aa = AsignarCurso::find($a->asig_id);
             $aa->asig_is_deleted = 1;
@@ -340,7 +342,7 @@ class AsignarCursoController extends Controller
     {
         $docente = $request['params']['asignar'];
 
-        $data = AsignarGrado::where('pa_id',$docente)->get();
+        $data = AsignarGrado::where('pa_id', $docente)->get();
         foreach ($data as $a) {
             $aa = AsignarGrado::find($a->asig_id);
             $aa->asig_is_deleted = 1;

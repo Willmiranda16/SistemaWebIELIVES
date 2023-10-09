@@ -33,7 +33,7 @@ var _user = document.head.querySelector('meta[name="user"]');
       grados: {},
       data: {},
       asignar: {
-        nivel: '2',
+        nivel: '1',
         grado: '0',
         curso: [],
         persona_id: ''
@@ -60,7 +60,7 @@ var _user = document.head.querySelector('meta[name="user"]');
     }
   },
   methods: {
-    guardando_cursos: function guardando_cursos(valor, e) {
+    guardando_cursos: function guardando_cursos(oldCourses, newCourse) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -68,18 +68,17 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (_this.asignar.curso.includes(e) == false) {
-                  _this.asignar.curso.push(e);
+                if (!_this.asignar.curso.includes(newCourse) && !oldCourses.includes(newCourse)) {
+                  _this.asignar.curso.push(newCourse);
                 } else {
                   _this.asignar.curso = _this.asignar.curso.filter(function (item) {
-                    return item !== e;
+                    return item !== newCourse;
                   });
                 }
-
-                console.log(_this.asignar.curso);
                 /* this.asignar.curso.push(item); */
 
-              case 2:
+
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -95,26 +94,34 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                if (!(_this2.asignar.curso.length === 0)) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                alert("No ha seleccionado nuevos cursos a asignar.");
+                return _context2.abrupt("return");
+
+              case 3:
                 _this2.asignar.persona_id = item;
                 axios.post("/api/agregar-asignacion", {
                   params: {
                     asignar: _this2.asignar
                   }
                 }).then(function () {
-                  setTimeout(function () {
-                    sweetalert__WEBPACK_IMPORTED_MODULE_0___default()({
-                      title: "Datos Registrados !!",
-                      icon: "success"
-                    }).then(function () {
-                      _this2.asignar.curso = [];
-                      /* this.buscar_data(); */
-                    });
-                  }, 1000);
+                  _this2.buscar_data();
+
+                  sweetalert__WEBPACK_IMPORTED_MODULE_0___default()({
+                    title: "Datos Registrados !!",
+                    icon: "success"
+                  }).then(function () {
+                    _this2.asignar.curso = [];
+                  });
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
-              case 2:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -888,7 +895,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(item.dni))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(item.nombres) + " " + _vm._s(item.apellidos))]), _vm._v(" "), _vm._l(_vm.cursos, function (i, index) {
       return _c("td", {
         key: index
-      }, [i.cur_nombre == item.checked ? _c("input", {
+      }, [item.checked.includes(i.cur_nombre) ? _c("input", {
         attrs: {
           type: "checkbox",
           checked: ""
@@ -1089,7 +1096,7 @@ var render = function render() {
       domProps: {
         value: g.gra_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
@@ -1227,7 +1234,7 @@ var render = function render() {
       domProps: {
         value: g.gra_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
