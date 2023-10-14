@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-10-2023 a las 03:37:57
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 14-10-2023 a las 04:36:50
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistema_academico_db`
 --
-CREATE DATABASE IF NOT EXISTS `sistema_academico_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `sistema_academico_db`;
 
 -- --------------------------------------------------------
 
@@ -67,7 +65,7 @@ CREATE TABLE `alumno` (
 
 INSERT INTO `alumno` (`alu_id`, `per_id`, `apo_id`, `name_libreta_notas`, `name_ficha_matricula`, `alu_estado`, `is_deleted`) VALUES
 (1, 2, 1, NULL, NULL, '1', '0'),
-(2, 4, 2, NULL, NULL, '1', '1'),
+(2, 4, 2, NULL, NULL, '1', '0'),
 (3, 16, 3, NULL, NULL, '1', '0'),
 (4, 18, 4, NULL, NULL, '1', '0'),
 (5, 20, 5, NULL, NULL, '1', '0'),
@@ -77,7 +75,7 @@ INSERT INTO `alumno` (`alu_id`, `per_id`, `apo_id`, `name_libreta_notas`, `name_
 (9, 29, 9, NULL, NULL, '1', '0'),
 (10, 31, 10, NULL, NULL, '1', '0'),
 (11, 33, 11, NULL, NULL, '1', '0'),
-(12, 38, NULL, NULL, NULL, '1', '1'),
+(12, 38, 79, NULL, NULL, '1', '0'),
 (13, 41, 12, NULL, NULL, '1', '0'),
 (14, 43, 13, NULL, NULL, '1', '0'),
 (15, 45, 14, NULL, NULL, '1', '0'),
@@ -103,7 +101,48 @@ INSERT INTO `alumno` (`alu_id`, `per_id`, `apo_id`, `name_libreta_notas`, `name_
 (35, 85, 34, NULL, NULL, '1', '0'),
 (36, 87, 35, NULL, NULL, '1', '0'),
 (37, 89, 36, NULL, NULL, '1', '0'),
-(38, 91, 37, NULL, NULL, '1', '0');
+(38, 91, 37, NULL, NULL, '1', '0'),
+(39, 93, 38, NULL, NULL, '1', '0'),
+(40, 95, 39, NULL, NULL, '1', '0'),
+(41, 97, 40, NULL, NULL, '1', '0'),
+(42, 99, 41, NULL, NULL, '1', '0'),
+(43, 101, 42, NULL, NULL, '1', '0'),
+(44, 103, 43, NULL, NULL, '1', '0'),
+(45, 105, 44, NULL, NULL, '1', '0'),
+(46, 107, 45, NULL, NULL, '1', '0'),
+(47, 109, 46, NULL, NULL, '1', '0'),
+(48, 111, 47, NULL, NULL, '1', '0'),
+(49, 113, 48, NULL, NULL, '1', '0'),
+(50, 115, 49, NULL, NULL, '1', '0'),
+(51, 117, 50, NULL, NULL, '1', '0'),
+(52, 119, 51, NULL, NULL, '1', '0'),
+(53, 121, 52, NULL, NULL, '1', '0'),
+(54, 123, 53, NULL, NULL, '1', '0'),
+(55, 125, 54, NULL, NULL, '1', '0'),
+(56, 127, 55, NULL, NULL, '1', '0'),
+(57, 129, 56, NULL, NULL, '1', '0'),
+(58, 131, 57, NULL, NULL, '1', '0'),
+(59, 133, 58, NULL, NULL, '1', '0'),
+(60, 135, 59, NULL, NULL, '1', '0'),
+(61, 137, 60, NULL, NULL, '1', '0'),
+(62, 139, 61, NULL, NULL, '1', '0'),
+(63, 141, 62, NULL, NULL, '1', '0'),
+(64, 143, 63, NULL, NULL, '1', '0'),
+(65, 145, 64, NULL, NULL, '1', '0'),
+(66, 147, 65, NULL, NULL, '1', '0'),
+(67, 149, 66, NULL, NULL, '1', '0'),
+(68, 151, 67, NULL, NULL, '1', '0'),
+(69, 153, 68, NULL, NULL, '1', '0'),
+(70, 155, 69, NULL, NULL, '1', '0'),
+(71, 157, 70, NULL, NULL, '1', '0'),
+(72, 159, 71, NULL, NULL, '1', '0'),
+(73, 161, 72, NULL, NULL, '1', '0'),
+(74, 163, 73, NULL, NULL, '1', '0'),
+(75, 165, 74, NULL, NULL, '1', '0'),
+(76, 167, 75, NULL, NULL, '1', '0'),
+(77, 169, 76, NULL, NULL, '1', '0'),
+(78, 171, 77, NULL, NULL, '1', '0'),
+(79, 173, 78, NULL, NULL, '1', '0');
 
 -- --------------------------------------------------------
 
@@ -124,7 +163,7 @@ CREATE TABLE `apoderado` (
 --
 
 INSERT INTO `apoderado` (`apo_id`, `per_id`, `apo_parentesco`, `apo_vive_con_estudiante`, `is_deleted`) VALUES
-(1, 3, 'Tutor', '2', '0'),
+(1, 3, 'Madre', '2', '0'),
 (2, 5, 'TUTOR', '2', '0'),
 (3, 17, 'MADRE', '1', '0'),
 (4, 19, 'PADRE', '1', '0'),
@@ -134,9 +173,9 @@ INSERT INTO `apoderado` (`apo_id`, `per_id`, `apo_parentesco`, `apo_vive_con_est
 (8, 28, 'MADRE', '1', '0'),
 (9, 30, 'MADRE', '1', '0'),
 (10, 32, 'PADRE', '1', '0'),
-(11, 34, 'MADRE', '1', '0'),
-(12, 42, 'MADRE', '1', '0'),
-(13, 44, 'PADRE', '1', '0'),
+(11, 34, 'Madre', '1', '0'),
+(12, 42, 'Madre', '1', '0'),
+(13, 44, 'Padre', '1', '0'),
 (14, 46, 'PADRE', '1', '0'),
 (15, 48, 'PADRE', '1', '0'),
 (16, 50, 'PADRE', '1', '0'),
@@ -160,7 +199,49 @@ INSERT INTO `apoderado` (`apo_id`, `per_id`, `apo_parentesco`, `apo_vive_con_est
 (34, 86, 'MADRE', '1', '0'),
 (35, 88, 'PADRE', '1', '0'),
 (36, 90, 'PADRE', '1', '0'),
-(37, 92, 'MADRE', '1', '0');
+(37, 92, 'MADRE', '1', '0'),
+(38, 94, 'Padre', '1', '0'),
+(39, 96, 'TUTOR', '1', '0'),
+(40, 98, 'PADRE', '1', '0'),
+(41, 100, 'PADRE', '1', '0'),
+(42, 102, 'MADRE', '1', '0'),
+(43, 104, 'MADRE', '1', '0'),
+(44, 106, 'PADRE', '1', '0'),
+(45, 108, 'PADRE', '1', '0'),
+(46, 110, 'MADRE', '1', '0'),
+(47, 112, 'MADRE', '1', '0'),
+(48, 114, 'MADRE', '1', '0'),
+(49, 116, 'MADRE', '1', '0'),
+(50, 118, 'MADRE', '1', '0'),
+(51, 120, 'MADRE', '1', '0'),
+(52, 122, 'PADRE', '1', '0'),
+(53, 124, 'PADRE', '1', '0'),
+(54, 126, 'MADRE', '1', '0'),
+(55, 128, 'MADRE', '1', '0'),
+(56, 130, 'MADRE', '1', '0'),
+(57, 132, 'MADRE', '1', '0'),
+(58, 134, 'MADRE', '1', '0'),
+(59, 136, 'MADRE', '1', '0'),
+(60, 138, 'MADRE', '1', '0'),
+(61, 140, 'MADRE', '1', '0'),
+(62, 142, 'PADRE', '1', '0'),
+(63, 144, 'PADRE', '1', '0'),
+(64, 146, 'MADRE', '1', '0'),
+(65, 148, 'MADRE', '1', '0'),
+(66, 150, 'MADRE', '1', '0'),
+(67, 152, 'MADRE', '1', '0'),
+(68, 154, 'PADRE', '1', '0'),
+(69, 156, 'MADRE', '1', '0'),
+(70, 158, 'PADRE', '1', '0'),
+(71, 160, 'PADRE', '1', '0'),
+(72, 162, 'PADRE', '1', '0'),
+(73, 164, 'PADRE', '2', '0'),
+(74, 166, 'PADRE', '1', '0'),
+(75, 168, 'PADRE', '1', '0'),
+(76, 170, 'PADRE', '1', '0'),
+(77, 172, 'MADRE', '1', '0'),
+(78, 174, 'MADRE', '1', '0'),
+(79, 176, 'MADRE', '1', '0');
 
 -- --------------------------------------------------------
 
@@ -188,7 +269,69 @@ INSERT INTO `asignacion_curso` (`asig_id`, `pa_id`, `niv_id`, `curso`, `asig_is_
 (5, 58, 1, 'Formación Religiosa', '0'),
 (6, 58, 1, 'Matemáticas', '0'),
 (7, 58, 1, 'Personal Ambiente', '0'),
-(8, 52, 1, 'Arte y Cultura', '0');
+(8, 52, 1, 'Arte y Cultura', '0'),
+(9, 52, 1, 'Ciencias y Tecnología', '0'),
+(10, 52, 1, 'Comunicación', '0'),
+(11, 52, 1, 'Educación Física', '0'),
+(12, 54, 1, 'Arte y Cultura', '0'),
+(13, 54, 1, 'Ciencias y Tecnología', '0'),
+(14, 53, 1, 'Arte y Cultura', '0'),
+(15, 53, 1, 'Ciencias y Tecnología', '0'),
+(16, 49, 1, 'Arte y Cultura', '0'),
+(17, 55, 1, 'Arte y Cultura', '0'),
+(18, 51, 1, 'Arte y Cultura', '0'),
+(19, 50, 1, 'Arte y Cultura', '0'),
+(20, 50, 1, 'Comunicación', '0'),
+(21, 51, 1, 'Comunicación', '0'),
+(22, 49, 1, 'Educación Física', '0'),
+(23, 52, 1, 'Formación Religiosa', '0'),
+(24, 52, 1, 'Matemáticas', '0'),
+(25, 52, 1, 'Personal Ambiente', '0'),
+(26, 54, 1, 'Comunicación', '0'),
+(27, 54, 1, 'Educación Física', '0'),
+(28, 54, 1, 'Formación Religiosa', '0'),
+(29, 54, 1, 'Matemáticas', '0'),
+(30, 54, 1, 'Personal Ambiente', '0'),
+(31, 53, 1, 'Comunicación', '0'),
+(32, 53, 1, 'Educación Física', '0'),
+(33, 53, 1, 'Formación Religiosa', '0'),
+(34, 53, 1, 'Matemáticas', '0'),
+(35, 53, 1, 'Personal Ambiente', '0'),
+(36, 49, 1, 'Ciencias y Tecnología', '0'),
+(37, 49, 1, 'Comunicación', '0'),
+(38, 49, 1, 'Formación Religiosa', '0'),
+(39, 49, 1, 'Matemáticas', '0'),
+(40, 49, 1, 'Personal Ambiente', '0'),
+(41, 55, 1, 'Ciencias y Tecnología', '0'),
+(42, 55, 1, 'Comunicación', '0'),
+(43, 55, 1, 'Educación Física', '0'),
+(44, 55, 1, 'Formación Religiosa', '0'),
+(45, 55, 1, 'Matemáticas', '0'),
+(46, 55, 1, 'Personal Ambiente', '0'),
+(47, 51, 1, 'Ciencias y Tecnología', '0'),
+(48, 51, 1, 'Educación Física', '0'),
+(49, 51, 1, 'Formación Religiosa', '0'),
+(50, 51, 1, 'Matemáticas', '0'),
+(51, 51, 1, 'Personal Ambiente', '0'),
+(52, 50, 1, 'Ciencias y Tecnología', '0'),
+(53, 50, 1, 'Educación Física', '0'),
+(54, 50, 1, 'Formación Religiosa', '0'),
+(55, 50, 1, 'Matemáticas', '0'),
+(56, 50, 1, 'Personal Ambiente', '0'),
+(57, 52, 1, 'Educación Religiosa', '0'),
+(58, 52, 1, 'Personal Social', '0'),
+(59, 54, 1, 'Educación Religiosa', '0'),
+(60, 54, 1, 'Personal Social', '0'),
+(61, 53, 1, 'Educación Religiosa', '0'),
+(62, 53, 1, 'Personal Social', '0'),
+(63, 49, 1, 'Educación Religiosa', '0'),
+(64, 49, 1, 'Personal Social', '0'),
+(65, 55, 1, 'Educación Religiosa', '0'),
+(66, 55, 1, 'Personal Social', '0'),
+(67, 51, 1, 'Educación Religiosa', '0'),
+(68, 51, 1, 'Personal Social', '0'),
+(69, 50, 1, 'Educación Religiosa', '0'),
+(70, 50, 1, 'Personal Social', '0');
 
 -- --------------------------------------------------------
 
@@ -210,7 +353,14 @@ CREATE TABLE `asignacion_grado` (
 --
 
 INSERT INTO `asignacion_grado` (`asig_id`, `pa_id`, `niv_id`, `gra_id`, `seccion`, `asig_is_deleted`) VALUES
-(295, 52, 1, 13, 'A', '0');
+(295, 52, 1, 13, 'A', '1'),
+(296, 52, 1, 18, 'A', '0'),
+(297, 54, 1, 17, 'A', '0'),
+(298, 53, 1, 15, 'A', '0'),
+(299, 49, 1, 14, 'A', '0'),
+(300, 55, 1, 17, 'B', '0'),
+(301, 51, 1, 13, 'A', '0'),
+(302, 50, 1, 16, 'A', '0');
 
 -- --------------------------------------------------------
 
@@ -354,48 +504,216 @@ CREATE TABLE `capacidad` (
 --
 
 INSERT INTO `capacidad` (`cap_id`, `cap_descripcion`, `cur_id`, `cap_is_deleted`) VALUES
-(155, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 1, 0),
-(156, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 2, 0),
-(157, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 3, 0),
-(158, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 4, 0),
-(159, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 5, 0),
-(160, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 6, 0),
-(161, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 7, 0),
-(162, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 8, 0),
-(163, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 9, 0),
-(164, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 10, 0),
-(165, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 11, 0),
-(166, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 12, 0),
-(167, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 13, 0),
-(168, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 14, 0),
-(169, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 15, 0),
-(170, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 16, 0),
-(171, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 17, 0),
-(172, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 18, 0),
-(173, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 19, 0),
-(174, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 20, 0),
-(175, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 21, 0),
-(176, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 22, 0),
-(177, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 23, 0),
-(178, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 24, 0),
-(179, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 26, 0),
-(180, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 27, 0),
-(181, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 28, 0),
-(182, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 29, 0),
-(183, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 30, 0),
-(184, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 31, 0),
-(185, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 32, 0),
-(186, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 33, 0),
-(187, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 34, 0),
-(188, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 35, 0),
-(189, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 36, 0),
-(190, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 37, 0),
-(191, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 38, 0),
-(192, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 39, 0),
-(193, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 40, 0),
-(194, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 41, 0),
-(195, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 42, 0),
-(196, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 43, 0);
+(155, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 1, 1),
+(156, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 2, 1),
+(157, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 3, 1),
+(158, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 4, 1),
+(159, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 5, 1),
+(160, 'Capacidad de comunicar ideas de manera efectiva, tanto de forma oral como escrita.', 6, 1),
+(161, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 7, 1),
+(162, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 8, 1),
+(163, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 9, 1),
+(164, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 10, 1),
+(165, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 11, 1),
+(166, 'Capacidad para resolver problemas complejos utilizando conceptos matemáticos y razonamiento lógico.', 12, 1),
+(167, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 13, 1),
+(168, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 14, 1),
+(169, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 15, 1),
+(170, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 16, 1),
+(171, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 17, 1),
+(172, 'Capacidad para comprender y aplicar conceptos científicos y tecnológicos en la resolución de problemas del mundo real.', 18, 1),
+(173, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 19, 1),
+(174, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 20, 1),
+(175, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 21, 1),
+(176, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 22, 1),
+(177, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 23, 1),
+(178, 'Capacidad para desarrollar habilidades sociales y emocionales, incluida la empatía y la autorregulación emocional.', 24, 1),
+(179, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 26, 1),
+(180, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 27, 1),
+(181, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 28, 1),
+(182, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 29, 1),
+(183, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 30, 1),
+(184, 'Capacidad para comprender y respetar diferentes creencias religiosas y éticas, así como explorar preguntas espirituales y éticas personales.', 31, 1),
+(185, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 32, 1),
+(186, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 33, 1),
+(187, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 34, 1),
+(188, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 35, 1),
+(189, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 36, 1),
+(190, 'Capacidad para apreciar y participar en actividades artísticas y culturales, así como expresar la creatividad de forma visual o escénica.', 37, 1),
+(191, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 38, 1),
+(192, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 39, 1),
+(193, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 40, 1),
+(194, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 41, 1),
+(195, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 42, 1),
+(196, 'Capacidad para mantener un estilo de vida activo y saludable, así como desarrollar habilidades físicas y coordinación motora.', 43, 1),
+(197, 'Se desenvuelve de manera autónoma a través de su motricidad.', 43, 0),
+(198, 'Asume una vida saludable.', 43, 0),
+(199, 'Interactúa a través de sus habilidades socio motrices.', 43, 0),
+(200, 'Se desenvuelve de manera autónoma a través de su motricidad.', 42, 0),
+(201, 'Asume una vida saludable.', 42, 0),
+(202, 'Interactúa a través de sus habilidades socio motrices.', 42, 0),
+(203, 'Se desenvuelve de manera autónoma a través de su motricidad.', 41, 0),
+(204, 'Asume una vida saludable.', 41, 0),
+(205, 'Interactúa a través de sus habilidades socio motrices.', 41, 0),
+(206, 'Se desenvuelve de manera autónoma a través de su motricidad.', 40, 0),
+(207, 'Asume una vida saludable.', 40, 0),
+(208, 'Interactúa a través de sus habilidades socio motrices.', 40, 0),
+(209, 'Se desenvuelve de manera autónoma a través de su motricidad.', 39, 0),
+(210, 'Asume una vida saludable.', 39, 0),
+(211, 'Interactúa a través de sus habilidades socio motrices.', 39, 0),
+(212, 'Se desenvuelve de manera autónoma a través de su motricidad.', 38, 0),
+(213, 'Asume una vida saludable.', 38, 0),
+(214, 'Interactúa a través de sus habilidades socio motrices.', 38, 0),
+(215, 'Aprecia de manera critica manifestaciones artístico-cultural.', 37, 0),
+(216, 'Crea proyectos desde los lenguajes artísticos.', 37, 0),
+(217, 'Aprecia de manera critica manifestaciones artístico-cultural.', 36, 0),
+(218, 'Crea proyectos desde los lenguajes artísticos.', 36, 0),
+(219, 'Aprecia de manera critica manifestaciones artístico-cultural.', 35, 0),
+(220, 'Crea proyectos desde los lenguajes artísticos.', 35, 0),
+(221, 'Aprecia de manera critica manifestaciones artístico-cultural.', 34, 0),
+(222, 'Crea proyectos desde los lenguajes artísticos.', 34, 0),
+(223, 'Aprecia de manera critica manifestaciones artístico-cultural.', 33, 0),
+(224, 'Crea proyectos desde los lenguajes artísticos.', 33, 0),
+(225, 'Aprecia de manera critica manifestaciones artístico-cultural.', 32, 0),
+(226, 'Crea proyectos desde los lenguajes artísticos.', 32, 0),
+(227, 'Construye su identidad como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas.', 31, 0),
+(228, 'Asume la experiencia del encuentro personal y comunitario con Dios en su proyecto de vida en coherencia con su creencia religiosa.', 31, 0),
+(229, 'Construye su identidad como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas.', 30, 0),
+(230, 'Asume la experiencia del encuentro personal y comunitario con Dios en su proyecto de vida en coherencia con su creencia religiosa.', 30, 0),
+(231, 'Construye su identidad como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas.', 29, 0),
+(232, 'Asume la experiencia del encuentro personal y comunitario con Dios en su proyecto de vida en coherencia con su creencia religiosa.', 29, 0),
+(233, 'Construye su identidad como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas.', 28, 0),
+(234, 'Asume la experiencia del encuentro personal y comunitario con Dios en su proyecto de vida en coherencia con su creencia religiosa.', 28, 0),
+(235, 'Construye su identidad como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas.', 27, 0),
+(236, 'Asume la experiencia del encuentro personal y comunitario con Dios en su proyecto de vida en coherencia con su creencia religiosa.', 27, 0),
+(237, 'Construye su identidad como persona humana, amada por Dios, digna, libre y trascendente, comprendiendo la doctrina de su propia religión, abierto al diálogo con las que le son cercanas.', 26, 0),
+(238, 'Asume la experiencia del encuentro personal y comunitario con Dios en su proyecto de vida en coherencia con su creencia religiosa.', 26, 0),
+(239, 'Construye su identidad.', 24, 0),
+(240, 'Convive y participa democráticamente en la búsqueda del bien común.', 24, 0),
+(241, 'Construye interpretaciones históricas.', 24, 0),
+(242, 'Gestiona responsablemente el espacio y el ambiente.', 24, 0),
+(243, 'Gestiona responsablemente los recursos económicos.', 24, 0),
+(244, 'Construye su identidad.', 23, 0),
+(245, 'Convive y participa democráticamente en la búsqueda del bien común.', 23, 0),
+(246, 'Construye interpretaciones históricas.', 23, 0),
+(247, 'Gestiona responsablemente el espacio y el ambiente.', 23, 0),
+(248, 'Gestiona responsablemente los recursos económicos.', 23, 0),
+(249, 'Construye su identidad.', 22, 0),
+(250, 'Convive y participa democráticamente en la búsqueda del bien común.', 22, 0),
+(251, 'Construye interpretaciones históricas.', 22, 0),
+(252, 'Gestiona responsablemente el espacio y el ambiente.', 22, 0),
+(253, 'Gestiona responsablemente los recursos económicos.', 22, 0),
+(254, 'Construye su identidad.', 21, 0),
+(255, 'Convive y participa democráticamente en la búsqueda del bien común.', 21, 0),
+(256, 'Construye interpretaciones históricas.', 21, 0),
+(257, 'Gestiona responsablemente el espacio y el ambiente.', 21, 0),
+(258, 'Gestiona responsablemente los recursos económicos.', 21, 0),
+(259, 'Construye su identidad.', 20, 0),
+(260, 'Convive y participa democráticamente en la búsqueda del bien común.', 20, 0),
+(261, 'Construye interpretaciones históricas.', 20, 0),
+(262, 'Gestiona responsablemente el espacio y el ambiente.', 20, 0),
+(263, 'Gestiona responsablemente los recursos económicos.', 20, 0),
+(264, 'Construye su identidad.', 19, 0),
+(265, 'Convive y participa democráticamente en la búsqueda del bien común.', 19, 0),
+(266, 'Construye interpretaciones históricas.', 19, 0),
+(267, 'Gestiona responsablemente el espacio y el ambiente.', 19, 0),
+(268, 'Gestiona responsablemente los recursos económicos.', 19, 0),
+(269, 'Indaga mediante métodos científicos para construir sus conocimientos.', 18, 0),
+(270, 'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia, energía, biodiversidad, tierra y universo.', 18, 0),
+(271, 'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.', 18, 0),
+(272, 'Indaga mediante métodos científicos para construir sus conocimientos.', 17, 0),
+(273, 'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia, energía, biodiversidad, tierra y universo.', 17, 0),
+(274, 'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.', 17, 0),
+(275, 'Indaga mediante métodos científicos para construir sus conocimientos.', 16, 0),
+(276, 'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia, energía, biodiversidad, tierra y universo.', 16, 0),
+(277, 'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.', 16, 0),
+(278, 'Indaga mediante métodos científicos para construir sus conocimientos.', 15, 0),
+(279, 'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia, energía, biodiversidad, tierra y universo.', 15, 0),
+(280, 'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.', 15, 0),
+(281, 'Indaga mediante métodos científicos para construir sus conocimientos.', 14, 0),
+(282, 'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia, energía, biodiversidad, tierra y universo.', 14, 0),
+(283, 'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.', 14, 0),
+(284, 'Indaga mediante métodos científicos para construir sus conocimientos.', 13, 0),
+(285, 'Explica el mundo físico basándose en conocimientos sobre los seres vivos, materia, energía, biodiversidad, tierra y universo.', 13, 0),
+(286, 'Diseña y construye soluciones tecnológicas para resolver problemas de su entorno.', 13, 0),
+(287, 'Resuelve problemas de cantidad.', 12, 0),
+(288, 'Resuelve problemas de regularidad, equivalencia y cambio.', 12, 0),
+(289, 'Resuelve problemas de forma, movimiento y localización.', 12, 0),
+(290, 'Resuelve problemas de gestión de datos e incertidumbre.', 12, 0),
+(291, 'Resuelve problemas de cantidad.', 11, 0),
+(292, 'Resuelve problemas de regularidad, equivalencia y cambio.', 11, 0),
+(293, 'Resuelve problemas de forma, movimiento y localización.', 11, 0),
+(294, 'Resuelve problemas de gestión de datos e incertidumbre.', 11, 0),
+(295, 'Resuelve problemas de cantidad.', 10, 0),
+(296, 'Resuelve problemas de regularidad, equivalencia y cambio.', 10, 0),
+(297, 'Resuelve problemas de forma, movimiento y localización.', 10, 0),
+(298, 'Resuelve problemas de gestión de datos e incertidumbre.', 10, 0),
+(299, 'Resuelve problemas de cantidad.', 9, 0),
+(300, 'Resuelve problemas de regularidad, equivalencia y cambio.', 9, 0),
+(301, 'Resuelve problemas de forma, movimiento y localización.', 9, 0),
+(302, 'Resuelve problemas de gestión de datos e incertidumbre.', 9, 0),
+(303, 'Resuelve problemas de cantidad.', 8, 0),
+(304, 'Resuelve problemas de regularidad, equivalencia y cambio.', 8, 0),
+(305, 'Resuelve problemas de forma, movimiento y localización.', 8, 0),
+(306, 'Resuelve problemas de gestión de datos e incertidumbre.', 8, 0),
+(307, 'Resuelve problemas de cantidad.', 7, 0),
+(308, 'Resuelve problemas de regularidad, equivalencia y cambio.', 7, 0),
+(309, 'Resuelve problemas de forma, movimiento y localización.', 7, 0),
+(310, 'Resuelve problemas de gestión de datos e incertidumbre.', 7, 0),
+(311, 'Se comunica oralmente en su lengua materna.', 6, 0),
+(312, 'Lee diversos tipos de textos en su lengua materna.', 6, 0),
+(313, 'Escribe diversos tipos de textos en su lengua materna.', 6, 0),
+(314, 'Se comunica oralmente en su lengua materna.', 5, 0),
+(315, 'Lee diversos tipos de textos en su lengua materna.', 5, 0),
+(316, 'Escribe diversos tipos de textos en su lengua materna.', 5, 0),
+(317, 'Se comunica oralmente en su lengua materna.', 4, 0),
+(318, 'Lee diversos tipos de textos en su lengua materna.', 4, 0),
+(319, 'Escribe diversos tipos de textos en su lengua materna.', 4, 0),
+(320, 'Se comunica oralmente en su lengua materna.', 3, 0),
+(321, 'Lee diversos tipos de textos en su lengua materna.', 3, 0),
+(322, 'Escribe diversos tipos de textos en su lengua materna.', 3, 0),
+(323, 'Se comunica oralmente en su lengua materna.', 2, 0),
+(324, 'Lee diversos tipos de textos en su lengua materna.', 2, 0),
+(325, 'Escribe diversos tipos de textos en su lengua materna.', 2, 0),
+(326, 'Se comunica oralmente en su lengua materna.', 1, 0),
+(327, 'Lee diversos tipos de textos en su lengua materna.', 1, 0),
+(328, 'Escribe diversos tipos de textos en su lengua materna.', 1, 0),
+(329, 'Rendimiento académico', 44, 0),
+(330, 'Habilidades de estudio', 44, 0),
+(331, 'Motivación y actitud hacia el aprendizaje', 44, 0),
+(332, 'Rendimiento académico', 45, 0),
+(333, 'Habilidades de estudio', 45, 0),
+(334, 'Motivación y actitud hacia el aprendizaje', 45, 0),
+(335, 'Rendimiento académico', 46, 0),
+(336, 'Habilidades de estudio', 46, 0),
+(337, 'Motivación y actitud hacia el aprendizaje', 46, 0),
+(338, 'Rendimiento académico', 47, 0),
+(339, 'Habilidades de estudio', 47, 0),
+(340, 'Motivación y actitud hacia el aprendizaje', 47, 0),
+(341, 'Rendimiento académico', 48, 0),
+(342, 'Habilidades de estudio', 48, 0),
+(343, 'Motivación y actitud hacia el aprendizaje', 48, 0),
+(344, 'Rendimiento académico', 49, 0),
+(345, 'Habilidades de estudio', 49, 0),
+(346, 'Motivación y actitud hacia el aprendizaje', 49, 0),
+(347, 'Habilidades Básicas en Informática', 50, 0),
+(348, 'Resolución de Problemas', 50, 0),
+(349, 'Creatividad y Proyectos Personales', 50, 0),
+(350, 'Habilidades Básicas en Informática', 51, 0),
+(351, 'Resolución de Problemas', 51, 0),
+(352, 'Creatividad y Proyectos Personales', 51, 0),
+(353, 'Habilidades Básicas en Informática', 52, 0),
+(354, 'Resolución de Problemas', 52, 0),
+(355, 'Creatividad y Proyectos Personales', 52, 0),
+(356, 'Habilidades Básicas en Informática', 53, 0),
+(357, 'Resolución de Problemas', 53, 0),
+(358, 'Creatividad y Proyectos Personales', 53, 0),
+(359, 'Habilidades Básicas en Informática', 54, 0),
+(360, 'Resolución de Problemas', 54, 0),
+(361, 'Creatividad y Proyectos Personales', 54, 0),
+(362, 'Habilidades Básicas en Informática', 55, 0),
+(363, 'Resolución de Problemas', 55, 0),
+(364, 'Creatividad y Proyectos Personales', 55, 0);
 
 -- --------------------------------------------------------
 
@@ -420,48 +738,60 @@ CREATE TABLE `curso` (
 --
 
 INSERT INTO `curso` (`cur_id`, `cur_nombre`, `cur_abreviatura`, `cur_horas`, `gra_id`, `niv_id`, `per_id`, `cur_estado`, `is_deleted`) VALUES
-(1, 'Comunicación', 'COM', 8, 13, 1, NULL, '1', '0'),
-(2, 'Comunicación', 'COM', 8, 14, 1, NULL, '1', '0'),
-(3, 'Comunicación', 'COM', 8, 15, 1, NULL, '1', '0'),
-(4, 'Comunicación', 'COM', 8, 16, 1, NULL, '1', '0'),
-(5, 'Comunicación', 'COM', 8, 17, 1, NULL, '1', '0'),
-(6, 'Comunicación', 'COM', 8, 18, 1, NULL, '1', '0'),
-(7, 'Matemáticas', 'MAT', 8, 13, 1, NULL, '1', '0'),
-(8, 'Matemáticas', 'MAT', 8, 14, 1, NULL, '1', '0'),
-(9, 'Matemáticas', 'MAT', 8, 15, 1, NULL, '1', '0'),
-(10, 'Matemáticas', 'MAT', 8, 16, 1, NULL, '1', '0'),
-(11, 'Matemáticas', 'MAT', 8, 17, 1, NULL, '1', '0'),
-(12, 'Matemáticas', 'MAT', 8, 18, 1, NULL, '1', '0'),
-(13, 'Ciencias y Tecnología', 'CYT', 8, 13, 1, NULL, '1', '0'),
-(14, 'Ciencias y Tecnología', 'CYT', 8, 14, 1, NULL, '1', '0'),
-(15, 'Ciencias y Tecnología', 'CYT', 8, 15, 1, NULL, '1', '0'),
-(16, 'Ciencias y Tecnología', 'CYT', 8, 16, 1, NULL, '1', '0'),
-(17, 'Ciencias y Tecnología', 'CYT', 8, 17, 1, NULL, '1', '0'),
-(18, 'Ciencias y Tecnología', 'CYT', 8, 18, 1, NULL, '1', '0'),
-(19, 'Personal Ambiente', 'PA', 8, 13, 1, NULL, '1', '0'),
-(20, 'Personal Ambiente', 'PA', 8, 14, 1, NULL, '1', '0'),
-(21, 'Personal Ambiente', 'PA', 8, 15, 1, NULL, '1', '0'),
-(22, 'Personal Ambiente', 'PA', 8, 16, 1, NULL, '1', '0'),
-(23, 'Personal Ambiente', 'PA', 8, 17, 1, NULL, '1', '0'),
-(24, 'Personal Ambiente', 'PA', 8, 18, 1, NULL, '1', '0'),
-(26, 'Formación Religiosa', 'FA', 8, 13, 1, NULL, '1', '0'),
-(27, 'Formación Religiosa', 'FA', 8, 14, 1, NULL, '1', '0'),
-(28, 'Formación Religiosa', 'FA', 8, 15, 1, NULL, '1', '0'),
-(29, 'Formación Religiosa', 'FA', 8, 16, 1, NULL, '1', '0'),
-(30, 'Formación Religiosa', 'FA', 8, 17, 1, NULL, '1', '0'),
-(31, 'Formación Religiosa', 'FA', 8, 18, 1, NULL, '1', '0'),
-(32, 'Arte y Cultura', 'AC', 8, 13, 1, NULL, '1', '0'),
-(33, 'Arte y Cultura', 'AC', 8, 14, 1, NULL, '1', '0'),
-(34, 'Arte y Cultura', 'AC', 8, 15, 1, NULL, '1', '0'),
-(35, 'Arte y Cultura', 'AC', 8, 16, 1, NULL, '1', '0'),
-(36, 'Arte y Cultura', 'AC', 8, 17, 1, NULL, '1', '0'),
-(37, 'Arte y Cultura', 'AC', 8, 18, 1, NULL, '1', '0'),
-(38, 'Educación Física', 'EF', 8, 13, 1, NULL, '1', '0'),
-(39, 'Educación Física', 'EF', 8, 14, 1, NULL, '1', '0'),
-(40, 'Educación Física', 'EF', 8, 15, 1, NULL, '1', '0'),
-(41, 'Educación Física', 'EF', 8, 16, 1, NULL, '1', '0'),
-(42, 'Educación Física', 'EF', 8, 17, 1, NULL, '1', '0'),
-(43, 'Educación Física', 'EF', 8, 18, 1, NULL, '1', '0');
+(1, 'Comunicación', 'COM', 5, 13, 1, NULL, '1', '0'),
+(2, 'Comunicación', 'COM', 5, 14, 1, NULL, '1', '0'),
+(3, 'Comunicación', 'COM', 5, 15, 1, NULL, '1', '0'),
+(4, 'Comunicación', 'COM', 5, 16, 1, NULL, '1', '0'),
+(5, 'Comunicación', 'COM', 5, 17, 1, NULL, '1', '0'),
+(6, 'Comunicación', 'COM', 5, 18, 1, NULL, '1', '0'),
+(7, 'Matemáticas', 'MAT', 5, 13, 1, NULL, '1', '0'),
+(8, 'Matemáticas', 'MAT', 5, 14, 1, NULL, '1', '0'),
+(9, 'Matemáticas', 'MAT', 5, 15, 1, NULL, '1', '0'),
+(10, 'Matemáticas', 'MAT', 5, 16, 1, NULL, '1', '0'),
+(11, 'Matemáticas', 'MAT', 5, 17, 1, NULL, '1', '0'),
+(12, 'Matemáticas', 'MAT', 5, 18, 1, NULL, '1', '0'),
+(13, 'Ciencias y Tecnología', 'CYT', 4, 13, 1, NULL, '1', '0'),
+(14, 'Ciencias y Tecnología', 'CYT', 4, 14, 1, NULL, '1', '0'),
+(15, 'Ciencias y Tecnología', 'CYT', 4, 15, 1, NULL, '1', '0'),
+(16, 'Ciencias y Tecnología', 'CYT', 4, 16, 1, NULL, '1', '0'),
+(17, 'Ciencias y Tecnología', 'CYT', 4, 17, 1, NULL, '1', '0'),
+(18, 'Ciencias y Tecnología', 'CYT', 4, 18, 1, NULL, '1', '0'),
+(19, 'Personal Social', 'PS', 4, 13, 1, NULL, '1', '0'),
+(20, 'Personal Social', 'PS', 4, 14, 1, NULL, '1', '0'),
+(21, 'Personal Social', 'PS', 4, 15, 1, NULL, '1', '0'),
+(22, 'Personal Social', 'PS', 4, 16, 1, NULL, '1', '0'),
+(23, 'Personal Social', 'PS', 4, 17, 1, NULL, '1', '0'),
+(24, 'Personal Social', 'PS', 4, 18, 1, NULL, '1', '0'),
+(26, 'Educación Religiosa', 'ER', 1, 13, 1, NULL, '1', '0'),
+(27, 'Educación Religiosa', 'ER', 1, 14, 1, NULL, '1', '0'),
+(28, 'Educación Religiosa', 'ER', 1, 15, 1, NULL, '1', '0'),
+(29, 'Educación Religiosa', 'ER', 1, 16, 1, NULL, '1', '0'),
+(30, 'Educación Religiosa', 'ER', 1, 17, 1, NULL, '1', '0'),
+(31, 'Educación Religiosa', 'ER', 1, 18, 1, NULL, '1', '0'),
+(32, 'Arte y Cultura', 'AC', 3, 13, 1, NULL, '1', '0'),
+(33, 'Arte y Cultura', 'AC', 3, 14, 1, NULL, '1', '0'),
+(34, 'Arte y Cultura', 'AC', 3, 15, 1, NULL, '1', '0'),
+(35, 'Arte y Cultura', 'AC', 3, 16, 1, NULL, '1', '0'),
+(36, 'Arte y Cultura', 'AC', 3, 17, 1, NULL, '1', '0'),
+(37, 'Arte y Cultura', 'AC', 3, 18, 1, NULL, '1', '0'),
+(38, 'Educación Física', 'EF', 3, 13, 1, NULL, '1', '0'),
+(39, 'Educación Física', 'EF', 3, 14, 1, NULL, '1', '0'),
+(40, 'Educación Física', 'EF', 3, 15, 1, NULL, '1', '0'),
+(41, 'Educación Física', 'EF', 3, 16, 1, NULL, '1', '0'),
+(42, 'Educación Física', 'EF', 3, 17, 1, NULL, '1', '0'),
+(43, 'Educación Física', 'EF', 3, 18, 1, NULL, '1', '0'),
+(44, 'Tutoria', 'Tut', 2, 13, 1, NULL, '1', '0'),
+(45, 'Tutoria', 'Tut', 2, 14, 1, NULL, '1', '0'),
+(46, 'Tutoria', 'Tut', 2, 15, 1, NULL, '1', '0'),
+(47, 'Tutoria', 'Tut', 2, 16, 1, NULL, '1', '0'),
+(48, 'Tutoria', 'Tut', 2, 17, 1, NULL, '1', '0'),
+(49, 'Tutoria', 'Tut', 2, 18, 1, NULL, '1', '0'),
+(50, 'COMPUTACIÓN', 'COMP', 2, 13, 1, NULL, '1', '0'),
+(51, 'COMPUTACIÓN', 'COMP', 2, 14, 1, NULL, '1', '0'),
+(52, 'COMPUTACIÓN', 'COMP', 2, 15, 1, NULL, '1', '0'),
+(53, 'COMPUTACIÓN', 'COMP', 2, 16, 1, NULL, '1', '0'),
+(54, 'COMPUTACIÓN', 'COMP', 2, 17, 1, NULL, '1', '0'),
+(55, 'COMPUTACIÓN', 'COMP', 2, 18, 1, NULL, '1', '0');
 
 -- --------------------------------------------------------
 
@@ -504,6 +834,93 @@ CREATE TABLE `gsa` (
   `is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Volcado de datos para la tabla `gsa`
+--
+
+INSERT INTO `gsa` (`ags_id`, `ala_id`, `niv_id`, `gra_id`, `sec_id`, `is_deleted`) VALUES
+(714, 36, 1, 14, 51, '0'),
+(715, 36, 1, 14, 51, '0'),
+(716, 35, 1, 13, 50, '0'),
+(717, 35, 1, 13, 50, '0'),
+(718, 35, 1, 13, 50, '0'),
+(719, 35, 1, 13, 50, '0'),
+(720, 35, 1, 13, 50, '0'),
+(721, 35, 1, 13, 50, '0'),
+(722, 35, 1, 13, 50, '0'),
+(723, 35, 1, 13, 50, '0'),
+(724, 35, 1, 13, 50, '0'),
+(725, 35, 1, 13, 50, '0'),
+(726, 35, 1, 13, 50, '0'),
+(727, 36, 1, 14, 51, '0'),
+(728, 36, 1, 14, 51, '0'),
+(729, 36, 1, 14, 51, '0'),
+(730, 36, 1, 14, 51, '0'),
+(731, 36, 1, 14, 51, '0'),
+(732, 36, 1, 14, 51, '0'),
+(733, 36, 1, 14, 51, '0'),
+(734, 36, 1, 14, 51, '0'),
+(735, 36, 1, 14, 51, '0'),
+(736, 36, 1, 14, 51, '0'),
+(737, 36, 1, 14, 51, '0'),
+(738, 36, 1, 14, 51, '0'),
+(739, 36, 1, 14, 51, '0'),
+(740, 36, 1, 14, 51, '0'),
+(741, 37, 1, 15, 52, '0'),
+(742, 37, 1, 15, 52, '0'),
+(743, 37, 1, 15, 52, '0'),
+(744, 37, 1, 15, 52, '0'),
+(745, 37, 1, 15, 52, '0'),
+(746, 37, 1, 15, 52, '0'),
+(747, 37, 1, 15, 52, '0'),
+(748, 37, 1, 15, 52, '0'),
+(749, 37, 1, 15, 52, '0'),
+(750, 38, 1, 16, 53, '0'),
+(751, 38, 1, 16, 53, '0'),
+(752, 38, 1, 16, 53, '0'),
+(753, 38, 1, 16, 53, '0'),
+(754, 38, 1, 16, 53, '0'),
+(755, 38, 1, 16, 53, '0'),
+(756, 38, 1, 16, 53, '0'),
+(757, 38, 1, 16, 53, '0'),
+(758, 38, 1, 16, 53, '0'),
+(759, 38, 1, 16, 53, '0'),
+(760, 39, 1, 17, 54, '0'),
+(761, 39, 1, 17, 54, '0'),
+(762, 39, 1, 17, 54, '0'),
+(763, 39, 1, 17, 54, '0'),
+(764, 39, 1, 17, 54, '0'),
+(765, 39, 1, 17, 54, '0'),
+(766, 39, 1, 17, 54, '0'),
+(767, 39, 1, 17, 54, '0'),
+(768, 39, 1, 17, 54, '0'),
+(769, 39, 1, 17, 54, '0'),
+(770, 39, 1, 17, 54, '0'),
+(771, 39, 1, 17, 54, '0'),
+(772, 40, 1, 17, 55, '0'),
+(773, 40, 1, 17, 55, '0'),
+(774, 40, 1, 17, 55, '0'),
+(775, 40, 1, 17, 55, '0'),
+(776, 40, 1, 17, 55, '0'),
+(777, 40, 1, 17, 55, '0'),
+(778, 40, 1, 17, 55, '0'),
+(779, 40, 1, 17, 55, '0'),
+(780, 40, 1, 17, 55, '0'),
+(781, 40, 1, 17, 55, '0'),
+(782, 40, 1, 17, 55, '0'),
+(783, 40, 1, 17, 55, '0'),
+(784, 41, 1, 18, 56, '0'),
+(785, 41, 1, 18, 56, '0'),
+(786, 41, 1, 18, 56, '0'),
+(787, 41, 1, 18, 56, '0'),
+(788, 41, 1, 18, 56, '0'),
+(789, 41, 1, 18, 56, '0'),
+(790, 41, 1, 18, 56, '0'),
+(791, 41, 1, 18, 56, '0'),
+(792, 41, 1, 18, 56, '0'),
+(793, 41, 1, 18, 56, '0'),
+(794, 41, 1, 18, 56, '0');
+
 -- --------------------------------------------------------
 
 --
@@ -522,6 +939,15 @@ CREATE TABLE `horario` (
   `editable` varchar(50) DEFAULT NULL,
   `is_deleted` int(11) DEFAULT 0 COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `horario`
+--
+
+INSERT INTO `horario` (`hor_id`, `per_id`, `ags_id`, `cur_id`, `fecha`, `hora_inicio`, `hora_fin`, `color`, `editable`, `is_deleted`) VALUES
+(11, 1, 784, 6, '2023-10-16', '08:00:00', '08:45:00', 'green', NULL, 0),
+(12, 1, 784, 24, '2023-10-16', '08:45:00', '10:15:00', 'blue', NULL, 0),
+(13, 1, 784, 24, '2023-10-16', '10:45:00', '11:30:00', 'blue', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -589,6 +1015,90 @@ CREATE TABLE `matricula` (
   `mat_estado` char(1) DEFAULT '1' COMMENT '1: Activa; 2: Inactiva',
   `is_deleted` char(1) DEFAULT '0' COMMENT '1: Eliminado; 0:No Eliminado'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `matricula`
+--
+
+INSERT INTO `matricula` (`mat_id`, `per_id`, `alu_id`, `ags_id`, `mat_fecha`, `mat_situacion`, `mat_tipo_procedencia`, `mat_colegio_procedencia`, `mat_observacion`, `mat_estado`, `is_deleted`) VALUES
+(3, 1, 3, 716, '2023-10-11', 'Ingresante', 'Misma IE', NULL, NULL, '1', '0'),
+(4, 1, 4, 717, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(5, 1, 5, 718, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(6, 1, 6, 719, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(7, 1, 1, 720, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(8, 1, 7, 721, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(9, 1, 8, 722, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(10, 1, 9, 723, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(11, 1, 10, 724, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(12, 1, 11, 725, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(13, 1, 2, 726, '2023-10-11', 'Ingresante', 'Otra IE', NULL, NULL, '1', '0'),
+(14, 1, 13, 727, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(15, 1, 14, 728, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(16, 1, 15, 729, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(17, 1, 16, 730, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(18, 1, 17, 731, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(19, 1, 18, 732, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(20, 1, 19, 733, '2023-10-11', 'Ingresante', 'Misma IE', NULL, NULL, '1', '0'),
+(21, 1, 20, 734, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(22, 1, 21, 735, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(23, 1, 22, 736, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(24, 1, 23, 737, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(25, 1, 24, 738, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(26, 1, 25, 739, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(27, 1, 26, 740, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(28, 1, 27, 741, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(29, 1, 28, 742, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(30, 1, 29, 743, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(31, 1, 30, 744, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(32, 1, 31, 745, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(33, 1, 32, 746, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(34, 1, 33, 747, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(35, 1, 34, 748, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(36, 1, 35, 749, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(37, 1, 36, 750, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(38, 1, 37, 751, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(39, 1, 38, 752, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(40, 1, 39, 753, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(41, 1, 40, 754, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(42, 1, 41, 755, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(43, 1, 42, 756, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(44, 1, 43, 757, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(45, 1, 44, 758, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(46, 1, 45, 759, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(47, 1, 46, 760, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(48, 1, 47, 761, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(49, 1, 48, 762, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(50, 1, 49, 763, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(51, 1, 50, 764, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(52, 1, 51, 765, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(53, 1, 52, 766, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(54, 1, 53, 767, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(55, 1, 54, 768, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(56, 1, 55, 769, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(57, 1, 56, 770, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(58, 1, 57, 771, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(59, 1, 58, 772, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(60, 1, 59, 773, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(61, 1, 60, 774, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(62, 1, 61, 775, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(63, 1, 62, 776, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(64, 1, 63, 777, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(65, 1, 64, 778, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(66, 1, 65, 779, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(67, 1, 66, 780, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(68, 1, 67, 781, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(69, 1, 68, 782, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(70, 1, 69, 783, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(71, 1, 70, 784, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(72, 1, 71, 785, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(73, 1, 72, 786, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(74, 1, 73, 787, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(75, 1, 74, 788, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(76, 1, 75, 789, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(77, 1, 76, 790, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(78, 1, 77, 791, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(79, 1, 78, 792, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0'),
+(80, 1, 79, 793, '2023-10-11', 'Promovido', 'Misma IE', NULL, NULL, '1', '0');
 
 -- --------------------------------------------------------
 
@@ -684,7 +1194,7 @@ CREATE TABLE `periodo` (
 --
 
 INSERT INTO `periodo` (`per_id`, `año_id`, `per_inicio_matriculas`, `per_final_matricula`, `per_limite_cierre`, `per_tp_notas`, `per_estado`, `is_deleted`) VALUES
-(1, 2, '2023-01-01', '2023-03-27', '2023-03-31', 2, '1', '0');
+(1, 2, '2023-01-01', '2023-12-31', '2023-12-31', 3, '1', '0');
 
 -- --------------------------------------------------------
 
@@ -718,7 +1228,7 @@ CREATE TABLE `persona` (
 INSERT INTO `persona` (`per_id`, `per_dni`, `per_nombres`, `per_apellidos`, `per_nombre_completo`, `per_email`, `per_sexo`, `per_fecha_nacimiento`, `per_estado_civil`, `per_celular`, `per_pais`, `per_departamento`, `per_provincia`, `per_distrito`, `per_direccion`, `is_deleted`) VALUES
 (1, '76341435', 'WILLIAM SAMUEL', 'MIRANDA HUAMAN', NULL, 'willmirandahuaman20@gmail.com', 'M', '2000-08-31', 'S', '981422271', 'PERÚ', 13, 115, 1154, 'Urb. La ALameda lt 26', '0'),
 (2, '81753752', 'YEYLY MILAGROS', 'DE LA CRUZ ZELADA', NULL, NULL, 'F', '2016-10-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
-(3, '00192021', 'STHEPHANIE', 'CABRERA LOZANO', NULL, 'sthephani@tugatita.com', 'F', '1995-03-22', 'S', '-', 'PERU', 13, 115, 1154, '-', '0'),
+(3, '27811245', 'ANA STHEPHANIE', 'ZELADA LOZANO', NULL, NULL, 'F', '1995-03-22', 'S', '-', 'PERU', 13, 115, 1154, '-', '0'),
 (4, '80790250', 'KESLIN MELANIA', 'ZELADA LOZANO', NULL, NULL, 'F', '2016-10-03', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
 (5, '76341436', 'MAICOL ANTONY', 'HERNANDEZ HUAMAN', NULL, 'MAYCOL@GMAIL.COM', 'M', '2000-02-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
 (6, '43276824', 'LUIS ENRIQUE', 'NAMOC CHAVEZ', NULL, NULL, 'M', '1980-10-10', 'C', NULL, 'PERÚ', 13, 112, 1129, NULL, '0'),
@@ -801,7 +1311,89 @@ INSERT INTO `persona` (`per_id`, `per_dni`, `per_nombres`, `per_apellidos`, `per
 (89, '80790220', 'ESTEBAN ORLANDO', 'CHUQUIMANGO LOZANO', NULL, NULL, 'M', '2014-01-19', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
 (90, '12554463', 'JAVIER', 'CHUQUIMANGO SOLIER', NULL, NULL, 'M', '1990-12-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
 (91, '80790218', 'MILEYDI', 'ESPINOZA ROJAS', NULL, NULL, 'F', '2013-11-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
-(92, '22154360', 'KAHTY', 'ESPINOZA MENDEZ', NULL, NULL, 'F', '1996-03-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0');
+(92, '22154360', 'KAHTY', 'ESPINOZA MENDEZ', NULL, NULL, 'F', '1996-03-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(93, '78496751', 'DORILA VALESKA', 'HUANGAL INUMA', NULL, NULL, 'F', '2014-03-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(94, '26504478', 'SEVERO', 'HUANGAL IGLESIA', NULL, NULL, 'M', '1984-12-08', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(95, '80790219', 'KELITA NOEMI', 'LOBATO HERNANDEZ', NULL, NULL, 'F', '2013-12-31', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(96, '28305060', 'MARDONIO', 'TUEROS SAUÑE', NULL, NULL, 'M', '1990-04-16', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(97, '80790223', 'WILLAN ABRAHAM', 'MOLINA CASTAÑEDA', NULL, NULL, 'M', '2014-01-13', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(98, '50602123', 'MATÍAS MAURICIO', 'MOLINA BARRERA', NULL, NULL, 'M', '1984-05-14', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(99, '78354112', 'THIAGO YAHIR', 'MONDRAGON CUBAS', NULL, NULL, 'M', '2013-12-06', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(100, '50213044', 'VICTORIANO', 'MONDRAGON CABANILLAS', NULL, NULL, 'M', '1981-03-06', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(101, '80790214', 'WINNER ELISEO', 'MUJICA CHUQUIJAJAS', NULL, NULL, 'M', '2013-04-17', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(102, '60253089', 'ANGELINA', 'DE MUJICA', NULL, NULL, 'F', '1980-04-18', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(103, '80790221', 'KELY MARDELY', 'PADILLA MONDRAGON', NULL, NULL, 'F', '2013-10-22', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(104, '27890560', 'JACINTA', 'MONDRAGON GARCÉS', NULL, NULL, 'F', '1981-03-13', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(105, '80790212', 'ANSHI MARICIELO', 'SANCHEZ CHUQUIJAJAS', NULL, NULL, 'F', '2013-05-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(106, '27928014', 'FELIPE', 'SANCHEZ SILVA', NULL, NULL, 'M', '1980-04-28', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(107, '63422912', 'JUAN DAVID', 'AGIP CHUQUICAJAS', NULL, NULL, 'M', '2011-11-29', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(108, '27504421', 'PATRICIO', 'AGIP POMARES', NULL, NULL, 'M', '1987-07-01', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(109, '81074870', 'HAYDEE KATHERINE', 'CARLOS BAZAN', NULL, NULL, 'F', '2012-09-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(110, '27012326', 'NURIA DANIELA', 'BAZAN TEJERO', NULL, NULL, 'F', '1987-07-02', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(111, '63731080', 'LITZY ABIGAIL', 'CARRERA RIVERA', NULL, NULL, 'F', '2012-10-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(112, '27012589', 'OTILIA', 'RIVERA JIMENEZ', NULL, NULL, 'F', '1986-03-26', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(113, '80806962', 'DARWIN DANIEL', 'CHUQUIJAJAS ESPINOZA', NULL, NULL, 'M', '2012-11-10', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(114, '27892053', 'MELISA', 'ESPINOZA ROSADO', NULL, NULL, 'F', '1990-09-28', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(115, '80806961', 'YEIMER DANIEL', 'CHUQUIJAJAS ESPINOZA', NULL, NULL, 'M', '2012-11-10', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(116, '27234320', 'ANASTASIA', 'ESPINOZA PEDRERO', NULL, NULL, 'F', '1982-06-15', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(117, '63422936', 'NELSON NEYMAR', 'CUBAS MOLINA', NULL, NULL, 'M', '2012-06-07', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(118, '27896301', 'ROSARIO', 'MOLINA FALCÓN', NULL, NULL, 'F', '1984-06-24', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(119, '63422927', 'SAYURI NICOLL', 'ESPINOZA QUIROZ', NULL, NULL, 'F', '2012-04-14', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(120, '27856418', 'MAGDALENA', 'QUIROZ VILAPLENA', NULL, NULL, 'F', '1985-03-25', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(121, '63422929', 'MAYRA ELIZABETH', 'HUAMAN MENDOZA', NULL, NULL, 'F', '2012-05-05', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(122, '27506012', 'ADELARDO', 'HUAMAN NOVOA', NULL, NULL, 'M', '1985-06-12', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(123, '63422901', 'ESNEIDER', 'HUANGAL QUIROZ', NULL, NULL, 'M', '2011-09-27', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(124, '28905263', 'ABEL ALEX', 'HUANGAL LOPEZ', NULL, NULL, 'M', '1984-04-07', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(125, '80806974', 'CARLOS ALBERTO', 'LOZANO CUBAS', NULL, NULL, 'M', '2013-02-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(126, '27136080', 'NARCISA', 'CUBAS MONTES', NULL, NULL, 'F', '1989-11-17', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(127, '80790206', 'RAQUEL LIZET', 'LOZANO MENDOZA', NULL, NULL, 'F', '2013-01-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(128, '28101470', 'MARÍA CARMEN', 'MENDOZA CUBAS', NULL, NULL, 'F', '1982-09-28', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(129, '63422944', 'KENIA LUANA', 'LOZANO VARGAS', NULL, NULL, 'F', '2012-05-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(130, '28401753', 'ROSALINDA', 'VARGAS ROMERO', NULL, NULL, 'F', '1980-08-28', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(131, '78029548', 'HANZ JOSEPH', 'LAZARTE MORALES', NULL, NULL, 'M', '2013-03-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(132, '28530759', 'MARISELA', 'MORALES ROMERO', NULL, NULL, 'F', '1977-05-11', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(133, '63422909', 'ANGHELA SELENE', 'LLEPEN CHUQUILIN', NULL, NULL, 'F', '2011-06-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(134, '27891234', 'EMPERATRIZ SABINA', 'CHUQUILIN', NULL, NULL, 'F', '1976-09-18', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(135, '80806965', 'ESNAYDER DAVID', 'MENDOZA MONDRAGON', NULL, NULL, 'M', '2012-11-26', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(136, '29605243', 'NORMA SUSANA', 'MONDRAGON BUTRON', NULL, NULL, 'F', '1982-08-07', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(137, '77734242', 'EMERSON DAMIAN', 'MENDOZA SARABIA', NULL, NULL, 'M', '2012-06-07', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(138, '27142536', 'XIMENA', 'SARABIA MATA', NULL, NULL, 'F', '1985-07-05', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(139, '80806963', 'YASELI YOSELIN', 'QUIROZ CHUQUIJAJAS', NULL, NULL, 'F', '2012-06-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(140, '27855255', 'FELICIA', 'CHUQUIJAJAS PALOMINO', NULL, NULL, 'F', '1978-02-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(141, '80806951', 'KEYNER JOSE', 'QUIROZ HERRERA', NULL, NULL, 'M', '2012-10-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(142, '27885566', 'ABEL', 'QUIROZ URIBE', NULL, NULL, 'M', '1990-05-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(143, '80790201', 'ARNOL FABIAN', 'SALAZAR ESPINOZA', NULL, NULL, 'M', '2012-12-27', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(144, '27456123', 'JESUS', 'SALAZAR SANCHEZ', NULL, NULL, 'M', '1986-12-16', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(145, '63422926', 'JOSUE OTONIEL', 'SANCHEZ LOZANO', NULL, NULL, 'M', '2012-03-23', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(146, '27852963', 'LILIA', 'LOZANO SARABIA', NULL, NULL, 'F', '1982-02-05', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(147, '80790203', 'ANDERSON AIMAR', 'SARABIA HERNANDEZ', NULL, NULL, 'M', '2012-12-28', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(148, '28457219', 'EMILIANA MARIA', 'HERNANDEZ PEÑA', NULL, NULL, '0', '1983-02-15', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(149, '77827415', 'MARILYN YOVANI', 'SARABIA MONDRAGON', NULL, NULL, 'F', '2012-09-09', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(150, '25973481', 'TRINIDAD AURELIA', 'MONDRAGON TORRES', NULL, NULL, 'F', '1981-09-22', 'D', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(151, '63771548', 'WARNER XOEL', 'VASQUEZ CHUQUIJAJAS', NULL, NULL, 'M', '2012-09-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(152, '27142435', 'SUSANITA', 'CHUQUIJAJAS ZARAGOZA', NULL, NULL, 'F', '1988-02-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(153, '77770640', 'BRAYAN SMITH', 'VASQUEZ SANCHEZ', NULL, NULL, 'M', '2012-08-08', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(154, '27159872', 'RAFA', 'VASQUEZ ALVAREZ', NULL, NULL, 'M', '1980-05-17', 'V', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(155, '63364295', 'CHRISTIAN HERNAN', 'ESPINOZA ALCANTARA', NULL, NULL, 'M', '2011-09-11', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(156, '27885521', 'LUZ ABILA', 'ALCANTARA TAPIA', NULL, NULL, 'F', '1980-02-18', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(157, '63364269', 'NICOLAS JHANPIER', 'ESPINOZA CASTAÑEDA', NULL, NULL, 'M', '2011-04-15', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(158, '27414758', 'ELPIDIO LUIS', 'ESPINOZA CASTRO', NULL, NULL, 'M', '1981-05-17', 'C', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(159, '63422900', 'DILMER EHUNER', 'GALVEZ CUBAS', NULL, NULL, 'M', '2011-09-30', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(160, '27845196', 'ELIAS', 'GALVEZ TEJERO', NULL, NULL, 'M', '1980-05-17', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(161, '63422913', 'DEISY SOFIA', 'HERNANDEZ CHUQUIJAJAS', NULL, NULL, 'F', '2012-01-05', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(162, '27231562', 'JAVIER LUIS', 'HERNANDEZ CHAVEZ', NULL, NULL, 'M', '1979-05-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(163, '80806960', 'SARITA YUBITH', 'LEYVA BAZAN', NULL, NULL, 'F', '2012-01-13', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(164, '27849562', 'ROBERTO', 'LEYVA RIOS', NULL, NULL, 'M', '1975-02-17', 'D', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(165, '63364297', 'YAMER DAVID', 'MENDOZA PEREZ', NULL, NULL, 'M', '2011-09-01', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(166, '27891245', 'JOSE JUAN', 'MENDOZA ANAYA', NULL, NULL, 'M', '1978-05-28', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(167, '63334326', 'WILDER JOSUE', 'ROJAS HERNANDEZ', NULL, NULL, 'M', '2011-07-26', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(168, '27741736', 'HELBER', 'ROJAS PEREZ', NULL, NULL, 'M', '1980-07-18', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(169, '63364272', 'JHENIFER ESPERANZA', 'SOLANO QUIROZ', NULL, NULL, 'F', '2011-05-10', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(170, '27456137', 'JUANCARLOS', 'SOLANO GUERRERO', NULL, NULL, 'M', '1976-12-04', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(171, '63422910', 'SHEYDER FERNANDO', 'VENTURA CUBAS', NULL, NULL, 'M', '2011-12-20', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(172, '27458939', 'BEATRIS', 'CUBAS TORRES', NULL, NULL, 'F', '1970-06-17', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(173, '77316109', 'EVER EFRAIN', 'ZELADA VENTURA', NULL, NULL, 'M', '2011-09-24', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0'),
+(174, '27567119', 'ISABELA', 'VENTURA GALAN', NULL, NULL, 'F', '1984-06-12', 'S', NULL, 'PERÚ', 6, 194, 1844, NULL, '0');
 
 -- --------------------------------------------------------
 
@@ -885,13 +1477,13 @@ CREATE TABLE `seccion` (
 --
 
 INSERT INTO `seccion` (`sec_id`, `sec_descripcion`, `sec_tutor`, `sec_aula`, `gra_id`, `sec_periodo`, `sec_vacantes`, `sec_is_delete`) VALUES
-(50, 'A', 51, 35, 13, 1, 20, '0'),
-(51, 'A', 49, 36, 14, 1, 20, '0'),
-(52, 'A', 53, 37, 15, 1, 20, '0'),
-(53, 'A', 50, 38, 16, 1, 20, '0'),
-(54, 'A', 54, 39, 17, 1, 20, '0'),
-(55, 'B', 55, 40, 17, 1, 20, '0'),
-(56, 'A', 52, 41, 18, 1, 20, '0');
+(50, 'A', 51, 35, 13, 1, 9, '0'),
+(51, 'A', 49, 36, 14, 1, 4, '0'),
+(52, 'A', 53, 37, 15, 1, 11, '0'),
+(53, 'A', 50, 38, 16, 1, 10, '0'),
+(54, 'A', 54, 39, 17, 1, 8, '0'),
+(55, 'B', 55, 40, 17, 1, 8, '0'),
+(56, 'A', 52, 41, 18, 1, 9, '0');
 
 -- --------------------------------------------------------
 
@@ -3316,25 +3908,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `alu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `alu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `apoderado`
 --
 ALTER TABLE `apoderado`
-  MODIFY `apo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `apo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_curso`
 --
 ALTER TABLE `asignacion_curso`
-  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_grado`
 --
 ALTER TABLE `asignacion_grado`
-  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
+  MODIFY `asig_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
 
 --
 -- AUTO_INCREMENT de la tabla `aula`
@@ -3352,13 +3944,13 @@ ALTER TABLE `año`
 -- AUTO_INCREMENT de la tabla `capacidad`
 --
 ALTER TABLE `capacidad`
-  MODIFY `cap_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `cap_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=365;
 
 --
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `cur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
@@ -3370,19 +3962,19 @@ ALTER TABLE `grado`
 -- AUTO_INCREMENT de la tabla `gsa`
 --
 ALTER TABLE `gsa`
-  MODIFY `ags_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=714;
+  MODIFY `ags_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=795;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `hor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `hor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `matricula`
 --
 ALTER TABLE `matricula`
-  MODIFY `mat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `nivel`
@@ -3412,7 +4004,7 @@ ALTER TABLE `periodo`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_academico`
