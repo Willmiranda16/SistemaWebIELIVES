@@ -507,7 +507,7 @@ var render = function render() {
       staticClass: "card-body text-center"
     }, [_c("h4", [_c("b", [_vm._v(_vm._s(item.sec_descripcion))])]), _vm._v(" "), _c("hr"), _vm._v(" "), _vm._m(1, true), _vm._v(" "), item.nivel == "Primaria" ? _c("span", {
       staticClass: "tag tag-blue"
-    }, [_vm._v(_vm._s(item.grado) + " de " + _vm._s(item.nivel))]) : _c("span", {
+    }, [_vm._v(_vm._s(item.grado) + " de\n                                        " + _vm._s(item.nivel))]) : _c("span", {
       staticClass: "tag tag-orange"
     }, [_vm._v(_vm._s(item.grado) + " de " + _vm._s(item.nivel))]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c("h6", {
       staticClass: "m-2"
@@ -719,7 +719,7 @@ var render = function render() {
       domProps: {
         value: g.gra_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {
@@ -857,7 +857,7 @@ var render = function render() {
       domProps: {
         value: g.gra_id
       }
-    }, [_vm._v("\n                                                " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                            ")]);
+    }, [_vm._v("\n                                            " + _vm._s(g.gra_descripcion) + " de " + _vm._s(g.niv_id =  true ? "Primaria" : 0) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "form-group row"
   }, [_c("label", {

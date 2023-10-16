@@ -47,7 +47,7 @@ var _user = document.head.querySelector('meta[name="user"]');
       secciones: {},
       data: {
         año: '2',
-        nivel: '2',
+        nivel: '1',
         grado: '0',
         seccion: '0'
       },
@@ -183,11 +183,11 @@ var _user = document.head.querySelector('meta[name="user"]');
               case 0:
                 _this5.grafico1();
 
-                _this5.grafico2();
+                _this5.grafico4();
 
                 _this5.grafico3();
 
-                _this5.grafico4();
+                _this5.grafico2();
 
                 _this5.grafico5();
 
@@ -642,7 +642,7 @@ var render = function render() {
       href: "javascript:void(0);",
       title: ""
     }
-  }, [_vm._v("Procesando...")])])])])]), _vm._v(" "), _vm._m(1)])])])])]);
+  }, [_vm._v("Procesando...")])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), _vm._m(3)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -728,18 +728,16 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
+    staticClass: "row mb-2"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row mb-2"
-  }, [_c("div", {
-    staticClass: "col m-2"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("label", {
-    staticClass: "col col-form-label"
-  }, [_c("b", [_vm._v("Reporte de Matriculas ")])])]), _vm._v(" "), _c("div", {
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Reporte de Matriculas")]), _vm._v(" "), _c("div", {
     attrs: {
       id: "div_grafico1"
     }
@@ -759,23 +757,15 @@ var staticRenderFns = [function () {
     attrs: {
       id: "grafico3"
     }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col m-2"
+  })])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
   }, [_c("div", {
-    staticClass: "row"
-  }, [_c("label", {
-    staticClass: "col col-form-label"
-  }, [_c("b", [_vm._v("Reporte de Personal Academico ")])])]), _vm._v(" "), _c("div", {
-    attrs: {
-      id: "div_grafico2"
-    }
-  }, [_c("span", {
-    staticClass: "list-group-item"
-  }, [_vm._v("Total de Personal por cargos")]), _vm._v(" "), _c("canvas", {
-    attrs: {
-      id: "grafico2"
-    }
-  })]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Reporte de Personal Academico")]), _vm._v(" "), _c("div", {
     attrs: {
       id: "div_grafico4"
     }
@@ -785,13 +775,30 @@ var staticRenderFns = [function () {
     attrs: {
       id: "grafico4"
     }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col m-2"
+  })]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {
+    attrs: {
+      id: "div_grafico2"
+    }
+  }, [_c("span", {
+    staticClass: "list-group-item"
+  }, [_vm._v("Total de Personal por cargos")]), _vm._v(" "), _c("canvas", {
+    attrs: {
+      id: "grafico2"
+    }
+  })])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "col-md-6"
   }, [_c("div", {
-    staticClass: "row"
-  }, [_c("label", {
-    staticClass: "col col-form-label"
-  }, [_c("b", [_vm._v("+ Reportes")])])]), _vm._v(" "), _c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("+ Reportes")]), _vm._v(" "), _c("div", {
     attrs: {
       id: "div_grafico5"
     }
@@ -801,7 +808,12 @@ var staticRenderFns = [function () {
     attrs: {
       id: "grafico5"
     }
-  })])])]), _vm._v(" "), _c("div", {
+  })])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "row mb-2 d-none"
   }, [_c("div", {
     staticClass: "col m-2"
@@ -862,7 +874,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("...")])])])])])]);
+  }, [_vm._v("...")])])])]);
 }];
 render._withStripped = true;
 

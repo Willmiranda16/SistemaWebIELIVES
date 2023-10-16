@@ -54,7 +54,7 @@ class NotaController extends Controller
     {
         $datos_nota = $request['params']['notas'];
 
-        $periodo = Periodo::where('año_id',$datos_nota['año_id'])->first();
+        $periodo = Periodo::where('año_id', $datos_nota['año_id'])->first();
         DB::beginTransaction();
         try {
             $nota = Nota::create([
@@ -67,7 +67,7 @@ class NotaController extends Controller
             ]);
 
             foreach ($datos_nota['nota_capacidad'] as $key => $value) {
-                $capacidad = 'C'.$key+1;
+                $capacidad = 'C' . $key + 1;
                 NotaCapacidad::create([
                     'nc_descripcion' => $capacidad,
                     'nc_nota' =>  $value,
@@ -87,7 +87,6 @@ class NotaController extends Controller
                 ]);
             }
             return view('Error404'); */
-
         } catch (\Exception $e) {
             DB::rollBack();
             dd($e);
@@ -108,9 +107,9 @@ class NotaController extends Controller
     {
         $nivel = $request['params']['nivel'];
 
-        $docentes = PersonalAcademico::whereIn('rol_id',[4])->where('niv_id',$nivel)->where('is_deleted','!=',1)->get();
+        $docentes = PersonalAcademico::whereIn('rol_id', [4])->where('niv_id', $nivel)->where('is_deleted', '!=', 1)->get();
         foreach ($docentes as $d) {
-            $persona = Persona::where('per_id',$d->per_id)->first();
+            $persona = Persona::where('per_id', $d->per_id)->first();
             /* $asignaciones = AsignarCurso::where('pa_id',$d->pa_id)->where('asig_is_deleted','!=',1)->first();
             $array = [];
             foreach ($asignaciones as $value) {
@@ -134,7 +133,7 @@ class NotaController extends Controller
             /* 'cursos' => $cursos, */
         ]);
 
-       /*  if ($request->ajax()) {
+        /*  if ($request->ajax()) {
             return response()->json([
                 'docente' => $docentes,
             ]);
@@ -146,16 +145,16 @@ class NotaController extends Controller
     {
         $docente = $request['params']['docente'];
 
-        $docentes = PersonalAcademico::where('pa_id',$docente)->where('is_deleted','!=',1)->first();
-        $asignacionesCursos = AsignarCurso::where('pa_id',$docentes->pa_id)->where('asig_is_deleted','!=',1)->first();
-        $asignacionesGrados = AsignarGrado::where('pa_id',$docentes->pa_id)->where('asig_is_deleted','!=',1)->get();
+        $docentes = PersonalAcademico::where('pa_id', $docente)->where('is_deleted', '!=', 1)->first();
+        $asignacionesCursos = AsignarCurso::where('pa_id', $docentes->pa_id)->where('asig_is_deleted', '!=', 1)->first();
+        $asignacionesGrados = AsignarGrado::where('pa_id', $docentes->pa_id)->where('asig_is_deleted', '!=', 1)->get();
         $array = [];
         foreach ($asignacionesGrados as $value) {
             if (in_array($value->gra_id, $array) == false) {
-                array_push($array,$value->gra_id);
+                array_push($array, $value->gra_id);
             }
         }
-        $grados = Grado::whereIn('gra_id',$array)->where('gra_is_delete','!=',1)->get();
+        $grados = Grado::whereIn('gra_id', $array)->where('gra_is_delete', '!=', 1)->get();
         $docentes->curso = $asignacionesCursos->curso;
         $docentes->grados = $array;
 
@@ -164,7 +163,7 @@ class NotaController extends Controller
             'grados' => $grados,
         ]);
 
-       /*  if ($request->ajax()) {
+        /*  if ($request->ajax()) {
             return response()->json([
                 'docente' => $docentes,
                 'grados' => $grados,
@@ -178,14 +177,14 @@ class NotaController extends Controller
         $docente = $request['params']['docente'];
         $grado = $request['params']['grado'];
 
-        $asignacionesGrados = AsignarGrado::where('pa_id',$docente)->where('gra_id',$grado)->where('asig_is_deleted','!=',1)->get();
+        $asignacionesGrados = AsignarGrado::where('pa_id', $docente)->where('gra_id', $grado)->where('asig_is_deleted', '!=', 1)->get();
         $array = [];
         foreach ($asignacionesGrados as $value) {
             if (in_array($value->gra_id, $array) == false) {
-                array_push($array,$value->seccion);
+                array_push($array, $value->seccion);
             }
         }
-        $secciones = Seccion::whereIn('sec_descripcion',$array)->where('gra_id',$grado)->where('sec_is_delete','!=',1)->get();
+        $secciones = Seccion::whereIn('sec_descripcion', $array)->where('gra_id', $grado)->where('sec_is_delete', '!=', 1)->get();
 
         return response()->json([
             'secciones' => $secciones
@@ -203,15 +202,15 @@ class NotaController extends Controller
     {
         $data = $request['params']['data'];
 
-        $asignacionesCursos = AsignarCurso::where('pa_id',$data['docente'])->where('asig_is_deleted','!=',1)->first();
-        $curso = Curso::where('cur_nombre',$asignacionesCursos->curso)->where('gra_id',$data['grado'])->where('niv_id',$data['nivel'])->where('is_deleted','!=',1)->first();
-        $capacidades = Capacidad::where('cur_id',$curso->cur_id)->where('cap_is_deleted','!=',1)->get();
+        $asignacionesCursos = AsignarCurso::where('pa_id', $data['docente'])->where('asig_is_deleted', '!=', 1)->first();
+        $curso = Curso::where('cur_nombre', $asignacionesCursos->curso)->where('gra_id', $data['grado'])->where('niv_id', $data['nivel'])->where('is_deleted', '!=', 1)->first();
+        $capacidades = Capacidad::where('cur_id', $curso->cur_id)->where('cap_is_deleted', '!=', 1)->get();
         $asignacionesCursos->capacidades = count($capacidades);
 
         $estado = 1;
-        $año = Anio::where('año_estado',$estado)->where('is_deleted','!=',1)->first();
-        $periodo = Periodo::where('año_id',$año->año_id)->where('per_estado',$estado)->where('is_deleted','!=',1)->first();
-        $tipoPeriodo = Tipo::where('tp_id',$periodo->per_tp_notas)->first();
+        $año = Anio::where('año_estado', $estado)->where('is_deleted', '!=', 1)->first();
+        $periodo = Periodo::where('año_id', $año->año_id)->where('per_estado', $estado)->where('is_deleted', '!=', 1)->first();
+        $tipoPeriodo = Tipo::where('tp_id', $periodo->per_tp_notas)->first();
         switch ($tipoPeriodo->tp_tipo) {
             case 'Registro de Notas Anuales':
                 $tipoPeriodo->cantidad = 1;
@@ -231,26 +230,28 @@ class NotaController extends Controller
                 break;
         }
 
-        $Gsas = Gsa::where('niv_id',$data['nivel'])->where('gra_id',$data['grado'])->where('sec_id',$data['seccion'])->where('is_deleted','!=',1)->get();
+        $Gsas = Gsa::where('niv_id', $data['nivel'])->where('gra_id', $data['grado'])->where('sec_id', $data['seccion'])->where('is_deleted', '!=', 1)->get();
 
         foreach ($Gsas as $g) {
-            $matricula = Matricula::where('ags_id',$g->ags_id)->where('is_deleted','!=',1)->first();
-            $alumno = Alumno::where('alu_id',$matricula->alu_id)->where('is_deleted','!=',1)->first();
-            $persona = Persona::where('per_id',$alumno->per_id)->where('is_deleted','!=',1)->first();
-            $g->alumno = $persona->per_apellidos.' '.$persona->per_nombres;
-            $g->dni = $persona->per_dni;
-            $g->idAlumno = $alumno->alu_id;
-
-            $notas = Nota::where('alu_id',$alumno->alu_id)->where('pa_id',$data['docente'])->get();
-            $suma = 0;
-            $total = $tipoPeriodo->cantidad;
-            foreach ($notas as $v) {
-                $capacidades = NotaCapacidad::where('nt_id',$v->nt_id)->get();
-                $v->notasCapacidades = $capacidades;
-                $suma += $v->nt_nota;
+            $matricula = Matricula::where('ags_id', $g->ags_id)->where('is_deleted', '!=', 1)->first();
+            if ($matricula !== null) {
+                $alumno = Alumno::where('alu_id',$matricula->alu_id)->where('is_deleted','!=',1)->first();
+                $persona = Persona::where('per_id',$alumno->per_id)->where('is_deleted','!=',1)->first();
+                $g->alumno = $persona->per_apellidos.' '.$persona->per_nombres;
+                $g->dni = $persona->per_dni;
+                $g->idAlumno = $alumno->alu_id;
+    
+                $notas = Nota::where('alu_id',$alumno->alu_id)->where('pa_id',$data['docente'])->get();
+                $suma = 0;
+                $total = $tipoPeriodo->cantidad;
+                foreach ($notas as $v) {
+                    $capacidades = NotaCapacidad::where('nt_id',$v->nt_id)->get();
+                    $v->notasCapacidades = $capacidades;
+                    $suma += $v->nt_nota;
+                }
+                $g->notas = $notas;
+                $g->promedio = $suma/$total;
             }
-            $g->notas = $notas;
-            $g->promedio = $suma/$total;
         }
 
         return response()->json([
@@ -276,7 +277,7 @@ class NotaController extends Controller
 
     public function showAño(Request $request)
     {
-        $año = Anio::where('is_deleted','!=',1)->where('año_estado',1)->get();
+        $año = Anio::where('is_deleted', '!=', 1)->where('año_estado', 1)->get();
         return response()->json($año);
         /* if ($request->ajax()) {
             return response()->json($año);
