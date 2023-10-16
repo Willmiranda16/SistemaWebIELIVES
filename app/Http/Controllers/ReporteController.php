@@ -1531,7 +1531,7 @@ class ReporteController extends Controller
                                             <td colspan="5" style="height: 0.7rem;"></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" style="height: 0.7rem;">UGEL CHEPÉN</td>
+                                            <td colspan="5" style="height: 0.7rem;">UGEL SAN MIGUEL</td>
                                             <td colspan="5" style="height: 0.7rem;"></td>
                                             <td colspan="5" style="height: 0.7rem;"></td>
                                             <td colspan="5" style="height: 0.7rem;"></td>
@@ -1611,7 +1611,7 @@ class ReporteController extends Controller
                                             <td colspan="5" style="height: 0.7rem;"></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" style="height: 0.7rem;">' . ($nivel == 'PRIMARIA' ? 'MAÑANA' : 'TARDE') . '</td>
+                                            <td colspan="5" style="height: 0.7rem;">MAÑANA</td>
                                             <td colspan="5" style="height: 0.7rem;"></td>
                                             <td colspan="5" style="height: 0.7rem;"></td>
                                             <td colspan="5" style="height: 0.7rem;"></td>
