@@ -47,50 +47,19 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        $datos_matricula = $request['params']['matricula'];
-
-        DB::beginTransaction();
-        try {
-            $gsa = Gsa::create([
-                'ala_id' => $datos_matricula['ala_id'],
-                'niv_id' => $datos_matricula['niv_id'],
-                'gra_id' => $datos_matricula['gra_id'],
-                'sec_id' => $datos_matricula['sec_id']
-            ]);
-
-            Matricula::create([
-                'per_id' => $datos_matricula['per_id'],
-                'alu_id' => $datos_matricula['alu_id'],
-                'ags_id' => $gsa->ags_id,
-                'mat_fecha' => $datos_matricula['fecha'],
-                'mat_situacion' => $datos_matricula['situacion'],
-                'mat_tipo_procedencia' => $datos_matricula['tipo_procedencia'],
-                'mat_colegio_procedencia' => $datos_matricula['colegio_procedencia'],
-                'mat_observacion' => $datos_matricula['observacion']
-            ]);
-
-            Seccion::where('sec_id',$datos_matricula['sec_id'])->decrement('sec_vacantes', 1);
-
-            DB::commit();
-
-            return response()->json([
-                'status' => 1
-            ]);
-
-            /* if ($request->ajax()) {
+               
+            $registro = self::generalStore($request);
+            if (!$registro['status']) {
+                // $response =  false;
                 return response()->json([
-                    'status' => 1
+                    'status' => 0
                 ]);
             }
-            return view('Error404'); */
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e);
+            
             return response()->json([
-                'status' => 0
-            ]);
-        }
+                'status' => 1
+            ]);           
+                              
     }
 
     /**
@@ -104,16 +73,16 @@ class MatriculaController extends Controller
     {
         $nrodoc = $request['params']['dni'];
 
-        $persona = Persona::where('per_dni',$nrodoc)->first();
-        if($persona){
-            $alumno = Alumno::where('per_id',$persona->per_id)->first();
-            if($alumno){
-                $apoderado = Apoderado::where('apo_id',$alumno->apo_id)->first();
-                $apo_persona = Persona::where('per_id',$apoderado->per_id)->first();
-                if($apo_persona->per_nombres == ""){
+        $persona = Persona::where('per_dni', $nrodoc)->first();
+        if ($persona) {
+            $alumno = Alumno::where('per_id', $persona->per_id)->first();
+            if ($alumno) {
+                $apoderado = Apoderado::where('apo_id', $alumno->apo_id)->first();
+                $apo_persona = Persona::where('per_id', $apoderado->per_id)->first();
+                if ($apo_persona->per_nombres == "") {
                     $persona->apo_nombre_completo = $apo_persona->per_nombre_completo;
-                }else{
-                    $persona->apo_nombre_completo = $apo_persona->per_apellidos.' '.$apo_persona->per_nombres;
+                } else {
+                    $persona->apo_nombre_completo = $apo_persona->per_apellidos . ' ' . $apo_persona->per_nombres;
                 }
                 /* $persona->apo_nombres = $apo_persona->per_nombres;
                 $persona->apo_apellidos = $apo_persona->per_apellidos; */
@@ -123,10 +92,10 @@ class MatriculaController extends Controller
                 $persona->alu_estado = $alumno->alu_estado;
                 $persona->apo_id = $alumno->apo_id;
                 $persona->evaluar = 2;
-            }else{
+            } else {
                 $persona->evaluar = 1;
             }
-        }else{
+        } else {
             $persona->evaluar = 0;
         }
         return response()->json($persona);
@@ -137,26 +106,26 @@ class MatriculaController extends Controller
 
     public function show(Request $request)
     {
-        $matriculas = Matricula::where('is_deleted','!=',1)->get();
+        $matriculas = Matricula::where('is_deleted', '!=', 1)->get();
         foreach ($matriculas as $m) {
-            $alumno = Alumno::where('alu_id',$m->alu_id)->first();
-            $persona = Persona::where('per_id',$alumno->per_id)->first();
-            $apoderado = Apoderado::where('apo_id',$alumno->apo_id)->first();
-            $apo_persona = Persona::where('per_id',$apoderado->per_id)->first();
-            $periodo = Periodo::where('per_id',$m->per_id)->first();
-            $anio = Anio::where('año_id',$periodo->año_id)->first();
-            $gsa = Gsa::where('ags_id',$m->ags_id)->first();
-            $aula = Aula::where('ala_id',$gsa->ala_id)->first();
-            $nivel = Nivel::where('niv_id',$gsa->niv_id)->first();
-            $grado = Grado::where('gra_id',$gsa->gra_id)->first();
-            $seccion = Seccion::where('sec_id',$gsa->sec_id)->first();
+            $alumno = Alumno::where('alu_id', $m->alu_id)->first();
+            $persona = Persona::where('per_id', $alumno->per_id)->first();
+            $apoderado = Apoderado::where('apo_id', $alumno->apo_id)->first();
+            $apo_persona = Persona::where('per_id', $apoderado->per_id)->first();
+            $periodo = Periodo::where('per_id', $m->per_id)->first();
+            $anio = Anio::where('año_id', $periodo->año_id)->first();
+            $gsa = Gsa::where('ags_id', $m->ags_id)->first();
+            $aula = Aula::where('ala_id', $gsa->ala_id)->first();
+            $nivel = Nivel::where('niv_id', $gsa->niv_id)->first();
+            $grado = Grado::where('gra_id', $gsa->gra_id)->first();
+            $seccion = Seccion::where('sec_id', $gsa->sec_id)->first();
             $m->id_persona = $persona->per_id;
             $m->dni = $persona->per_dni;
-            $m->alumno = $persona->per_apellidos .' '.$persona->per_nombres;
-            if($apo_persona->per_nombres == ""){
+            $m->alumno = $persona->per_apellidos . ' ' . $persona->per_nombres;
+            if ($apo_persona->per_nombres == "") {
                 $m->apoderado = $apo_persona->per_nombre_completo;
-            }else{
-                $m->apoderado = $apo_persona->per_apellidos.' '.$apo_persona->per_nombres;
+            } else {
+                $m->apoderado = $apo_persona->per_apellidos . ' ' . $apo_persona->per_nombres;
             }
             $m->parentesco = $apoderado->apo_parentesco;
             $m->periodo = $anio->año_descripcion;
@@ -173,31 +142,32 @@ class MatriculaController extends Controller
         return view('Error404'); */
     }
 
+
+    public function showGrados(Request $request)
+    {
+        $nivel = $request['params']['id'];
+        $grados = Grado::where('niv_id', $nivel)->get();
+        return response()->json($grados);
+        /*  if ($request->ajax()) {
+            return response()->json($grados);
+        }
+        return view('Error404'); */
+    }
+    
     public function showNiveles(Request $request)
     {
         $niveles = Nivel::get();
         return response()->json($niveles);
-       /*  if ($request->ajax()) {
+        /*  if ($request->ajax()) {
             return response()->json($niveles);
         } */
         return view('Error404');
     }
 
-    public function showGrados(Request $request)
-    {
-        $nivel = $request['params']['id'];
-        $grados = Grado::where('niv_id',$nivel)->get();
-        return response()->json($grados);
-       /*  if ($request->ajax()) {
-            return response()->json($grados);
-        }
-        return view('Error404'); */
-    }
-
     public function showSecciones(Request $request)
     {
         $grado = $request['params']['id'];
-        $secciones = Seccion::where('gra_id',$grado)->get();
+        $secciones = Seccion::where('gra_id', $grado)->get();
         return response()->json($secciones);
         /* if ($request->ajax()) {
             return response()->json($secciones);
@@ -208,8 +178,8 @@ class MatriculaController extends Controller
     public function infoSecciones(Request $request)
     {
         $data = $request['params']['data'];
-        $seccion = Seccion::where('sec_id',$data)->first();
-        $aula = Aula::where('ala_id',$seccion->sec_aula)->first();
+        $seccion = Seccion::where('sec_id', $data)->first();
+        $aula = Aula::where('ala_id', $seccion->sec_aula)->first();
         $seccion->aula = $aula->ala_descripcion;
         $seccion->ala_id = $aula->ala_id;
         return response()->json($seccion);
@@ -262,7 +232,78 @@ class MatriculaController extends Controller
         $alumno = Matricula::find($datos_matricula);
         $alumno->is_deleted = 1;
         $alumno->save();
-
     }
 
+
+    public function apiStore(Request $request)
+    {       
+        try {
+            $registro = $this->generalStore($request);
+            return $registro;
+            if (!$registro['status']) {
+                $response = [
+                    'status' => false,
+                    'msg' => 'Error al registrar la matricula'
+                
+                ];
+            }
+            $response = [
+                'status' => true,
+                'msg' => 'Matricula registrada correctamente'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'status' => false,
+                'msg' => 'Error'. $th->getMessage()
+            ];
+        }
+        return response()->json($response);
+    }
+
+
+    public function generalStore($request)
+    {
+        $datos_matricula = $request['params']['matricula'];
+        // return $datos_matricula;
+        DB::beginTransaction();
+        try {
+            $gsa = Gsa::create([
+                'ala_id' => $datos_matricula['ala_id'],
+                'niv_id' => $datos_matricula['niv_id'],
+                'gra_id' => $datos_matricula['gra_id'],
+                'sec_id' => $datos_matricula['sec_id']
+            ]);
+
+            Matricula::create([
+                'per_id' => $datos_matricula['per_id'],
+                'alu_id' => $datos_matricula['alu_id'],
+                'ags_id' => $gsa->ags_id,
+                'mat_fecha' => $datos_matricula['fecha'],
+                'mat_situacion' => $datos_matricula['situacion'],
+                'mat_tipo_procedencia' => $datos_matricula['tipo_procedencia'],
+                'mat_colegio_procedencia' => $datos_matricula['colegio_procedencia'],
+                'mat_observacion' => $datos_matricula['observacion']
+            ]);
+
+            Seccion::where('sec_id', $datos_matricula['sec_id'])->decrement('sec_vacantes', 1);
+
+            DB::commit();
+
+            $respuesta = [
+                'status' => 1,
+                "msg" => "Matricula registrada correctamente"
+            ];
+            return $respuesta;
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            //dd($e);
+            $respuesta = [
+                'status' => 0,
+                "msg" =>  $e
+            ];
+            return $respuesta;
+        }
+        // return response()->json($respuesta);  
+     }
 }

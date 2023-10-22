@@ -116,6 +116,7 @@ Route::get('/buscar-alumno', [AlumnoController::class, 'buscar']);
 Route::post('/buscar-data-alumno', [MatriculaController::class, 'buscarAlumno']);
 Route::get('/listar-matriculas', [MatriculaController::class, 'show']);
 Route::post('/agregar-matricula', [MatriculaController::class, 'store']);
+Route::post('/agregar-matricula-api', [MatriculaController::class, 'apiStore']);
 Route::post('/actualizar-matricula', [MatriculaController::class, 'update']);
 Route::post('/eliminar-matricula', [MatriculaController::class, 'destroy']);
 

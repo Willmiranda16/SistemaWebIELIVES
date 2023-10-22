@@ -39,76 +39,21 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        $datos_persona = $request['params']['persona'];
-        $datos_apoderado = $request['params']['apoderado'];
-        $Apoderado = null;
+        
+            $registro = self::storeGeneral($request);
 
-        DB::beginTransaction();
-        try {
-            if (!$datos_persona['per_id']) {
-                $Persona = Persona::create([
-                    'per_dni' => $datos_persona['dni'],
-                    'per_nombres' => $datos_persona['nombres'],
-                    'per_apellidos' => $datos_persona['apellidos'],
-                    'per_email' => $datos_persona['email'],
-                    'per_sexo' => $datos_persona['sexo'],
-                    'per_fecha_nacimiento' => $datos_persona['fecha_nacimiento'],
-                    'per_estado_civil' => $datos_persona['estado_civil'],
-                    'per_celular' => $datos_persona['celular'],
-                    'per_pais' => $datos_persona['pais'],
-                    'per_departamento' => $datos_persona['departamento'],
-                    'per_provincia' => $datos_persona['provincia'],
-                    'per_distrito' => $datos_persona['distrito'],
-                    'per_direccion' => $datos_persona['direccion']
-                ]);
-                $datos_persona['per_id'] = $Persona->per_id;
+            if($registro['status'] == 0 and $registro['msg'] == 404){
+                return view('Error404');
             }
-            if ($datos_apoderado['dni']) {
-                $Apo = Persona::create([
-                    'per_dni' => $datos_apoderado['dni'],
-                    'per_nombres' => $datos_apoderado['nombres'],
-                    'per_apellidos' => $datos_apoderado['apellidos'],
-                    'per_email' => $datos_apoderado['email'],
-                    'per_sexo' => $datos_apoderado['sexo'],
-                    'per_fecha_nacimiento' => $datos_apoderado['fecha_nacimiento'],
-                    'per_estado_civil' => $datos_apoderado['estado_civil'],
-                    'per_celular' => $datos_apoderado['celular'],
-                    'per_pais' => $datos_apoderado['pais'],
-                    'per_departamento' => $datos_apoderado['departamento'],
-                    'per_provincia' => $datos_apoderado['provincia'],
-                    'per_distrito' => $datos_apoderado['distrito'],
-                    'per_direccion' => $datos_apoderado['direccion']
-                ]);
-                $datos_apoderado['per_id'] = $Apo->per_id;
-
-                $Apoderado = Apoderado::create([
-                    'per_id' => $datos_apoderado['per_id'],
-                    'apo_parentesco' => $datos_apoderado['parentesco'],
-                    'apo_vive_con_estudiante' => $datos_apoderado['vive_con_estudiante']
-                ]);
-            }
-
-            Alumno::create([
-                'per_id' => $datos_persona['per_id'],
-                'apo_id' => $Apoderado ? $Apoderado->apo_id : null,
-                'alu_estado' => 1
-            ]);
-
-            DB::commit();
-
-            if ($request->ajax()) {
+            elseif($registro['status'] == 0){
                 return response()->json([
-                    'status' => 1
+                    'status' => 0
                 ]);
             }
-            return view('Error404');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e);
             return response()->json([
-                'status' => 0
-            ]);
-        }
+                'status' => 1
+            ]);     
+                        
     }
 
     /**
@@ -379,5 +324,107 @@ class AlumnoController extends Controller
         $alumno = Alumno::find($datos_alumno);
         $alumno->is_deleted = 1;
         $alumno->save();
+    }
+
+    public function apiStore(Request $request){
+        try {
+            $registro = $this->storeGeneral($request);
+
+            $respuesta = [
+                'status' => $registro['status'],  
+                'msg' => $registro['msg']
+            ];
+        } catch (\Throwable $th) {
+            $respuesta = [
+                'status' => $registro['status'],  
+                'msg' => $registro['msg'],
+                'error' => $th
+            ];
+        }
+        return response()->json($respuesta);
+     
+    }
+
+    public function storeGeneral($request){
+
+        $datos_persona = $request['params']['persona'];
+        $datos_apoderado = $request['params']['apoderado'];
+        $Apoderado = null;
+
+        DB::beginTransaction();
+        try {
+            if (!$datos_persona['per_id']) {
+                $Persona = Persona::create([
+                    'per_dni' => $datos_persona['dni'],
+                    'per_nombres' => $datos_persona['nombres'],
+                    'per_apellidos' => $datos_persona['apellidos'],
+                    'per_email' => $datos_persona['email'],
+                    'per_sexo' => $datos_persona['sexo'],
+                    'per_fecha_nacimiento' => $datos_persona['fecha_nacimiento'],
+                    'per_estado_civil' => $datos_persona['estado_civil'],
+                    'per_celular' => $datos_persona['celular'],
+                    'per_pais' => $datos_persona['pais'],
+                    'per_departamento' => $datos_persona['departamento'],
+                    'per_provincia' => $datos_persona['provincia'],
+                    'per_distrito' => $datos_persona['distrito'],
+                    'per_direccion' => $datos_persona['direccion']
+                ]);
+                $datos_persona['per_id'] = $Persona->per_id;
+            }
+            if ($datos_apoderado['dni']) {
+                $Apo = Persona::create([
+                    'per_dni' => $datos_apoderado['dni'],
+                    'per_nombres' => $datos_apoderado['nombres'],
+                    'per_apellidos' => $datos_apoderado['apellidos'],
+                    'per_email' => $datos_apoderado['email'],
+                    'per_sexo' => $datos_apoderado['sexo'],
+                    'per_fecha_nacimiento' => $datos_apoderado['fecha_nacimiento'],
+                    'per_estado_civil' => $datos_apoderado['estado_civil'],
+                    'per_celular' => $datos_apoderado['celular'],
+                    'per_pais' => $datos_apoderado['pais'],
+                    'per_departamento' => $datos_apoderado['departamento'],
+                    'per_provincia' => $datos_apoderado['provincia'],
+                    'per_distrito' => $datos_apoderado['distrito'],
+                    'per_direccion' => $datos_apoderado['direccion']
+                ]);
+                $datos_apoderado['per_id'] = $Apo->per_id;
+
+                $Apoderado = Apoderado::create([
+                    'per_id' => $datos_apoderado['per_id'],
+                    'apo_parentesco' => $datos_apoderado['parentesco'],
+                    'apo_vive_con_estudiante' => $datos_apoderado['vive_con_estudiante']
+                ]);
+            }
+
+            Alumno::create([
+                'per_id' => $datos_persona['per_id'],
+                'apo_id' => $Apoderado ? $Apoderado->apo_id : null,
+                'alu_estado' => 1
+            ]);
+
+            DB::commit();
+
+            if ($request->ajax()) {
+                $respuesta = [
+                    'status' => 1,
+                    'msg' => 'Se ha registrado correctamente'
+                ];
+                return $respuesta;
+            }
+            $respuesta = [
+                'status' => 0,
+                'msg' => 404
+            ];
+            return $respuesta;
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            $respuesta = [
+                'status' => 0,
+                'msg' => $e
+            ];
+            return $respuesta;
+        }
+        // return response()->json($respuesta);
     }
 }
