@@ -2441,7 +2441,7 @@ class ReporteController extends Controller
             foreach ($notasArray as $trimestre => $notas) {
                 if ($trimestre !== 'notaFinalTrimestre' && $trimestre !== 'notaFinal') {
                     $promedio = array_sum($notas) / count($notas);
-                    $promedios[] = round($promedio, 1); // Redondear a 1 decimal
+                    $promedios[] = round($promedio, 0); // Redondear a 1 decimal
                 }
             }
 
