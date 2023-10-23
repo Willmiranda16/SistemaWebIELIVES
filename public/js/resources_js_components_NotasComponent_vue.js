@@ -43,6 +43,7 @@ var _user = document.head.querySelector('meta[name="user"]');
         nivel: '0',
         grado: '0',
         seccion: '0',
+        cursoId: '0',
         curso: '',
         docente: '0',
         persona_id: '',
@@ -63,7 +64,8 @@ var _user = document.head.querySelector('meta[name="user"]');
         idDocente: '',
         bimestre: '',
         promedio: '',
-        nota_capacidad: []
+        nota_capacidad: [],
+        curso_id: ''
       },
       loading0: false,
       loading: false,
@@ -94,6 +96,7 @@ var _user = document.head.querySelector('meta[name="user"]');
               case 0:
                 _this.notas_registro.idDocente = _this.notas.docente;
                 _this.notas_registro.año_id = _this.notas.año;
+                _this.notas_registro.curso_id = _this.notas.cursoId;
                 suma = 0;
 
                 for (i = 1; i <= data; i++) {
@@ -132,7 +135,7 @@ var _user = document.head.querySelector('meta[name="user"]');
                   console.log(error);
                 });
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -396,7 +399,13 @@ var _user = document.head.querySelector('meta[name="user"]');
                     nivel: _this9.notas.nivel
                   }
                 }).then(function (response) {
-                  _this9.notas.docente = '0', _this9.notas.grado = '0', _this9.notas.seccion = '0', _this9.docentes = response.data.docente, _this9.ocultar_lista();
+                  _this9.notas.docente = '0';
+                  _this9.notas.grado = '0';
+                  _this9.notas.seccion = '0';
+                  _this9.notas.cursoId = '0';
+                  _this9.docentes = response.data.docente;
+
+                  _this9.ocultar_lista();
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -422,7 +431,11 @@ var _user = document.head.querySelector('meta[name="user"]');
                     docente: _this10.notas.docente
                   }
                 }).then(function (response) {
-                  _this10.notas.grado = '0', _this10.notas.seccion = '0', _this10.grados = response.data.grados, _this10.ocultar_lista();
+                  _this10.notas.grado = '0';
+                  _this10.notas.seccion = '0';
+                  _this10.grados = response.data.grados;
+
+                  _this10.ocultar_lista();
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -449,7 +462,7 @@ var _user = document.head.querySelector('meta[name="user"]');
                     grado: _this11.notas.grado
                   }
                 }).then(function (response) {
-                  _this11.notas.seccion = '0', _this11.secciones = response.data.secciones, _this11.ocultar_lista();
+                  _this11.secciones = response.data.secciones;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -462,7 +475,7 @@ var _user = document.head.querySelector('meta[name="user"]');
         }, _callee11);
       }))();
     },
-    buscar_data: function buscar_data() {
+    listar_cursos: function listar_cursos() {
       var _this12 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
@@ -470,34 +483,13 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context12.prev = _context12.next) {
               case 0:
-                _this12.buscando = true;
-                _this12.loading0 = true;
-                axios.post("/api/buscar-info-notas", {
-                  params: {
-                    data: _this12.notas
-                  }
-                }).then(function (response) {
-                  $('#table-notas').DataTable().destroy();
-                  setTimeout(function () {
-                    _this12.notas.curso = response.data.info.curso;
-                    _this12.info = response.data.info;
-                    _this12.alumnos = response.data.alumnos;
-                    _this12.periodo = response.data.periodo;
-                    /* this.data = response.data.asignacion
-                    this.grados = response.data.grados */
-
-                    _this12.initDtt();
-
-                    _this12.ocultar_lista();
-
-                    _this12.buscando = false;
-                    _this12.loading0 = false;
-                  }, 1000);
+                axios.get("/api/getCoursesByTeacher/".concat(_this12.notas.docente, "/").concat(_this12.notas.nivel, "/").concat(_this12.notas.grado, "/").concat(_this12.notas.seccion)).then(function (response) {
+                  _this12.cursos = response.data.cursos;
                 })["catch"](function (error) {
                   console.log(error);
                 });
 
-              case 3:
+              case 1:
               case "end":
                 return _context12.stop();
             }
@@ -505,7 +497,7 @@ var _user = document.head.querySelector('meta[name="user"]');
         }, _callee12);
       }))();
     },
-    listar_registro: function listar_registro(item, bimestre) {
+    buscar_data: function buscar_data() {
       var _this13 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
@@ -513,9 +505,32 @@ var _user = document.head.querySelector('meta[name="user"]');
           while (1) {
             switch (_context13.prev = _context13.next) {
               case 0:
-                _this13.notas_registro.ags_id = item.ags_id, _this13.notas_registro.alumno = item.alumno, _this13.notas_registro.idAlumno = item.idAlumno, _this13.notas_registro.bimestre = bimestre;
+                _this13.buscando = true;
+                axios.post("/api/buscar-info-notas", {
+                  params: {
+                    data: _this13.notas
+                  }
+                }).then(function (response) {
+                  $('#table-notas').DataTable().destroy();
+                  setTimeout(function () {
+                    _this13.notas.curso = response.data.info.curso;
+                    _this13.info = response.data.info;
+                    _this13.alumnos = response.data.alumnos;
+                    _this13.periodo = response.data.periodo;
+                    /* this.data = response.data.asignacion
+                    this.grados = response.data.grados */
 
-              case 1:
+                    _this13.initDtt();
+
+                    _this13.ocultar_lista();
+
+                    _this13.buscando = false;
+                  }, 1000);
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
               case "end":
                 return _context13.stop();
             }
@@ -523,14 +538,32 @@ var _user = document.head.querySelector('meta[name="user"]');
         }, _callee13);
       }))();
     },
-    mostrar_crear: function mostrar_crear(item, bimestre) {
+    listar_registro: function listar_registro(item, bimestre) {
       var _this14 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
-        var div, link, i, div2, link2, opcion_li;
         return _regeneratorRuntime().wrap(function _callee14$(_context14) {
           while (1) {
             switch (_context14.prev = _context14.next) {
+              case 0:
+                _this14.notas_registro.ags_id = item.ags_id, _this14.notas_registro.alumno = item.alumno, _this14.notas_registro.idAlumno = item.idAlumno, _this14.notas_registro.bimestre = bimestre;
+
+              case 1:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14);
+      }))();
+    },
+    mostrar_crear: function mostrar_crear(item, bimestre) {
+      var _this15 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
+        var div, link, i, div2, link2, opcion_li;
+        return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+          while (1) {
+            switch (_context15.prev = _context15.next) {
               case 0:
                 div = document.getElementById("notas-all").classList;
                 link = document.getElementById("link-all").classList;
@@ -554,26 +587,26 @@ var _user = document.head.querySelector('meta[name="user"]');
                 opcion_li = document.getElementById("li-add").classList;
                 opcion_li.remove("d-none");
 
-                _this14.limpiar_notas(_this14.info.capacidades);
+                _this15.limpiar_notas(_this15.info.capacidades);
 
-                _this14.notas_registro.ags_id = item.ags_id, _this14.notas_registro.alumno = item.alumno, _this14.notas_registro.idAlumno = item.idAlumno, _this14.notas_registro.bimestre = bimestre;
+                _this15.notas_registro.ags_id = item.ags_id, _this15.notas_registro.alumno = item.alumno, _this15.notas_registro.idAlumno = item.idAlumno, _this15.notas_registro.bimestre = bimestre;
 
               case 12:
               case "end":
-                return _context14.stop();
+                return _context15.stop();
             }
           }
-        }, _callee14);
+        }, _callee15);
       }))();
     },
     mostrar_actualizar: function mostrar_actualizar(item) {
-      var _this15 = this;
+      var _this16 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
         var div, link, i, div2, link2, opcion_li;
-        return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+        return _regeneratorRuntime().wrap(function _callee16$(_context16) {
           while (1) {
-            switch (_context15.prev = _context15.next) {
+            switch (_context16.prev = _context16.next) {
               case 0:
                 div = document.getElementById("notas-all").classList;
                 link = document.getElementById("link-all").classList;
@@ -596,38 +629,38 @@ var _user = document.head.querySelector('meta[name="user"]');
                 link2.add("active");
                 opcion_li = document.getElementById("li-update").classList;
                 opcion_li.remove("d-none");
-                _this15.notas_update.descripcion = item.sec_descripcion, _this15.notas_update.tutor = item.sec_tutor, _this15.notas_update.vacantes = item.sec_vancantes, _this15.notas_update.gra_id = item.gra_id, _this15.notas_update.id = item.sec_id;
+                _this16.notas_update.descripcion = item.sec_descripcion, _this16.notas_update.tutor = item.sec_tutor, _this16.notas_update.vacantes = item.sec_vancantes, _this16.notas_update.gra_id = item.gra_id, _this16.notas_update.id = item.sec_id;
 
               case 11:
               case "end":
-                return _context15.stop();
+                return _context16.stop();
             }
           }
-        }, _callee15);
+        }, _callee16);
       }))();
     },
     ocultar_lista: function ocultar_lista() {
-      var _this16 = this;
+      var _this17 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
         var div, _div, _div2, _div3, _div4;
 
-        return _regeneratorRuntime().wrap(function _callee16$(_context16) {
+        return _regeneratorRuntime().wrap(function _callee17$(_context17) {
           while (1) {
-            switch (_context16.prev = _context16.next) {
+            switch (_context17.prev = _context17.next) {
               case 0:
-                if (_this16.notas.nivel == 0 && _this16.notas.docente == 0 && _this16.notas.grado == 0 && _this16.notas.seccion == 0) {
+                if (_this17.notas.nivel == 0 && _this17.notas.docente == 0 && _this17.notas.grado == 0 && _this17.notas.seccion == 0 && _this17.notas.cursoId == 0) {
                   div = document.getElementById("listar-info").classList;
                   div.add("d-none");
-                } else if (_this16.notas.nivel != 0 && _this16.notas.docente == 0 && _this16.notas.grado == 0 && _this16.notas.seccion == 0) {
+                } else if (_this17.notas.nivel != 0 && _this17.notas.docente == 0 && _this17.notas.grado == 0 && _this17.notas.seccion == 0 && _this17.notas.cursoId == 0) {
                   _div = document.getElementById("listar-info").classList;
 
                   _div.add("d-none");
-                } else if (_this16.notas.nivel != 0 && _this16.notas.docente != 0 && _this16.notas.grado == 0 && _this16.notas.seccion == 0) {
+                } else if (_this17.notas.nivel != 0 && _this17.notas.docente != 0 && _this17.notas.grado == 0 && _this17.notas.seccion == 0 && _this17.notas.cursoId == 0) {
                   _div2 = document.getElementById("listar-info").classList;
 
                   _div2.add("d-none");
-                } else if (_this16.notas.nivel != 0 && _this16.notas.docente != 0 && _this16.notas.grado != 0 && _this16.notas.seccion == 0) {
+                } else if (_this17.notas.nivel != 0 && _this17.notas.docente != 0 && _this17.notas.grado != 0 && _this17.notas.seccion == 0 && _this17.notas.cursoId == 0) {
                   _div3 = document.getElementById("listar-info").classList;
 
                   _div3.add("d-none");
@@ -639,20 +672,20 @@ var _user = document.head.querySelector('meta[name="user"]');
 
               case 1:
               case "end":
-                return _context16.stop();
+                return _context17.stop();
             }
           }
-        }, _callee16);
+        }, _callee17);
       }))();
     },
     cancelar_registro: function cancelar_registro(data) {
-      var _this17 = this;
+      var _this18 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
         var div, link, i, div2, link2, opcion_li;
-        return _regeneratorRuntime().wrap(function _callee17$(_context17) {
+        return _regeneratorRuntime().wrap(function _callee18$(_context18) {
           while (1) {
-            switch (_context17.prev = _context17.next) {
+            switch (_context18.prev = _context18.next) {
               case 0:
                 div = document.getElementById("notas-add").classList;
                 link = document.getElementById("link-add").classList;
@@ -674,31 +707,31 @@ var _user = document.head.querySelector('meta[name="user"]');
                 div2.add("show");
                 link2.add("active");
 
-                _this17.limpiar_notas(data);
+                _this18.limpiar_notas(data);
 
                 opcion_li = document.getElementById("li-add").classList;
                 opcion_li.add("d-none");
-                _this17.loading = false;
+                _this18.loading = false;
 
               case 12:
               case "end":
-                return _context17.stop();
+                return _context18.stop();
             }
           }
-        }, _callee17);
+        }, _callee18);
       }))();
     },
     limpiar_notas: function limpiar_notas(data) {
-      var _this18 = this;
+      var _this19 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19() {
         var i;
-        return _regeneratorRuntime().wrap(function _callee18$(_context18) {
+        return _regeneratorRuntime().wrap(function _callee19$(_context19) {
           while (1) {
-            switch (_context18.prev = _context18.next) {
+            switch (_context19.prev = _context19.next) {
               case 0:
-                _this18.notas_registro.promedio = '';
-                _this18.notas_registro.nota_capacidad = [];
+                _this19.notas_registro.promedio = '';
+                _this19.notas_registro.nota_capacidad = [];
 
                 for (i = 1; i <= data; i++) {
                   document.getElementById(i).value = '0';
@@ -706,10 +739,10 @@ var _user = document.head.querySelector('meta[name="user"]');
 
               case 3:
               case "end":
-                return _context18.stop();
+                return _context19.stop();
             }
           }
-        }, _callee18);
+        }, _callee19);
       }))();
     },
     initDtt: function initDtt() {
@@ -836,11 +869,11 @@ var render = function render() {
     }, [_vm._v("\n                                            " + _vm._s(n.año_descripcion) + "\n                                        ")]);
   })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "row mb-4"
+  }, [_c("div", {
+    staticClass: "col-md-4"
   }, [_c("label", {
-    staticClass: "col-md-1 col-form-label"
-  }, [_vm._v("Nivel ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("select", {
+    staticClass: "col-form-label"
+  }, [_vm._v("Nivel")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -876,12 +909,10 @@ var render = function render() {
       }
     }, [_vm._v("\n                                            " + _vm._s(n.niv_descripcion) + "\n                                        ")]);
   })], 2)]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-1"
-  }), _vm._v(" "), _c("label", {
-    staticClass: "col-md-1 col-form-label"
-  }, [_vm._v("Docente ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md"
-  }, [_c("select", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    staticClass: "col-form-label"
+  }, [_vm._v("Docente ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -909,7 +940,7 @@ var render = function render() {
       disabled: "",
       value: "0"
     }
-  }, [_vm._v(" No hay docentes registrados ")]) : _c("option", {
+  }, [_vm._v(" No hay\n                                            docentes\n                                            registrados ")]) : _c("option", {
     attrs: {
       value: "0",
       selected: "",
@@ -922,13 +953,11 @@ var render = function render() {
         value: n.pa_id
       }
     }, [_vm._v("\n                                            " + _vm._s(n.nombres) + " " + _vm._s(n.apellidos) + "\n                                        ")]);
-  })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
+  })], 2)]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("label", {
-    staticClass: "col-md-1 col-form-label"
-  }, [_vm._v("Grado ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("select", {
+    staticClass: "col-form-label"
+  }, [_vm._v("Grado ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -956,7 +985,7 @@ var render = function render() {
       selected: "",
       disabled: ""
     }
-  }, [_vm._v(" No hay grados registrados ")]) : _c("option", {
+  }, [_vm._v(" No hay grados\n                                            registrados ")]) : _c("option", {
     attrs: {
       value: "0",
       selected: "",
@@ -970,12 +999,10 @@ var render = function render() {
       }
     }, [_vm._v("\n                                            " + _vm._s(n.gra_descripcion) + "\n                                        ")]);
   })], 2)]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-1"
-  }), _vm._v(" "), _c("label", {
-    staticClass: "col-md-1 col-form-label"
-  }, [_vm._v("Sección ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md"
-  }, [_c("select", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    staticClass: "col-form-label"
+  }, [_vm._v("Sección ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -984,7 +1011,7 @@ var render = function render() {
     }],
     staticClass: "form-control show-tick",
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -993,7 +1020,9 @@ var render = function render() {
         });
 
         _vm.$set(_vm.notas, "seccion", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
+      }, function ($event) {
+        return _vm.listar_cursos();
+      }]
     }
   }, [_vm.secciones.length == 0 ? _c("option", {
     attrs: {
@@ -1001,7 +1030,7 @@ var render = function render() {
       disabled: "",
       value: "0"
     }
-  }, [_vm._v(" No hay secciones registrados ")]) : _c("option", {
+  }, [_vm._v(" No hay\n                                            secciones registrados ")]) : _c("option", {
     attrs: {
       value: "0",
       selected: "",
@@ -1015,13 +1044,52 @@ var render = function render() {
       }
     }, [_vm._v("\n                                            " + _vm._s(n.sec_descripcion) + "\n                                        ")]);
   })], 2)]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-1"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-2 col-md-4 col-sm-6",
-    staticStyle: {
-      display: "flex",
-      "align-items": "center"
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    staticClass: "col-form-label"
+  }, [_vm._v("Cursos ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.notas.cursoId,
+      expression: "notas.cursoId"
+    }],
+    staticClass: "form-control show-tick",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.notas, "cursoId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
+  }, [_vm.cursos.length == 0 ? _c("option", {
+    attrs: {
+      selected: "",
+      disabled: "",
+      value: "0"
+    }
+  }, [_vm._v(" No hay cursos\n                                            registrados ")]) : _c("option", {
+    attrs: {
+      value: "0",
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("-- Selecciona --")]), _vm._v(" "), _vm._l(_vm.cursos, function (n) {
+    return _c("option", {
+      key: n.cur_id,
+      domProps: {
+        value: n.cur_id
+      }
+    }, [_vm._v("\n                                            " + _vm._s(n.cur_nombre) + "\n                                        ")]);
+  })], 2)]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-2"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "col-md-2 mt-auto"
   }, [!_vm.loading0 ? _c("a", {
     staticClass: "btn btn-sm btn-primary btn-block",
     attrs: {

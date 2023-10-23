@@ -20,6 +20,7 @@ const Horarios = () => import("./components/HorariosComponent.vue");
 const Seguimiento = () => import("./components/SeguimientosComponent.vue");
 //importamos componentes para los Reportes
 const ReportesGenerales = () => import("./components/ReportesGeneralesComponent.vue");
+const ManagementReports = () => import("./reports/ReporteCursos.vue");
 //importamos componentes para los Reportes
 const ReportesAlumno = () => import("./components/ReportesAlumnoComponent.vue");
 
@@ -102,6 +103,11 @@ export const routes = [
         name: "mostrarReportesGenerales",
         path: "/reportes-generales",
         component: ReportesGenerales,
+    },
+    {
+        name: "management-report",
+        path: "/reportes-management",
+        component: ManagementReports,
     },
     {
         name: "mostrarReportesAlumno",

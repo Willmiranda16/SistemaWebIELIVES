@@ -5435,6 +5435,19 @@ var render = function render() {
   }, [_c("router-link", {
     staticClass: "opcion_tab",
     attrs: {
+      to: "/reportes-management",
+      id: "resportes_tab",
+      "data-toggle": "tab",
+      "aria-current": "page",
+      onclick: "evaluar_opciones()"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-black-tie"
+  }), _c("span", [_vm._v("Gestión")])])], 1), _vm._v(" "), _c("li", {
+    staticClass: "opcion_tab2"
+  }, [_c("router-link", {
+    staticClass: "opcion_tab",
+    attrs: {
       to: "/reportes-alumno",
       id: "resportes_tab",
       "data-toggle": "tab",
@@ -7434,6 +7447,10 @@ var Seguimiento = function Seguimiento() {
 
 var ReportesGenerales = function ReportesGenerales() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_ReportesGeneralesComponent_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/ReportesGeneralesComponent.vue */ "./resources/js/components/ReportesGeneralesComponent.vue"));
+};
+
+var ManagementReports = function ManagementReports() {
+  return __webpack_require__.e(/*! import() */ "resources_js_reports_ReporteCursos_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./reports/ReporteCursos.vue */ "./resources/js/reports/ReporteCursos.vue"));
 }; //importamos componentes para los Reportes
 
 
@@ -7540,6 +7557,10 @@ var routes = [{
   name: "mostrarReportesGenerales",
   path: "/reportes-generales",
   component: ReportesGenerales
+}, {
+  name: "management-report",
+  path: "/reportes-management",
+  component: ManagementReports
 }, {
   name: "mostrarReportesAlumno",
   path: "/reportes-alumno",
@@ -45583,7 +45604,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_HomeComponent_vue":1,"resources_js_components_PeriodosComponent_vue":1,"resources_js_components_AniosComponent_vue":1,"resources_js_components_AlumnosComponent_vue":1,"resources_js_components_MatriculasComponent_vue":1,"resources_js_components_PersonalComponent_vue":1,"resources_js_components_NotasComponent_vue":1,"resources_js_components_AsistenciasComponent_vue":1,"resources_js_components_HorariosComponent_vue":1,"resources_js_components_SeguimientosComponent_vue":1,"resources_js_components_ReportesGeneralesComponent_vue":1,"resources_js_components_ReportesAlumnoComponent_vue":1,"resources_js_components_NivelesComponent_vue":1,"resources_js_components_GradosSeccionesComponent_vue":1,"resources_js_components_GradosComponent_vue":1,"resources_js_components_SeccionesComponent_vue":1,"resources_js_components_AmbientesComponent_vue":1,"resources_js_components_CursosComponent_vue":1,"resources_js_components_AsignarCursosComponent_vue":1,"resources_js_components_AsignarGradosComponent_vue":1,"resources_js_components_RolesComponent_vue":1,"resources_js_components_UsuariosComponent_vue":1,"resources_js_components_InstitucionEducativaComponent_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_HomeComponent_vue":1,"resources_js_components_PeriodosComponent_vue":1,"resources_js_components_AniosComponent_vue":1,"resources_js_components_AlumnosComponent_vue":1,"resources_js_components_MatriculasComponent_vue":1,"resources_js_components_PersonalComponent_vue":1,"resources_js_components_NotasComponent_vue":1,"resources_js_components_AsistenciasComponent_vue":1,"resources_js_components_HorariosComponent_vue":1,"resources_js_components_SeguimientosComponent_vue":1,"resources_js_components_ReportesGeneralesComponent_vue":1,"resources_js_reports_ReporteCursos_vue":1,"resources_js_components_ReportesAlumnoComponent_vue":1,"resources_js_components_NivelesComponent_vue":1,"resources_js_components_GradosSeccionesComponent_vue":1,"resources_js_components_GradosComponent_vue":1,"resources_js_components_SeccionesComponent_vue":1,"resources_js_components_AmbientesComponent_vue":1,"resources_js_components_CursosComponent_vue":1,"resources_js_components_AsignarCursosComponent_vue":1,"resources_js_components_AsignarGradosComponent_vue":1,"resources_js_components_RolesComponent_vue":1,"resources_js_components_UsuariosComponent_vue":1,"resources_js_components_InstitucionEducativaComponent_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

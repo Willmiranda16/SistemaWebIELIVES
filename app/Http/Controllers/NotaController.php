@@ -53,7 +53,6 @@ class NotaController extends Controller
     public function store(Request $request)
     {
         $datos_nota = $request['params']['notas'];
-
         $periodo = Periodo::where('año_id', $datos_nota['año_id'])->first();
         DB::beginTransaction();
         try {
@@ -63,7 +62,8 @@ class NotaController extends Controller
                 'pa_id' => $datos_nota['idDocente'],
                 'ags_id' => $datos_nota['ags_id'],
                 'nt_bimestre' => $datos_nota['bimestre'],
-                'nt_nota' => $datos_nota['promedio']
+                'nt_nota' => $datos_nota['promedio'],
+                'curso_id' => $datos_nota['curso_id']
             ]);
 
             foreach ($datos_nota['nota_capacidad'] as $key => $value) {
@@ -198,12 +198,28 @@ class NotaController extends Controller
         return view('Error404'); */
     }
 
+    public function getCoursesByTeacher($teacherId,  $nivelId, $gradoId, $seccionId)
+    {
+        $cursos = Curso::join('asignacion_curso', 'curso.cur_nombre', '=', 'asignacion_curso.curso')
+            ->where('asignacion_curso.pa_id', $teacherId)
+            ->where('curso.gra_id', $gradoId)
+            ->where('curso.niv_id', $nivelId)
+            ->where('asignacion_curso.asig_is_deleted', 0)
+            ->select('curso.cur_id', 'curso.cur_nombre')
+            ->get();
+
+        return response()->json([
+            'cursos' => $cursos
+        ]);
+    }
     public function buscarInfoNotas(Request $request)
     {
         $data = $request['params']['data'];
 
-        $asignacionesCursos = AsignarCurso::where('pa_id', $data['docente'])->where('asig_is_deleted', '!=', 1)->first();
-        $curso = Curso::where('cur_nombre', $asignacionesCursos->curso)->where('gra_id', $data['grado'])->where('niv_id', $data['nivel'])->where('is_deleted', '!=', 1)->first();
+        $curso = Curso::where('gra_id', $data['grado'])->where('niv_id', $data['nivel'])->where('cur_id',  $data['cursoId'])->where('is_deleted', '!=', 1)->first();
+        $asignacionesCursos = AsignarCurso::where('pa_id', $data['docente'])->where('curso', $curso->cur_nombre)->where('asig_is_deleted', '!=', 1)->first();
+        // $asignacionesCursos = AsignarCurso::where('pa_id', $data['docente'])->where('asig_is_deleted', '!=', 1)->first();
+        // $curso = Curso::where('cur_nombre', $asignacionesCursos->curso)->where('gra_id', $data['grado'])->where('niv_id', $data['nivel'])->where('cur_id',  $data['cursoId'])->where('is_deleted', '!=', 1)->first();
         $capacidades = Capacidad::where('cur_id', $curso->cur_id)->where('cap_is_deleted', '!=', 1)->get();
         $asignacionesCursos->capacidades = count($capacidades);
 
@@ -235,22 +251,22 @@ class NotaController extends Controller
         foreach ($Gsas as $g) {
             $matricula = Matricula::where('ags_id', $g->ags_id)->where('is_deleted', '!=', 1)->first();
             if ($matricula !== null) {
-                $alumno = Alumno::where('alu_id',$matricula->alu_id)->where('is_deleted','!=',1)->first();
-                $persona = Persona::where('per_id',$alumno->per_id)->where('is_deleted','!=',1)->first();
-                $g->alumno = $persona->per_apellidos.' '.$persona->per_nombres;
+                $alumno = Alumno::where('alu_id', $matricula->alu_id)->where('is_deleted', '!=', 1)->first();
+                $persona = Persona::where('per_id', $alumno->per_id)->where('is_deleted', '!=', 1)->first();
+                $g->alumno = $persona->per_apellidos . ' ' . $persona->per_nombres;
                 $g->dni = $persona->per_dni;
                 $g->idAlumno = $alumno->alu_id;
-    
-                $notas = Nota::where('alu_id',$alumno->alu_id)->where('pa_id',$data['docente'])->get();
+
+                $notas = Nota::where('alu_id', $alumno->alu_id)->where('curso_id', $curso->cur_id)->where('pa_id', $data['docente'])->get();
                 $suma = 0;
                 $total = $tipoPeriodo->cantidad;
                 foreach ($notas as $v) {
-                    $capacidades = NotaCapacidad::where('nt_id',$v->nt_id)->get();
+                    $capacidades = NotaCapacidad::where('nt_id', $v->nt_id)->get();
                     $v->notasCapacidades = $capacidades;
                     $suma += $v->nt_nota;
                 }
                 $g->notas = $notas;
-                $g->promedio = $suma/$total;
+                $g->promedio = $suma / $total;
             }
         }
 

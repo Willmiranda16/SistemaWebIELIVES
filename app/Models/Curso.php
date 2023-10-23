@@ -23,4 +23,9 @@ class Curso extends Model
         'cur_estado',
         'is_deleted'
     ];
+
+    public function capacidades()
+    {
+        return $this->hasMany(Capacidad::class, 'cur_id', 'cur_id');
+    }
 }
