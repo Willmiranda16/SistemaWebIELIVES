@@ -2441,12 +2441,12 @@ class ReporteController extends Controller
             foreach ($notasArray as $trimestre => $notas) {
                 if ($trimestre !== 'notaFinalTrimestre' && $trimestre !== 'notaFinal') {
                     $promedio = array_sum($notas) / count($notas);
-                    $promedios[] = round($promedio, 0); // Redondear a 1 decimal
+                    $promedios[] = round($promedio, 1); // Redondear a 1 decimal
                 }
             }
 
             // Calcular el promedio final de los promedios calculados
-            $promedioFinal = round(array_sum($promedios) / count($promedios), 1);
+            $promedioFinal = round(array_sum($promedios) / count($promedios), 0);
 
             $notasArray['notaFinalTrimestre'] =  $promedios;
             $notasArray['notaFinal'] = $promedioFinal;
@@ -2631,12 +2631,12 @@ class ReporteController extends Controller
                 // Acceder a las notas
                 foreach ($curso['notas'] as $trimestre => $notas) {
                     if ($trimestre !== 'notaFinalTrimestre' && $trimestre !== 'notaFinal') {
-                        $html .= '<td align="center" style="color: ' . (($notas[$index] < 10 && $notas[$index] > 0) ? 'red' : 'black') . ';">' . $notas[$index] . '</td>';
+                        $html .= '<td align="center" style="color: ' . (($notas[$index] < 11 && $notas[$index] > 0) ? 'red' : 'black') . ';">' . $notas[$index] . '</td>';
                     }
                 }
 
                 if ($index === 0) {
-                    $html .= '<td rowspan="' . $countCapacities . '" align="center" style="color: ' . (($curso['notas']['notaFinal'] < 10 && $curso['notas']['notaFinal'] > 0) ? 'red' : 'black') . ';">' . $curso['notas']['notaFinal'] . '</td>';
+                    $html .= '<td rowspan="' . $countCapacities . '" align="center" style="color: ' . ($curso['notas']['notaFinal'] < 11 ? 'red' : 'blue') . ';">' . $curso['notas']['notaFinal'] . '</td>';
                 }
 
                 $html .= '</tr>';
@@ -2647,7 +2647,7 @@ class ReporteController extends Controller
 
             // Acceder a la notaFinalTrimestre
             foreach ($curso['notas']['notaFinalTrimestre'] as $index => $nota) {
-                $html .= '<td align="center" style="color: ' . (($nota < 10 && $nota > 0) ? 'red' : 'black') . ';">' . $nota . '</td>';
+                $html .= '<td align="center" style="color: ' . (($nota < 11 && $nota > 0) ? 'red' : 'black') . ';">' . $nota . '</td>';
             }
 
             $html .= '</tr>';
@@ -2805,14 +2805,14 @@ class ReporteController extends Controller
 
         $cursosList = DB::select('CALL sp_coursesWithAvgsAndNotes(?, ?, ?, ?)', [$año, $nivel, $grado, $seccion]);
 
-        $nivel= Nivel::where('niv_id', $nivel)->select('niv_descripcion')->first();
+        $nivel = Nivel::where('niv_id', $nivel)->select('niv_descripcion')->first();
         $grado = Grado::where('gra_id', $grado)->select('gra_descripcion')->first();
         $seccion = Seccion::where('sec_id', $seccion)->select('sec_descripcion')->first();
 
         $headers = [
             'nivel' => $nivel->niv_descripcion,
             'grado' => $grado->gra_descripcion,
-            'seccion' =>$seccion-> sec_descripcion,
+            'seccion' => $seccion->sec_descripcion,
         ];
         $pdf = PDF::loadView('reportes.promediosCursos', compact('cursosList', 'headers'));
         return $pdf->stream();
