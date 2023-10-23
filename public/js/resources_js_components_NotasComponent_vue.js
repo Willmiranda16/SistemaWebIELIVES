@@ -1159,8 +1159,8 @@ var render = function render() {
       })])])]);
     }), _vm._v(" "), _c("td", [_c("span", {
       "class": {
-        "tag tag-success": item.promedio >= 11,
-        "tag tag-danger": item.promedio < 11
+        "tag tag-success": item.promedio >= 10.5,
+        "tag tag-danger": item.promedio < 10.5
       }
     }, [_vm._v("\n                                                    " + _vm._s(item.promedio.toFixed(0)) + "\n                                                ")])])], 2);
   }), 0)])])])])]), _vm._v(" "), _c("div", {
