@@ -145,11 +145,10 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span class="tag tag-success" v-if="item.promedio > 11">{{ item.promedio
-                                                    }}</span>
-                                                    <span class="tag tag-danger" v-else-if="item.promedio > 0">{{
-                                                        item.promedio }}</span>
-                                                    <span class="tag tag-primary" v-else>0</span>
+                                                    <span
+                                                        :class="{ 'tag tag-success': item.promedio >= 11, 'tag tag-danger': item.promedio < 11 }">
+                                                        {{ item.promedio.toFixed(0) }}
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </tbody>

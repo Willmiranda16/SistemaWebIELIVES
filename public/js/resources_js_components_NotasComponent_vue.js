@@ -1157,13 +1157,12 @@ var render = function render() {
       }, [_c("i", {
         staticClass: "fa fa-edit text-secondary"
       })])])]);
-    }), _vm._v(" "), _c("td", [item.promedio > 11 ? _c("span", {
-      staticClass: "tag tag-success"
-    }, [_vm._v(_vm._s(item.promedio))]) : item.promedio > 0 ? _c("span", {
-      staticClass: "tag tag-danger"
-    }, [_vm._v(_vm._s(item.promedio))]) : _c("span", {
-      staticClass: "tag tag-primary"
-    }, [_vm._v("0")])])], 2);
+    }), _vm._v(" "), _c("td", [_c("span", {
+      "class": {
+        "tag tag-success": item.promedio >= 11,
+        "tag tag-danger": item.promedio < 11
+      }
+    }, [_vm._v("\n                                                    " + _vm._s(item.promedio.toFixed(0)) + "\n                                                ")])])], 2);
   }), 0)])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane",
     attrs: {
