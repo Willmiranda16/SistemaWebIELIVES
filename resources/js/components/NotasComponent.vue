@@ -146,7 +146,7 @@
                                                 </td>
                                                 <td>
                                                     <span
-                                                        :class="{ 'tag tag-success': item.promedio >= 11, 'tag tag-danger': item.promedio < 11 }">
+                                                        :class="{ 'tag tag-success': item.promedio >= 10.5, 'tag tag-danger': item.promedio < 10.5 }">
                                                         {{ item.promedio.toFixed(0) }}
                                                     </span>
                                                 </td>
