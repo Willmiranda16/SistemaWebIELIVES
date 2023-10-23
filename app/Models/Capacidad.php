@@ -18,4 +18,10 @@ class Capacidad extends Model
         'cur_id',
         'cap_is_deleted'
     ];
+
+    // Define la relación entre capacidades y cursos
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class, 'cur_id', 'cap_id');
+    }
 }

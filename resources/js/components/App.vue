@@ -618,6 +618,13 @@
                             </li>
                             <li class="opcion_tab2">
                                 <!-- <a href="#"><i class="fa fa-folder"></i><span>Reportes</span></a> -->
+                                <router-link to="/reportes-management" id="resportes_tab" data-toggle="tab"
+                                    class="opcion_tab" aria-current="page" onclick="evaluar_opciones()">
+                                    <i class="fa fa-black-tie"></i><span>Gestión</span>
+                                </router-link>
+                            </li>
+                            <li class="opcion_tab2">
+                                <!-- <a href="#"><i class="fa fa-folder"></i><span>Reportes</span></a> -->
                                 <router-link to="/reportes-alumno" id="resportes_tab" data-toggle="tab" class="opcion_tab"
                                     aria-current="page" onclick="evaluar_opciones()">
                                     <i class="fa fa-folder-tree"></i><span>Por Alumno</span>

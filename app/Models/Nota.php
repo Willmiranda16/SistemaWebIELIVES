@@ -19,6 +19,7 @@ class Nota extends Model
         'pa_id',
         'ags_id',
         'nt_bimestre',
-        'nt_nota'
+        'nt_nota',
+        'curso_id'
     ];
 }

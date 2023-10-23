@@ -87,6 +87,7 @@ Route::get('/listar-anios', [NotaController::class, 'showAño']);
 Route::post('/listar-docentes-all', [NotaController::class, 'buscar']);
 Route::post('/listar-grados-all', [NotaController::class, 'buscarGrados']);
 Route::post('/listar-secciones-all2', [NotaController::class, 'buscarSeccion']);
+Route::get('/getCoursesByTeacher/{teacherId}/{nivelId}/{gradoId}/{seccionId}', [NotaController::class, 'getCoursesByTeacher']);
 Route::post('/buscar-info-notas', [NotaController::class, 'buscarInfoNotas']);
 Route::post('/agregar-notas', [NotaController::class, 'store']);
 
@@ -128,6 +129,7 @@ Route::post('/reportes-cargos-personal', [ReporteController::class, 'showPersona
 Route::post('/reportes-alumnos-sexo', [ReporteController::class, 'showAlumnoSexo']);
 Route::post('/reportes-docentes-cursos', [ReporteController::class, 'showDocenteCurso']);
 Route::post('/reportes-vacantes-seccion', [ReporteController::class, 'showVacantesSeccion']);
+Route::post('/report/courses/list', [ReporteController::class, 'getReportCourseList']);
 
 Route::post('/listar-grados', [MatriculaController::class, 'showGrados']);
 Route::post('/listar-secciones', [MatriculaController::class, 'showSecciones']);
