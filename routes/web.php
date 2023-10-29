@@ -28,7 +28,11 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
-    return redirect()->to('login');
+    return redirect()->to('landing');
+});
+
+Route::get('/landing', function () {
+    return view('front-pages.landing-page');
 });
 
 Route::get('/login', function () {

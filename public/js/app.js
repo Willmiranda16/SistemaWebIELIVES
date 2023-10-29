@@ -7514,6 +7514,26 @@ var InstitucionEducativa = function InstitucionEducativa() {
 };
 
 var routes = [{
+  name: "home",
+  path: "/landing/home",
+  component: Inicio
+}, {
+  name: "about",
+  path: "/landing/home",
+  component: Inicio
+}, {
+  name: "courses",
+  path: "/landing/courses",
+  component: Inicio
+}, {
+  name: "ourTeam",
+  path: "/landing/our-team",
+  component: Inicio
+}, {
+  name: "contact",
+  path: "/landing/contact",
+  component: Inicio
+}, {
   name: "inicio",
   path: "/inicio",
   component: Inicio
