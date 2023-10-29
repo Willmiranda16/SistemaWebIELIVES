@@ -89,7 +89,7 @@ var _user = document.head.querySelector('meta[name="user"]');
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var suma, i, div, promedio;
+        var nota_capacidad, suma, i, notaValue, promedio;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -97,24 +97,45 @@ var _user = document.head.querySelector('meta[name="user"]');
                 _this.notas_registro.idDocente = _this.notas.docente;
                 _this.notas_registro.año_id = _this.notas.año;
                 _this.notas_registro.curso_id = _this.notas.cursoId;
+                nota_capacidad = [];
                 suma = 0;
+                i = 1;
 
-                for (i = 1; i <= data; i++) {
-                  div = document.getElementById(i).value;
-                  div = parseInt(div);
-                  suma += div;
-                  /*  var concatenar = 'C'+i+'>'+div; */
-
-                  _this.notas_registro.nota_capacidad.push(div);
-                  /*
-                  if(this.notas_registro.nota_capacidad.includes(div) == false){
-                  this.notas_registro.nota_capacidad.push(div);
-                  } */
-
+              case 6:
+                if (!(i <= data)) {
+                  _context.next = 16;
+                  break;
                 }
 
-                promedio = suma / data;
-                _this.notas_registro.promedio = Math.round(promedio);
+                notaValue = parseFloat(document.getElementById(i).value);
+
+                if (!(isNaN(notaValue) || notaValue === '')) {
+                  _context.next = 11;
+                  break;
+                }
+
+                alert('¡Por favor, ingrese un valor numérico válido para todas las notas!');
+                return _context.abrupt("return");
+
+              case 11:
+                nota_capacidad.push(notaValue);
+                suma += notaValue;
+
+              case 13:
+                i++;
+                _context.next = 6;
+                break;
+
+              case 16:
+                _this.notas_registro.nota_capacidad = nota_capacidad;
+
+                if (nota_capacidad.length > 0) {
+                  promedio = suma / nota_capacidad.length;
+                  _this.notas_registro.promedio = Math.round(promedio * 10) / 10; // Redondea a 1 decimal
+                } else {
+                  _this.notas_registro.promedio = 0;
+                }
+
                 axios.post("/api/agregar-notas", {
                   params: {
                     notas: _this.notas_registro
@@ -135,7 +156,7 @@ var _user = document.head.querySelector('meta[name="user"]');
                   console.log(error);
                 });
 
-              case 8:
+              case 19:
               case "end":
                 return _context.stop();
             }

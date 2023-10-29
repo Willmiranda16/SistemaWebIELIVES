@@ -292,19 +292,30 @@ export default {
             this.notas_registro.idDocente = this.notas.docente;
             this.notas_registro.año_id = this.notas.año;
             this.notas_registro.curso_id = this.notas.cursoId;
-            var suma = 0;
+
+            const nota_capacidad = [];
+            let suma = 0;
+
             for (let i = 1; i <= data; i++) {
-                const div = document.getElementById(i).value;
-                div = parseInt(div);
-                suma += div;
-                /*  var concatenar = 'C'+i+'>'+div; */
-                this.notas_registro.nota_capacidad.push(div);/*
-                if(this.notas_registro.nota_capacidad.includes(div) == false){
-                    this.notas_registro.nota_capacidad.push(div);
-                } */
+                const notaValue = parseFloat(document.getElementById(i).value);
+
+                if (isNaN(notaValue) || notaValue === '') {
+                    alert('¡Por favor, ingrese un valor numérico válido para todas las notas!');
+                    return; // Detiene la ejecución si encuentra un valor incorrecto
+                }
+
+                nota_capacidad.push(notaValue);
+                suma += notaValue;
             }
-            var promedio = suma / data;
-            this.notas_registro.promedio = Math.round(promedio);
+
+            this.notas_registro.nota_capacidad = nota_capacidad;
+
+            if (nota_capacidad.length > 0) {
+                const promedio = suma / nota_capacidad.length;
+                this.notas_registro.promedio = Math.round(promedio * 10) / 10; // Redondea a 1 decimal
+            } else {
+                this.notas_registro.promedio = 0;
+            }
 
             axios.post("/api/agregar-notas", {
                 params: {
