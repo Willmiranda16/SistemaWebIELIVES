@@ -5268,10 +5268,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var _user = document.head.querySelector('meta[name="user"]');
 
+console.log(_user);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      currentYear: new Date().getFullYear()
+      currentYear: new Date().getFullYear(),
+      rol: _user.rol_id
     };
   },
   computed: {
@@ -5336,7 +5338,17 @@ var render = function render() {
     attrs: {
       id: "left-sidebar"
     }
-  }, [_vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("ul", {
+    staticClass: "nav nav-tabs"
+  }, [_vm._m(4), _vm._v(" "), _vm.user.rol_id == 1 ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link",
+    attrs: {
+      "data-toggle": "tab",
+      href: "#menu-admin"
+    }
+  }, [_vm._v("Admin")])]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "tab-content mt-3"
   }, [_c("div", {
     staticClass: "tab-pane fade show active",
@@ -5379,19 +5391,6 @@ var render = function render() {
   }, [_c("router-link", {
     staticClass: "opcion_tab",
     attrs: {
-      to: "/asistencia",
-      id: "asistencia_tab",
-      "data-toggle": "tab",
-      "aria-current": "page",
-      onclick: "evaluar_opciones()"
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-table-list"
-  }), _c("span", [_vm._v("Asistencia")])])], 1), _vm._v(" "), _c("li", {
-    staticClass: "opcion_tab2"
-  }, [_c("router-link", {
-    staticClass: "opcion_tab",
-    attrs: {
       to: "/horarios",
       id: "horarios_tab",
       "data-toggle": "tab",
@@ -5415,9 +5414,9 @@ var render = function render() {
     staticClass: "fa-solid fa-clipboard"
   }), _c("span", [_vm._v("Notas")])])], 1), _vm._v(" "), _c("li", {
     staticClass: "opcion_tab2"
-  }), _vm._v(" "), _c("li", {
+  }), _vm._v(" "), _vm.user.rol_id == 1 ? _c("li", {
     staticClass: "g_heading"
-  }, [_vm._v("Reportes")]), _vm._v(" "), _c("li", {
+  }, [_vm._v("Reportes")]) : _vm._e(), _vm._v(" "), _vm.user.rol_id == 1 ? _c("li", {
     staticClass: "opcion_tab2"
   }, [_c("router-link", {
     staticClass: "opcion_tab",
@@ -5430,7 +5429,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa fa-folder"
-  }), _c("span", [_vm._v("Generales")])])], 1), _vm._v(" "), _c("li", {
+  }), _c("span", [_vm._v("Generales")])])], 1) : _vm._e(), _vm._v(" "), _vm.user.rol_id == 1 ? _c("li", {
     staticClass: "opcion_tab2"
   }, [_c("router-link", {
     staticClass: "opcion_tab",
@@ -5443,7 +5442,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa fa-black-tie"
-  }), _c("span", [_vm._v("Gestión")])])], 1), _vm._v(" "), _c("li", {
+  }), _c("span", [_vm._v("Gestión")])])], 1) : _vm._e(), _vm._v(" "), _vm.user.rol_id == 1 ? _c("li", {
     staticClass: "opcion_tab2"
   }, [_c("router-link", {
     staticClass: "opcion_tab",
@@ -5456,7 +5455,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa fa-folder-tree"
-  }), _c("span", [_vm._v("Por Alumno")])])], 1)])])]), _vm._v(" "), _c("div", {
+  }), _c("span", [_vm._v("Por Alumno")])])], 1) : _vm._e()])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade",
     attrs: {
       id: "menu-admin",
@@ -6854,9 +6853,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("ul", {
-    staticClass: "nav nav-tabs"
-  }, [_c("li", {
+  return _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link active",
@@ -6864,15 +6861,7 @@ var staticRenderFns = [function () {
       "data-toggle": "tab",
       href: "#menu-uni"
     }
-  }, [_vm._v("Académico")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link",
-    attrs: {
-      "data-toggle": "tab",
-      href: "#menu-admin"
-    }
-  }, [_vm._v("Admin")])])]);
+  }, [_vm._v("Académico")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;

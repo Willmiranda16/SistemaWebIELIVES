@@ -568,8 +568,9 @@
                         class="icon-grid font-16" data-toggle="tooltip" data-placement="left"
                         title="Grilla o Lista"></i></a></h5>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#menu-uni">Académico</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu-admin">Admin</a></li>
+              
+                <li   class="nav-item"><a class="nav-link active" data-toggle="tab" href="#menu-uni">Académico</a></li>
+                <li v-if="user.rol_id == 1"  class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu-admin">Admin</a></li>
             </ul>
             <div class="tab-content mt-3">
                 <div class="tab-pane fade show active" id="menu-uni" role="tabpanel">
@@ -587,12 +588,12 @@
                                     <i class="fa fa-book"></i><span>Matriculas</span>
                                 </router-link>
                             </li>
-                            <li class="opcion_tab2">
+                           <!-- <li class="opcion_tab2">
                                 <router-link to="/asistencia" id="asistencia_tab" data-toggle="tab" class="opcion_tab"
                                     aria-current="page" onclick="evaluar_opciones()">
                                     <i class="fa-solid fa-table-list"></i><span>Asistencia</span>
                                 </router-link>
-                            </li>
+                            </li> -->
                             <li class="opcion_tab2">
                                 <router-link to="/horarios" id="horarios_tab" data-toggle="tab" class="opcion_tab"
                                     aria-current="page" onclick="evaluar_opciones()">
@@ -608,22 +609,22 @@
 
                             <li class="opcion_tab2">
                             </li>
-                            <li class="g_heading">Reportes</li>
-                            <li class="opcion_tab2">
+                            <li  v-if="user.rol_id == 1" class="g_heading">Reportes</li>
+                            <li v-if="user.rol_id == 1" class="opcion_tab2">
                                 <!-- <a href="#"><i class="fa fa-folder"></i><span>Reportes</span></a> -->
                                 <router-link to="/reportes-generales" id="resportes_tab" data-toggle="tab"
                                     class="opcion_tab" aria-current="page" onclick="evaluar_opciones()">
                                     <i class="fa fa-folder"></i><span>Generales</span>
                                 </router-link>
                             </li>
-                            <li class="opcion_tab2">
+                            <li v-if="user.rol_id == 1" class="opcion_tab2">
                                 <!-- <a href="#"><i class="fa fa-folder"></i><span>Reportes</span></a> -->
                                 <router-link to="/reportes-management" id="resportes_tab" data-toggle="tab"
                                     class="opcion_tab" aria-current="page" onclick="evaluar_opciones()">
                                     <i class="fa fa-black-tie"></i><span>Gestión</span>
                                 </router-link>
                             </li>
-                            <li class="opcion_tab2">
+                            <li v-if="user.rol_id == 1" class="opcion_tab2">
                                 <!-- <a href="#"><i class="fa fa-folder"></i><span>Reportes</span></a> -->
                                 <router-link to="/reportes-alumno" id="resportes_tab" data-toggle="tab" class="opcion_tab"
                                     aria-current="page" onclick="evaluar_opciones()">
@@ -976,10 +977,13 @@
 </template>
 <script>
 let user = document.head.querySelector('meta[name="user"]');
+
+console.log(user);
 export default {
     data() {
         return {
-            currentYear: new Date().getFullYear()
+            currentYear: new Date().getFullYear(),
+            rol: user.rol_id
         }
     },
     computed: {
