@@ -7,7 +7,7 @@ use App\Models\Anio;
 use App\Models\Apoderado;
 use App\Models\Aula;
 use App\Models\Grado;
-use App\Models\Gsa;
+use App\Models\gsa;
 use App\Models\Matricula;
 use App\Models\Nivel;
 use App\Models\Periodo;
@@ -237,6 +237,7 @@ class MatriculaController extends Controller
 
     public function apiStore(Request $request)
     {       
+        return response()->json($request->all());
         try {
             $registro = $this->generalStore($request);
             return $registro;
