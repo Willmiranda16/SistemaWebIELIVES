@@ -246,7 +246,7 @@ class NotaController extends Controller
                 break;
         }
 
-        $Gsas = Gsa::where('niv_id', $data['nivel'])->where('gra_id', $data['grado'])->where('sec_id', $data['seccion'])->where('is_deleted', '!=', 1)->get();
+        $Gsas = gsa::where('niv_id', $data['nivel'])->where('gra_id', $data['grado'])->where('sec_id', $data['seccion'])->where('is_deleted', '!=', 1)->get();
 
         foreach ($Gsas as $g) {
             $matricula = Matricula::where('ags_id', $g->ags_id)->where('is_deleted', '!=', 1)->first();

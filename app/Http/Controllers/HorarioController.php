@@ -43,7 +43,7 @@ class HorarioController extends Controller
         $datos_horario = $request['params']['horario'];
 
         $periodo = Periodo::where('año_id',$datos_horario['año'])->first();
-        $ags = Gsa::where('niv_id',$datos_horario['nivel'])->where('gra_id',$datos_horario['grado'])->where('sec_id',$datos_horario['seccion'])->first();
+        $ags = gsa::where('niv_id',$datos_horario['nivel'])->where('gra_id',$datos_horario['grado'])->where('sec_id',$datos_horario['seccion'])->first();
 
         DB::beginTransaction();
         try {
@@ -91,7 +91,7 @@ class HorarioController extends Controller
         $datos_horario = $request['params']['horario'];
 
         $periodo = Periodo::where('año_id',$datos_horario['año'])->first();
-        $ags = Gsa::where('niv_id',$datos_horario['nivel'])->where('gra_id',$datos_horario['grado'])->where('sec_id',$datos_horario['seccion'])->first();
+        $ags = gsa::where('niv_id',$datos_horario['nivel'])->where('gra_id',$datos_horario['grado'])->where('sec_id',$datos_horario['seccion'])->first();
 
         $horarios = Horario::where('per_id',$periodo->per_id)->where('ags_id',$ags->ags_id)->where('is_deleted','!=',1)->get();
         foreach ($horarios as $value) {

@@ -114,7 +114,7 @@ class MatriculaController extends Controller
             $apo_persona = Persona::where('per_id', $apoderado->per_id)->first();
             $periodo = Periodo::where('per_id', $m->per_id)->first();
             $anio = Anio::where('año_id', $periodo->año_id)->first();
-            $gsa = Gsa::where('ags_id', $m->ags_id)->first();
+            $gsa = gsa::where('ags_id', $m->ags_id)->first();
             $aula = Aula::where('ala_id', $gsa->ala_id)->first();
             $nivel = Nivel::where('niv_id', $gsa->niv_id)->first();
             $grado = Grado::where('gra_id', $gsa->gra_id)->first();
@@ -268,7 +268,7 @@ class MatriculaController extends Controller
         // return $datos_matricula;
         DB::beginTransaction();
         try {
-            $gsa = Gsa::create([
+            $gsa = gsa::create([
                 'ala_id' => $datos_matricula['ala_id'],
                 'niv_id' => $datos_matricula['niv_id'],
                 'gra_id' => $datos_matricula['gra_id'],

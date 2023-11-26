@@ -86,7 +86,7 @@ class ReporteController extends Controller
         $data = Grado::where('niv_id', $nivel)->get();
         foreach ($data as $d) {
             array_push($grados, $d->gra_descripcion);
-            $data2 = Gsa::where('niv_id', $nivel)->where('is_deleted', '!=', 1)->where('gra_id', $d->gra_id)->get();
+            $data2 = gsa::where('niv_id', $nivel)->where('is_deleted', '!=', 1)->where('gra_id', $d->gra_id)->get();
             array_push($totales, count($data2));
         }
 
@@ -152,7 +152,7 @@ class ReporteController extends Controller
         $totales = [];
         $f = 0;
         $m = 0;
-        $dataOrm = Gsa::where('niv_id', $nivel)->where('is_deleted', '!=', 1)->get();
+        $dataOrm = gsa::where('niv_id', $nivel)->where('is_deleted', '!=', 1)->get();
         foreach ($dataOrm as $d) {
             $data2 = Matricula::where('ags_id', $d->ags_id)->first();
             if ($data2 !== null) {
@@ -263,7 +263,7 @@ class ReporteController extends Controller
                 $apo_persona = Persona::where('per_id', $apoderado->per_id)->first();
                 $matricula = Matricula::where('alu_id', $alumno->alu_id)->first();
                 if ($matricula) {
-                    $gsa = Gsa::where('ags_id', $matricula->ags_id)->first();
+                    $gsa = gsa::where('ags_id', $matricula->ags_id)->first();
                     $aula = Aula::where('ala_id', $gsa->ala_id)->first();
                     $nivel = Nivel::where('niv_id', $gsa->niv_id)->first();
                     $grado = Grado::where('gra_id', $gsa->gra_id)->first();
