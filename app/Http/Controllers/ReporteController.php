@@ -12,7 +12,7 @@ use App\Models\Curso;
 use App\Models\Departamento;
 use App\Models\Distrito;
 use App\Models\Grado;
-use App\Models\Gsa;
+use App\Models\gsa;
 use App\Models\Matricula;
 use App\Models\Nivel;
 use App\Models\Nota;

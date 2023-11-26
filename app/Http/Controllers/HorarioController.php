@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
-use App\Models\Gsa;
+use App\Models\gsa;
 use App\Models\Horario;
 use App\Models\Periodo;
 use DateTime;

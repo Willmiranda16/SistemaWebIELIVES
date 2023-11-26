@@ -9,7 +9,7 @@ use App\Models\AsignarGrado;
 use App\Models\Capacidad;
 use App\Models\Curso;
 use App\Models\Grado;
-use App\Models\Gsa;
+use App\Models\gsa;
 use App\Models\Matricula;
 use App\Models\Nota;
 use App\Models\NotaCapacidad;
