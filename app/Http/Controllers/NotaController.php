@@ -276,14 +276,6 @@ class NotaController extends Controller
             'periodo' => $tipoPeriodo,
         ]);
 
-        /* if ($request->ajax()) {
-            return response()->json([
-                'info' => $asignacionesCursos,
-                'alumnos' => $Gsas,
-                'periodo' => $tipoPeriodo,
-            ]);
-        }
-        return view('Error404'); */
     }
 
     public function show($id)
